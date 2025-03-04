@@ -15,18 +15,21 @@ def prepare_edges_length():
     tourisme = gpd.read_file(edges_buffer_total_score_distance_tourisme_path)
     bruit = gpd.read_file(edges_buffer_total_score_distance_bruit_path)
     pollen = gpd.read_file(edges_buffer_total_score_distance_pollen_path)
+    pollen_fevmai = gpd.read_file(edges_buffer_total_score_distance_pollen_fevmai_path)
 
     # Afficher les colonnes avant fusion
     print("Colonnes de frais:", frais.columns)
     print("Colonnes de tourisme:", tourisme.columns)
     print("Colonnes de bruit:", bruit.columns)
     print("Colonnes de pollen:", pollen.columns)
+    print("Colonnes de pollen fev_mai", pollen_fevmai.columns)
 
     # Liste des fichiers supplémentaires et colonnes à ajouter
     fichiers = [
         (tourisme, ["score_distance_tourisme", "tourisme_score"]),
         (bruit, ["score_distance_bruit", "bruit_score"]),
-        (pollen, ["score_distance_pollen", "pollen_score"])
+        (pollen, ["score_distance_pollen", "pollen_score"]),
+        (pollen_fevmai, ["score_distance_pollen_fevmai", "pollen_score_fevmai"]),
     ]
 
     df_final = frais.copy()
@@ -40,7 +43,7 @@ def prepare_edges_length():
               "score_distance_13", "total_score_13", "freshness_score_13", "geometry",
               "score_distance_tourisme", "tourisme_score", 
               "score_distance_bruit", "bruit_score",
-              "score_distance_pollen", "pollen_score"]
+              "score_distance_pollen", "pollen_score","score_distance_pollen_fevmai", "pollen_score_fevmai"]
 
     # Sélectionner uniquement les colonnes nécessaires
     df_final = df_final[column]
@@ -75,7 +78,8 @@ def create_graph_length(graph_path, edges_buffered_path, graph_output_path):
 
     # Appliquer les scores aux arêtes
     for col in ["score_distance_13", "freshness_score_13", "score_distance_pollen", "pollen_score",
-                "score_distance_bruit", "bruit_score", "score_distance_tourisme", "tourisme_score"]:
+                "score_distance_bruit", "bruit_score", "score_distance_tourisme", "tourisme_score",
+                "score_distance_pollen_fevmai", "pollen_score_fevmai"]:
         if col in edges_buffered_data.columns:  # Vérifier si la colonne existe avant d'appliquer
             graph_e[col] = edges_buffered_data[col]
 

@@ -78,6 +78,7 @@ edges_buffer_total_score_path = globpath("./score_calculation_it/output_data/net
 edges_buffer_total_score_distance_path = globpath("./score_calculation_it/output_data/network/edges/edges_buffered_total_score_distance_bounding.gpkg")
 edges_buffer_total_score_distance_freshness_path = globpath("./score_calculation_it/output_data/network/edges/edges_buffered_total_score_distance_freshness_bounding.gpkg")
 edges_buffer_total_score_distance_pollen_path = globpath("./score_calculation_it/output_data/network/edges/edges_buffered_total_score_distance_pollen_bounding.gpkg")
+edges_buffer_total_score_distance_pollen_fevmai_path = globpath("./score_calculation_it/output_data/network/edges/edges_buffered_total_score_distance_pollen_bounding_fevmai.gpkg")
 edges_buffer_total_score_distance_bruit_path = globpath("./score_calculation_it/output_data/network/edges/edges_buffered_total_score_distance_bruit_bounding.gpkg")
 edges_buffer_total_score_distance_tourisme_path = globpath("./score_calculation_it/output_data/network/edges/edges_buffered_total_score_distance_tourisme_bounding.gpkg")
 
