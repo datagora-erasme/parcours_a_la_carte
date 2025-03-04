@@ -4,6 +4,7 @@ import networkx as nx
 import geopandas as gpd
 import osmnx as ox
 import pickle
+import gzip
 from datetime import datetime
 from global_variable import graphs_local_cache, graph_paths
 
@@ -56,10 +57,10 @@ def create_pickles_from_graph_criterion(criterion):
     G2 = nx.Graph(G)
     G_digraph = nx.MultiDiGraph(G2)
 
-    with open(pickle_graph_path, "wb") as f:
+    with gzip.open(pickle_graph_path, "wb") as f:
         pickle.dump(G2, f, protocol=5)
 
-    with open(pickle_multidigraph_path, "wb") as f:
+    with gzip.open(pickle_multidigraph_path, "wb") as f:
         pickle.dump(G_digraph, f, protocol=5)
     
     print(datetime.now(), f"Pickle file creation end for {criterion}")
@@ -83,13 +84,13 @@ def load_graphs_from_pickles(criterion):
 
     if (pickle_graph_path not in graphs_local_cache) or (graphs_local_cache[pickle_graph_path] is None):
         print(datetime.now(), f"Not in cache. Loading pickle file and caching it")
-        with open(pickle_graph_path, 'rb') as f:
+        with gzip.open(pickle_graph_path, 'rb') as f:
             pickle_file = pickle.load(f)
             graphs_local_cache[pickle_graph_path] = pickle_file
     
     if (pickle_multidigraph_path not in graphs_local_cache) or (graphs_local_cache[pickle_multidigraph_path] is None):
         print(datetime.now(), f"Not in cache. Loading pickle file and caching it")
-        with open(pickle_multidigraph_path, 'rb') as f:
+        with gzip.open(pickle_multidigraph_path, 'rb') as f:
             multidi_pickle_file = pickle.load(f)
             graphs_local_cache[pickle_multidigraph_path] = multidi_pickle_file
         
