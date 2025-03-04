@@ -1,0 +1,19 @@
+services:
+  backend:
+    build: backend/
+    env_file:
+      - .env
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./backend:/app
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/app/src

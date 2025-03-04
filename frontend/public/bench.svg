@@ -1,0 +1,9 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
+<svg fill="#ffffff" height="64px" width="64px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-107.52 -107.52 727.04 727.04" xml:space="preserve">
+<g id="SVGRepo_bgCarrier" stroke-width="0">
+<rect x="-107.52" y="-107.52" width="727.04" height="727.04" rx="181.76" fill="#000000" strokewidth="0"/>
+</g>
+<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="SVGRepo_iconCarrier"> <g> <g> <polygon points="456,72 456,40 420,40 420,72 88,72 88,40 52,40 52,72 0,72 0,144 512,144 512,72 "/> </g> </g> <g> <g> <path d="M512,224v-72H0v72h52v76H13.336C7.08,300,4,304.1,4,310.364v27.972C4,344.596,7.08,352,13.336,352H40v120h48v-72h336v72 h52V352h24.704c6.264,0,11.296-7.404,11.296-13.664v-27.972C512,304.1,506.968,300,500.704,300H456v-76H512z M88,224h332v76H88 V224z M424,392H88v-40h336V392z"/> </g> </g> </g>
+</svg>

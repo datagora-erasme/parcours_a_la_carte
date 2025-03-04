@@ -1,0 +1,3418 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.1",
+      "geometry": { "type": "Point", "coordinates": [4.8356, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.2",
+      "geometry": { "type": "Point", "coordinates": [4.8481, 45.7598] },
+      "properties": {
+        "nom": "Le Buisson Ardent",
+        "adresse": "Rue Moncey, Lyon 3e Arrondissement",
+        "commune": "Lyon 3e Arrondissement",
+        "insee": "69383",
+        "address": {
+          "postalCode": "69003",
+          "streetAddress": "Rue Moncey",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 3e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.3",
+      "geometry": { "type": "Point", "coordinates": [4.9123, 45.7665] },
+      "properties": {
+        "adresse": "67 Rue de Pierrefrite, Villeurbanne",
+        "commune": "Villeurbanne",
+        "insee": "69266",
+        "address": {
+          "postalCode": "69100",
+          "streetAddress": "67 Rue de Pierrefrite",
+          "addressCountry": "FR",
+          "addressLocality": "Villeurbanne"
+        },
+        "source": "Open Street Map",
+        "gid": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.4",
+      "geometry": { "type": "Point", "coordinates": [4.831, 45.7572] },
+      "properties": {
+        "adresse": "26 Place Bellecour, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "26 Place Bellecour",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.5",
+      "geometry": { "type": "Point", "coordinates": [4.8628, 45.7534] },
+      "properties": {
+        "adresse": "44 Rue Jeanne Hachette, Lyon 3e Arrondissement",
+        "commune": "Lyon 3e Arrondissement",
+        "insee": "69383",
+        "address": {
+          "postalCode": "69003",
+          "streetAddress": "44 Rue Jeanne Hachette",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 3e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 5
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.6",
+      "geometry": { "type": "Point", "coordinates": [4.7973, 45.7561] },
+      "properties": {
+        "adresse": "6 Place Bénédict Tessier, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "6 Place Bénédict Tessier",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.7",
+      "geometry": { "type": "Point", "coordinates": [4.8548, 45.8443] },
+      "properties": {
+        "adresse": "Place Jean Moulin, Fontaines-Saint-Martin",
+        "commune": "Fontaines-Saint-Martin",
+        "insee": "69087",
+        "address": {
+          "postalCode": "69270",
+          "streetAddress": "Place Jean Moulin",
+          "addressCountry": "FR",
+          "addressLocality": "Fontaines-Saint-Martin"
+        },
+        "source": "Open Street Map",
+        "gid": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.8",
+      "geometry": { "type": "Point", "coordinates": [4.8356, 45.7561] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.9",
+      "geometry": { "type": "Point", "coordinates": [4.8305, 45.7694] },
+      "properties": {
+        "adresse": "Rue de Savy, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "Rue de Savy",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.10",
+      "geometry": { "type": "Point", "coordinates": [4.8357, 45.7561] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.11",
+      "geometry": { "type": "Point", "coordinates": [4.8416, 45.8978] },
+      "properties": {
+        "adresse": "12 Place de Verdun, Genay",
+        "commune": "Genay",
+        "insee": "69278",
+        "address": {
+          "postalCode": "69730",
+          "streetAddress": "12 Place de Verdun",
+          "addressCountry": "FR",
+          "addressLocality": "Genay"
+        },
+        "source": "Open Street Map",
+        "gid": 11
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.12",
+      "geometry": { "type": "Point", "coordinates": [4.8254, 45.7575] },
+      "properties": {
+        "adresse": "Place de la Commanderie, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "Place de la Commanderie",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 12
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.13",
+      "geometry": { "type": "Point", "coordinates": [4.8357, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 13
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.14",
+      "geometry": { "type": "Point", "coordinates": [4.8357, 45.7561] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 14
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.15",
+      "geometry": { "type": "Point", "coordinates": [4.9341, 45.8054] },
+      "properties": {
+        "nom": "Ici",
+        "adresse": "Allée du Gué, Vaulx-en-Velin",
+        "commune": "Vaulx-en-Velin",
+        "insee": "69256",
+        "address": {
+          "postalCode": "69120",
+          "streetAddress": "Allée du Gué",
+          "addressCountry": "FR",
+          "addressLocality": "Vaulx-en-Velin"
+        },
+        "source": "Open Street Map",
+        "gid": 15
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.16",
+      "geometry": { "type": "Point", "coordinates": [4.8629, 45.7533] },
+      "properties": {
+        "adresse": "42 Rue Jeanne Hachette, Lyon 3e Arrondissement",
+        "commune": "Lyon 3e Arrondissement",
+        "insee": "69383",
+        "address": {
+          "postalCode": "69003",
+          "streetAddress": "42 Rue Jeanne Hachette",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 3e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 16
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.17",
+      "geometry": { "type": "Point", "coordinates": [4.947, 45.6856] },
+      "properties": {
+        "nom": "Jet d'eau des Droits de l'Homme",
+        "adresse": "Route d'Heyrieux, Saint-Priest",
+        "commune": "Saint-Priest",
+        "insee": "69290",
+        "address": {
+          "postalCode": "69800",
+          "streetAddress": "Route d'Heyrieux",
+          "addressCountry": "FR",
+          "addressLocality": "Saint-Priest"
+        },
+        "source": "Open Street Map",
+        "gid": 17
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.18",
+      "geometry": { "type": "Point", "coordinates": [4.8629, 45.7533] },
+      "properties": {
+        "adresse": "42 Rue Jeanne Hachette, Lyon 3e Arrondissement",
+        "commune": "Lyon 3e Arrondissement",
+        "insee": "69383",
+        "address": {
+          "postalCode": "69003",
+          "streetAddress": "42 Rue Jeanne Hachette",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 3e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 18
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.19",
+      "geometry": { "type": "Point", "coordinates": [4.8333, 45.7675] },
+      "properties": {
+        "adresse": "Place des Terreaux, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "Place des Terreaux",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 19
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.20",
+      "geometry": { "type": "Point", "coordinates": [4.8357, 45.7561] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 20
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.21",
+      "geometry": { "type": "Point", "coordinates": [4.8544, 45.7377] },
+      "properties": {
+        "adresse": "30 Rue Pierre Delore, Lyon 8e Arrondissement",
+        "commune": "Lyon 8e Arrondissement",
+        "insee": "69388",
+        "address": {
+          "postalCode": "69008",
+          "streetAddress": "30 Rue Pierre Delore",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 8e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 21
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.22",
+      "geometry": { "type": "Point", "coordinates": [4.8382, 45.7752] },
+      "properties": {
+        "nom": "Lavoir Montée Bonafous",
+        "adresse": "16 Montée Bonafous, Lyon 4e Arrondissement",
+        "commune": "Lyon 4e Arrondissement",
+        "insee": "69384",
+        "address": {
+          "postalCode": "69004",
+          "streetAddress": "16 Montée Bonafous",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 4e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 22
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.23",
+      "geometry": { "type": "Point", "coordinates": [4.8256, 45.7578] },
+      "properties": {
+        "adresse": "Place François Bertras, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "Place François Bertras",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 23
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.24",
+      "geometry": { "type": "Point", "coordinates": [4.8291, 45.7617] },
+      "properties": {
+        "adresse": "Esplanade François Renaud, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "Esplanade François Renaud",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 24
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.25",
+      "geometry": { "type": "Point", "coordinates": [4.8607, 45.7389] },
+      "properties": {
+        "adresse": "262 Avenue Berthelot, Lyon 8e Arrondissement",
+        "commune": "Lyon 8e Arrondissement",
+        "insee": "69388",
+        "address": {
+          "postalCode": "69008",
+          "streetAddress": "262 Avenue Berthelot",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 8e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 25
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.26",
+      "geometry": { "type": "Point", "coordinates": [4.8357, 45.7561] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 26
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.27",
+      "geometry": { "type": "Point", "coordinates": [4.8357, 45.7561] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 27
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.28",
+      "geometry": { "type": "Point", "coordinates": [4.8356, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 28
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.29",
+      "geometry": { "type": "Point", "coordinates": [4.8356, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 29
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.30",
+      "geometry": { "type": "Point", "coordinates": [4.8357, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 30
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.31",
+      "geometry": { "type": "Point", "coordinates": [4.8356, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 31
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.32",
+      "geometry": { "type": "Point", "coordinates": [4.833, 45.7674] },
+      "properties": {
+        "adresse": "12 Place des Terreaux, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "12 Place des Terreaux",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 32
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.33",
+      "geometry": { "type": "Point", "coordinates": [4.8356, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 33
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.34",
+      "geometry": { "type": "Point", "coordinates": [4.7951, 45.6494] },
+      "properties": {
+        "adresse": "164 Place de la Mairie, Charly",
+        "commune": "Charly",
+        "insee": "69046",
+        "address": {
+          "postalCode": "69390",
+          "streetAddress": "164 Place de la Mairie",
+          "addressCountry": "FR",
+          "addressLocality": "Charly"
+        },
+        "source": "Open Street Map",
+        "gid": 34
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.35",
+      "geometry": { "type": "Point", "coordinates": [4.8168, 45.7904] },
+      "properties": {
+        "adresse": "14 Rue Félix Mangini, Lyon 9e Arrondissement",
+        "commune": "Lyon 9e Arrondissement",
+        "insee": "69389",
+        "address": {
+          "postalCode": "69009",
+          "streetAddress": "14 Rue Félix Mangini",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 9e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 35
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.36",
+      "geometry": { "type": "Point", "coordinates": [4.8357, 45.7561] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 36
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.37",
+      "geometry": { "type": "Point", "coordinates": [4.8629, 45.7533] },
+      "properties": {
+        "adresse": "44 Rue Jeanne Hachette, Lyon 3e Arrondissement",
+        "commune": "Lyon 3e Arrondissement",
+        "insee": "69383",
+        "address": {
+          "postalCode": "69003",
+          "streetAddress": "44 Rue Jeanne Hachette",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 3e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 37
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.38",
+      "geometry": { "type": "Point", "coordinates": [4.8947, 45.8251] },
+      "properties": {
+        "adresse": "1 Place du Château, Rillieux-la-Pape",
+        "commune": "Rillieux-la-Pape",
+        "insee": "69286",
+        "address": {
+          "postalCode": "69140",
+          "streetAddress": "1 Place du Château",
+          "addressCountry": "FR",
+          "addressLocality": "Rillieux-la-Pape"
+        },
+        "source": "Open Street Map",
+        "gid": 38
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.39",
+      "geometry": { "type": "Point", "coordinates": [4.8357, 45.7561] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.40",
+      "geometry": { "type": "Point", "coordinates": [4.9417, 45.7013] },
+      "properties": {
+        "adresse": "82 Rue Gambetta, Saint-Priest",
+        "commune": "Saint-Priest",
+        "insee": "69290",
+        "address": {
+          "postalCode": "69800",
+          "streetAddress": "82 Rue Gambetta",
+          "addressCountry": "FR",
+          "addressLocality": "Saint-Priest"
+        },
+        "source": "Open Street Map",
+        "gid": 40
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.41",
+      "geometry": { "type": "Point", "coordinates": [4.8265, 45.761] },
+      "properties": {
+        "nom": "Fontaine Saint-Jean de Lyon",
+        "adresse": "8 Place Saint Jean, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "8 Place Saint Jean",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 41
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.42",
+      "geometry": { "type": "Point", "coordinates": [4.8324, 45.7569] },
+      "properties": {
+        "adresse": "24bis Place Bellecour, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "24bis Place Bellecour",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 42
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.43",
+      "geometry": { "type": "Point", "coordinates": [4.8356, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 43
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.44",
+      "geometry": { "type": "Point", "coordinates": [4.8356, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 44
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.45",
+      "geometry": { "type": "Point", "coordinates": [4.8357, 45.7561] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 45
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.46",
+      "geometry": { "type": "Point", "coordinates": [4.8129, 45.7581] },
+      "properties": {
+        "nom": "Fontaine du Verbe-Incarné",
+        "adresse": "4 Rue de la Favorite, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "4 Rue de la Favorite",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 46
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.47",
+      "geometry": { "type": "Point", "coordinates": [4.8269, 45.764] },
+      "properties": {
+        "adresse": "2bis Montée du Garillan, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "2bis Montée du Garillan",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 47
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.48",
+      "geometry": { "type": "Point", "coordinates": [4.9269, 45.7861] },
+      "properties": {
+        "adresse": "2b Place Gilbert Boissier, Vaulx-en-Velin",
+        "commune": "Vaulx-en-Velin",
+        "insee": "69256",
+        "address": {
+          "postalCode": "69120",
+          "streetAddress": "2b Place Gilbert Boissier",
+          "addressCountry": "FR",
+          "addressLocality": "Vaulx-en-Velin"
+        },
+        "source": "Open Street Map",
+        "gid": 48
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.49",
+      "geometry": { "type": "Point", "coordinates": [4.8357, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 49
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.50",
+      "geometry": { "type": "Point", "coordinates": [4.8335, 45.7533] },
+      "properties": {
+        "adresse": "3 Place Gailleton, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "3 Place Gailleton",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 50
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.51",
+      "geometry": { "type": "Point", "coordinates": [4.8357, 45.7561] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 51
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.52",
+      "geometry": { "type": "Point", "coordinates": [4.8338, 45.7675] },
+      "properties": {
+        "adresse": "Place des Terreaux, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "Place des Terreaux",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 52
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.53",
+      "geometry": { "type": "Point", "coordinates": [4.8341, 45.7649] },
+      "properties": {
+        "adresse": "44 Rue Président Edouard Herriot, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "44 Rue Président Edouard Herriot",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 53
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.55",
+      "geometry": { "type": "Point", "coordinates": [4.8303, 45.7694] },
+      "properties": {
+        "adresse": "2 Place Sathonay, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "2 Place Sathonay",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 55
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.56",
+      "geometry": { "type": "Point", "coordinates": [4.8332, 45.7674] },
+      "properties": {
+        "adresse": "17 Place des Terreaux, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "17 Place des Terreaux",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 56
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.57",
+      "geometry": { "type": "Point", "coordinates": [4.8198, 45.8698] },
+      "properties": {
+        "adresse": "Place de la Fontaine, Curis-au-Mont-d'Or",
+        "commune": "Curis-au-Mont-d'Or",
+        "insee": "69071",
+        "address": {
+          "postalCode": "69250",
+          "streetAddress": "Place de la Fontaine",
+          "addressCountry": "FR",
+          "addressLocality": "Curis-au-Mont-d'Or"
+        },
+        "source": "Open Street Map",
+        "gid": 57
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.58",
+      "geometry": { "type": "Point", "coordinates": [4.833, 45.7674] },
+      "properties": {
+        "adresse": "12 Place des Terreaux, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "12 Place des Terreaux",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 58
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.59",
+      "geometry": { "type": "Point", "coordinates": [4.8323, 45.7569] },
+      "properties": {
+        "adresse": "24bis Place Bellecour, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "24bis Place Bellecour",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.60",
+      "geometry": { "type": "Point", "coordinates": [4.8278, 45.7508] },
+      "properties": {
+        "adresse": "13 Place Carnot, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "13 Place Carnot",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.61",
+      "geometry": { "type": "Point", "coordinates": [4.8356, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 61
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.62",
+      "geometry": { "type": "Point", "coordinates": [4.8356, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 62
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.63",
+      "geometry": { "type": "Point", "coordinates": [4.8336, 45.7675] },
+      "properties": {
+        "adresse": "Place des Terreaux, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "Place des Terreaux",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 63
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.64",
+      "geometry": { "type": "Point", "coordinates": [4.8629, 45.7533] },
+      "properties": {
+        "adresse": "42 Rue Jeanne Hachette, Lyon 3e Arrondissement",
+        "commune": "Lyon 3e Arrondissement",
+        "insee": "69383",
+        "address": {
+          "postalCode": "69003",
+          "streetAddress": "42 Rue Jeanne Hachette",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 3e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 64
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.65",
+      "geometry": { "type": "Point", "coordinates": [4.8991, 45.8241] },
+      "properties": {
+        "adresse": "22 Rue de la République, Rillieux-la-Pape",
+        "commune": "Rillieux-la-Pape",
+        "insee": "69286",
+        "address": {
+          "postalCode": "69140",
+          "streetAddress": "22 Rue de la République",
+          "addressCountry": "FR",
+          "addressLocality": "Rillieux-la-Pape"
+        },
+        "source": "Open Street Map",
+        "gid": 65
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.66",
+      "geometry": { "type": "Point", "coordinates": [4.8213, 45.7583] },
+      "properties": {
+        "adresse": "1bis Place des Minimes, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "1bis Place des Minimes",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 66
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.67",
+      "geometry": { "type": "Point", "coordinates": [4.8288, 45.7532] },
+      "properties": {
+        "nom": "Fontaine de la Place Ampère",
+        "adresse": "2 Place Ampère, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "2 Place Ampère",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 67
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.68",
+      "geometry": { "type": "Point", "coordinates": [4.8185, 45.7561] },
+      "properties": {
+        "adresse": "8 Rue de Trion, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "8 Rue de Trion",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 68
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.69",
+      "geometry": { "type": "Point", "coordinates": [4.8357, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 69
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.70",
+      "geometry": { "type": "Point", "coordinates": [4.7952, 45.6961] },
+      "properties": {
+        "adresse": "Place d'Alsace Lorraine, Saint-Genis-Laval",
+        "commune": "Saint-Genis-Laval",
+        "insee": "69204",
+        "address": {
+          "postalCode": "69230",
+          "streetAddress": "Place d'Alsace Lorraine",
+          "addressCountry": "FR",
+          "addressLocality": "Saint-Genis-Laval"
+        },
+        "source": "Open Street Map",
+        "gid": 70
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.72",
+      "geometry": { "type": "Point", "coordinates": [4.8519, 45.7243] },
+      "properties": {
+        "adresse": "290 Route de Vienne, Lyon 8e Arrondissement",
+        "commune": "Lyon 8e Arrondissement",
+        "insee": "69388",
+        "address": {
+          "postalCode": "69008",
+          "streetAddress": "290 Route de Vienne",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 8e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 72
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.73",
+      "geometry": { "type": "Point", "coordinates": [4.8312, 45.7572] },
+      "properties": {
+        "adresse": "26 Place Bellecour, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "26 Place Bellecour",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 73
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.74",
+      "geometry": { "type": "Point", "coordinates": [4.8337, 45.7675] },
+      "properties": {
+        "adresse": "Place des Terreaux, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "Place des Terreaux",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 74
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.75",
+      "geometry": { "type": "Point", "coordinates": [4.8356, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 75
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.76",
+      "geometry": { "type": "Point", "coordinates": [4.8339, 45.7675] },
+      "properties": {
+        "adresse": "2 Place des Terreaux, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "2 Place des Terreaux",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 76
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.77",
+      "geometry": { "type": "Point", "coordinates": [4.8573, 45.7717] },
+      "properties": {
+        "adresse": "1 Boulevard Anatole France, Lyon 6e Arrondissement",
+        "commune": "Lyon 6e Arrondissement",
+        "insee": "69386",
+        "address": {
+          "postalCode": "69006",
+          "streetAddress": "1 Boulevard Anatole France",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 6e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 77
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.78",
+      "geometry": { "type": "Point", "coordinates": [4.8628, 45.7534] },
+      "properties": {
+        "adresse": "44 Rue Jeanne Hachette, Lyon 3e Arrondissement",
+        "commune": "Lyon 3e Arrondissement",
+        "insee": "69383",
+        "address": {
+          "postalCode": "69003",
+          "streetAddress": "44 Rue Jeanne Hachette",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 3e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 78
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.79",
+      "geometry": { "type": "Point", "coordinates": [4.8276, 45.7505] },
+      "properties": {
+        "adresse": "Place Carnot, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "Place Carnot",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 79
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.80",
+      "geometry": { "type": "Point", "coordinates": [4.8357, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 80
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.81",
+      "geometry": { "type": "Point", "coordinates": [4.8356, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 81
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.82",
+      "geometry": { "type": "Point", "coordinates": [4.8356, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 82
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.83",
+      "geometry": { "type": "Point", "coordinates": [4.8356, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 83
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.84",
+      "geometry": { "type": "Point", "coordinates": [4.8333, 45.7674] },
+      "properties": {
+        "adresse": "19 Place des Terreaux, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "19 Place des Terreaux",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 84
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.85",
+      "geometry": { "type": "Point", "coordinates": [4.8233, 45.8374] },
+      "properties": {
+        "adresse": "26 Rue de la République, Saint-Romain-au-Mont-d'Or",
+        "commune": "Saint-Romain-au-Mont-d'Or",
+        "insee": "69233",
+        "address": {
+          "postalCode": "69270",
+          "streetAddress": "26 Rue de la République",
+          "addressCountry": "FR",
+          "addressLocality": "Saint-Romain-au-Mont-d'Or"
+        },
+        "source": "Open Street Map",
+        "gid": 85
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.86",
+      "geometry": { "type": "Point", "coordinates": [4.8314, 45.7571] },
+      "properties": {
+        "adresse": "2 Rue Victor Hugo, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "2 Rue Victor Hugo",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 86
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.87",
+      "geometry": { "type": "Point", "coordinates": [4.7949, 45.7838] },
+      "properties": {
+        "adresse": "22 Avenue du Plateau, Lyon 9e Arrondissement",
+        "commune": "Lyon 9e Arrondissement",
+        "insee": "69389",
+        "address": {
+          "postalCode": "69009",
+          "streetAddress": "22 Avenue du Plateau",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 9e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 87
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.89",
+      "geometry": { "type": "Point", "coordinates": [4.8273, 45.7502] },
+      "properties": {
+        "adresse": "Place Carnot, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "Place Carnot",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 89
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.90",
+      "geometry": { "type": "Point", "coordinates": [4.7806, 45.775] },
+      "properties": {
+        "adresse": "Place Alphonse Stengelin, Écully",
+        "commune": "Écully",
+        "insee": "69081",
+        "address": {
+          "postalCode": "69130",
+          "streetAddress": "Place Alphonse Stengelin",
+          "addressCountry": "FR",
+          "addressLocality": "Écully"
+        },
+        "source": "Open Street Map",
+        "gid": 90
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.91",
+      "geometry": { "type": "Point", "coordinates": [4.8337, 45.7675] },
+      "properties": {
+        "adresse": "Place des Terreaux, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "Place des Terreaux",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 91
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.92",
+      "geometry": { "type": "Point", "coordinates": [4.8233, 45.7626] },
+      "properties": {
+        "adresse": "Chemin du Rosaire, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "Chemin du Rosaire",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 92
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.93",
+      "geometry": { "type": "Point", "coordinates": [4.8166, 45.7558] },
+      "properties": {
+        "nom": "Fontaine du Taurobole",
+        "adresse": "19 Rue des Macchabées, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "19 Rue des Macchabées",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 93
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.94",
+      "geometry": { "type": "Point", "coordinates": [4.9445, 45.6967] },
+      "properties": {
+        "adresse": "1bis Rue de l'Egalité, Saint-Priest",
+        "commune": "Saint-Priest",
+        "insee": "69290",
+        "address": {
+          "postalCode": "69800",
+          "streetAddress": "1bis Rue de l'Egalité",
+          "addressCountry": "FR",
+          "addressLocality": "Saint-Priest"
+        },
+        "source": "Open Street Map",
+        "gid": 94
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.95",
+      "geometry": { "type": "Point", "coordinates": [4.736, 45.7824] },
+      "properties": {
+        "adresse": "Square de Verdun, Charbonnières-les-Bains",
+        "commune": "Charbonnières-les-Bains",
+        "insee": "69044",
+        "address": {
+          "postalCode": "69260",
+          "streetAddress": "Square de Verdun",
+          "addressCountry": "FR",
+          "addressLocality": "Charbonnières-les-Bains"
+        },
+        "source": "Open Street Map",
+        "gid": 95
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.96",
+      "geometry": { "type": "Point", "coordinates": [4.8217, 45.7587] },
+      "properties": {
+        "adresse": "Allée du Champ de Colle, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "Allée du Champ de Colle",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 96
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.98",
+      "geometry": { "type": "Point", "coordinates": [4.8629, 45.7534] },
+      "properties": {
+        "adresse": "44 Rue Jeanne Hachette, Lyon 3e Arrondissement",
+        "commune": "Lyon 3e Arrondissement",
+        "insee": "69383",
+        "address": {
+          "postalCode": "69003",
+          "streetAddress": "44 Rue Jeanne Hachette",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 3e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 98
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.99",
+      "geometry": { "type": "Point", "coordinates": [4.8629, 45.7533] },
+      "properties": {
+        "adresse": "44 Rue Jeanne Hachette, Lyon 3e Arrondissement",
+        "commune": "Lyon 3e Arrondissement",
+        "insee": "69383",
+        "address": {
+          "postalCode": "69003",
+          "streetAddress": "44 Rue Jeanne Hachette",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 3e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 99
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.100",
+      "geometry": { "type": "Point", "coordinates": [4.7772, 45.7727] },
+      "properties": {
+        "adresse": "18 Avenue du Docteur Terver, Écully",
+        "commune": "Écully",
+        "insee": "69081",
+        "address": {
+          "postalCode": "69130",
+          "streetAddress": "18 Avenue du Docteur Terver",
+          "addressCountry": "FR",
+          "addressLocality": "Écully"
+        },
+        "source": "Open Street Map",
+        "gid": 100
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.101",
+      "geometry": { "type": "Point", "coordinates": [4.8339, 45.7675] },
+      "properties": {
+        "adresse": "Place des Terreaux, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "Place des Terreaux",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 101
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.102",
+      "geometry": { "type": "Point", "coordinates": [4.9108, 45.7661] },
+      "properties": {
+        "adresse": "2 Rue du Cimetière, Villeurbanne",
+        "commune": "Villeurbanne",
+        "insee": "69266",
+        "address": {
+          "postalCode": "69100",
+          "streetAddress": "2 Rue du Cimetière",
+          "addressCountry": "FR",
+          "addressLocality": "Villeurbanne"
+        },
+        "source": "Open Street Map",
+        "gid": 102
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.103",
+      "geometry": { "type": "Point", "coordinates": [4.8357, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 103
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.104",
+      "geometry": { "type": "Point", "coordinates": [4.8214, 45.7585] },
+      "properties": {
+        "adresse": "3 Rue Professeur Pierre Marion, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "3 Rue Professeur Pierre Marion",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 104
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.105",
+      "geometry": { "type": "Point", "coordinates": [4.8564, 45.7366] },
+      "properties": {
+        "adresse": "19 Rue Pierre Delore, Lyon 8e Arrondissement",
+        "commune": "Lyon 8e Arrondissement",
+        "insee": "69388",
+        "address": {
+          "postalCode": "69008",
+          "streetAddress": "19 Rue Pierre Delore",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 8e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 105
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.106",
+      "geometry": { "type": "Point", "coordinates": [4.8523, 45.7613] },
+      "properties": {
+        "adresse": "149 Rue Garibaldi, Lyon 3e Arrondissement",
+        "commune": "Lyon 3e Arrondissement",
+        "insee": "69383",
+        "address": {
+          "postalCode": "69003",
+          "streetAddress": "149 Rue Garibaldi",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 3e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 106
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.107",
+      "geometry": { "type": "Point", "coordinates": [4.8159, 45.7267] },
+      "properties": {
+        "adresse": "8 Place Général Leclerc, La Mulatière",
+        "commune": "La Mulatière",
+        "insee": "69142",
+        "address": {
+          "postalCode": "69350",
+          "streetAddress": "8 Place Général Leclerc",
+          "addressCountry": "FR",
+          "addressLocality": "La Mulatière"
+        },
+        "source": "Open Street Map",
+        "gid": 107
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.108",
+      "geometry": { "type": "Point", "coordinates": [4.8336, 45.7668] },
+      "properties": {
+        "adresse": "20 Place des Terreaux, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "20 Place des Terreaux",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 108
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.109",
+      "geometry": { "type": "Point", "coordinates": [4.8356, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 109
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.110",
+      "geometry": { "type": "Point", "coordinates": [4.8402, 45.7792] },
+      "properties": {
+        "adresse": "Rue des Actionnaires, Lyon 4e Arrondissement",
+        "commune": "Lyon 4e Arrondissement",
+        "insee": "69384",
+        "address": {
+          "postalCode": "69004",
+          "streetAddress": "Rue des Actionnaires",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 4e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 110
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.111",
+      "geometry": { "type": "Point", "coordinates": [4.8357, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 111
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.112",
+      "geometry": { "type": "Point", "coordinates": [4.8334, 45.7675] },
+      "properties": {
+        "adresse": "Place des Terreaux, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "Place des Terreaux",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 112
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.113",
+      "geometry": { "type": "Point", "coordinates": [4.8508, 45.7941] },
+      "properties": {
+        "adresse": "1 Place Louis Braille, Caluire-et-Cuire",
+        "commune": "Caluire-et-Cuire",
+        "insee": "69034",
+        "address": {
+          "postalCode": "69300",
+          "streetAddress": "1 Place Louis Braille",
+          "addressCountry": "FR",
+          "addressLocality": "Caluire-et-Cuire"
+        },
+        "source": "Open Street Map",
+        "gid": 113
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.114",
+      "geometry": { "type": "Point", "coordinates": [4.8357, 45.7561] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 114
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.115",
+      "geometry": { "type": "Point", "coordinates": [4.829, 45.7616] },
+      "properties": {
+        "adresse": "Esplanade François Renaud, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "Esplanade François Renaud",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 115
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.117",
+      "geometry": { "type": "Point", "coordinates": [4.8356, 45.756] },
+      "properties": {
+        "adresse": "11 Place Antonin Poncet, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "11 Place Antonin Poncet",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 117
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.118",
+      "geometry": { "type": "Point", "coordinates": [4.8278, 45.7298] },
+      "properties": {
+        "adresse": "Place de l'Ecole, Lyon 7e Arrondissement",
+        "commune": "Lyon 7e Arrondissement",
+        "insee": "69387",
+        "address": {
+          "postalCode": "69007",
+          "streetAddress": "Place de l'Ecole",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 7e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 118
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.119",
+      "geometry": { "type": "Point", "coordinates": [4.9421, 45.6945] },
+      "properties": {
+        "adresse": "2 Rue Parmentier, Saint-Priest",
+        "commune": "Saint-Priest",
+        "insee": "69290",
+        "address": {
+          "postalCode": "69800",
+          "streetAddress": "2 Rue Parmentier",
+          "addressCountry": "FR",
+          "addressLocality": "Saint-Priest"
+        },
+        "source": "Open Street Map",
+        "gid": 119
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.120",
+      "geometry": { "type": "Point", "coordinates": [4.9171, 45.7773] },
+      "properties": {
+        "adresse": "36 Rue François Rabelais, Vaulx-en-Velin",
+        "commune": "Vaulx-en-Velin",
+        "insee": "69256",
+        "address": {
+          "postalCode": "69120",
+          "streetAddress": "36 Rue François Rabelais",
+          "addressCountry": "FR",
+          "addressLocality": "Vaulx-en-Velin"
+        },
+        "source": "Open Street Map",
+        "gid": 120
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.121",
+      "geometry": { "type": "Point", "coordinates": [4.7167, 45.8149] },
+      "properties": {
+        "adresse": "1 Place de la Halle, La Tour-de-Salvagny",
+        "commune": "La Tour-de-Salvagny",
+        "insee": "69250",
+        "address": {
+          "postalCode": "69890",
+          "streetAddress": "1 Place de la Halle",
+          "addressCountry": "FR",
+          "addressLocality": "La Tour-de-Salvagny"
+        },
+        "source": "Open Street Map",
+        "gid": 121
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.122",
+      "geometry": { "type": "Point", "coordinates": [4.8335, 45.7675] },
+      "properties": {
+        "adresse": "Place des Terreaux, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "Place des Terreaux",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 122
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.123",
+      "geometry": { "type": "Point", "coordinates": [4.834, 45.7675] },
+      "properties": {
+        "adresse": "25 Place des Terreaux, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "25 Place des Terreaux",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 123
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.124",
+      "geometry": { "type": "Point", "coordinates": [4.8321, 45.757] },
+      "properties": {
+        "adresse": "25 Place Bellecour, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "25 Place Bellecour",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 124
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.126",
+      "geometry": { "type": "Point", "coordinates": [4.8331, 45.7674] },
+      "properties": {
+        "adresse": "12 Place des Terreaux, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "12 Place des Terreaux",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 126
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.127",
+      "geometry": { "type": "Point", "coordinates": [4.791, 45.6082] },
+      "properties": {
+        "adresse": "Rue du 11 Novembre, Grigny",
+        "commune": "Grigny",
+        "insee": "69096",
+        "address": {
+          "postalCode": "69520",
+          "streetAddress": "Rue du 11 Novembre",
+          "addressCountry": "FR",
+          "addressLocality": "Grigny"
+        },
+        "source": "Open Street Map",
+        "gid": 127
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.128",
+      "geometry": { "type": "Point", "coordinates": [4.9629, 45.764] },
+      "properties": {
+        "adresse": "191 Rue Emile Zola, Décines-Charpieu",
+        "commune": "Décines-Charpieu",
+        "insee": "69275",
+        "address": {
+          "postalCode": "69150",
+          "streetAddress": "191 Rue Emile Zola",
+          "addressCountry": "FR",
+          "addressLocality": "Décines-Charpieu"
+        },
+        "source": "Open Street Map",
+        "gid": 128
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.129",
+      "geometry": { "type": "Point", "coordinates": [4.8242, 45.7631] },
+      "properties": {
+        "adresse": "Chemin du Rosaire, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "Chemin du Rosaire",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 129
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.130",
+      "geometry": { "type": "Point", "coordinates": [4.8311, 45.7775] },
+      "properties": {
+        "adresse": "13 Rue Calas, Lyon 4e Arrondissement",
+        "commune": "Lyon 4e Arrondissement",
+        "insee": "69384",
+        "address": {
+          "postalCode": "69004",
+          "streetAddress": "13 Rue Calas",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 4e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 130
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.131",
+      "geometry": { "type": "Point", "coordinates": [4.8312, 45.7775] },
+      "properties": {
+        "adresse": "11 Rue Calas, Lyon 4e Arrondissement",
+        "commune": "Lyon 4e Arrondissement",
+        "insee": "69384",
+        "address": {
+          "postalCode": "69004",
+          "streetAddress": "11 Rue Calas",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 4e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 131
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.132",
+      "geometry": { "type": "Point", "coordinates": [4.8307, 45.7775] },
+      "properties": {
+        "adresse": "15 Rue Calas, Lyon 4e Arrondissement",
+        "commune": "Lyon 4e Arrondissement",
+        "insee": "69384",
+        "address": {
+          "postalCode": "69004",
+          "streetAddress": "15 Rue Calas",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 4e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 132
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.133",
+      "geometry": { "type": "Point", "coordinates": [4.8308, 45.7775] },
+      "properties": {
+        "adresse": "15 Rue Calas, Lyon 4e Arrondissement",
+        "commune": "Lyon 4e Arrondissement",
+        "insee": "69384",
+        "address": {
+          "postalCode": "69004",
+          "streetAddress": "15 Rue Calas",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 4e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 133
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.134",
+      "geometry": { "type": "Point", "coordinates": [4.8114, 45.7137] },
+      "properties": {
+        "adresse": "54 Rue Fleury, Oullins",
+        "commune": "Oullins",
+        "insee": "69149",
+        "address": {
+          "postalCode": "69600",
+          "streetAddress": "54 Rue Fleury",
+          "addressCountry": "FR",
+          "addressLocality": "Oullins"
+        },
+        "source": "Open Street Map",
+        "gid": 134
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.136",
+      "geometry": { "type": "Point", "coordinates": [4.8837, 45.759] },
+      "properties": {
+        "adresse": "22 Rue Valentin Haüy, Villeurbanne",
+        "commune": "Villeurbanne",
+        "insee": "69266",
+        "address": {
+          "postalCode": "69100",
+          "streetAddress": "22 Rue Valentin Haüy",
+          "addressCountry": "FR",
+          "addressLocality": "Villeurbanne"
+        },
+        "source": "Open Street Map",
+        "gid": 136
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.137",
+      "geometry": { "type": "Point", "coordinates": [4.8268, 45.7586] },
+      "properties": {
+        "adresse": "2 Place Benoit Crépu, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "2 Place Benoit Crépu",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 137
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.138",
+      "geometry": { "type": "Point", "coordinates": [4.8266, 45.7585] },
+      "properties": {
+        "adresse": "4 Place Benoit Crépu, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "4 Place Benoit Crépu",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 138
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.139",
+      "geometry": { "type": "Point", "coordinates": [4.8267, 45.7586] },
+      "properties": {
+        "adresse": "4 Place Benoit Crépu, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "4 Place Benoit Crépu",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 139
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.140",
+      "geometry": { "type": "Point", "coordinates": [4.8263, 45.7582] },
+      "properties": {
+        "adresse": "8 Place Benoit Crépu, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "8 Place Benoit Crépu",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 140
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.141",
+      "geometry": { "type": "Point", "coordinates": [4.8262, 45.7581] },
+      "properties": {
+        "adresse": "8 Place Benoit Crépu, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "8 Place Benoit Crépu",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 141
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.142",
+      "geometry": { "type": "Point", "coordinates": [4.8261, 45.758] },
+      "properties": {
+        "adresse": "12 Place Benoit Crépu, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "12 Place Benoit Crépu",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 142
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.143",
+      "geometry": { "type": "Point", "coordinates": [4.8261, 45.7579] },
+      "properties": {
+        "adresse": "12bis Place Benoit Crépu, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "12bis Place Benoit Crépu",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 143
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.144",
+      "geometry": { "type": "Point", "coordinates": [4.8264, 45.7583] },
+      "properties": {
+        "adresse": "Place Benoit Crépu, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "Place Benoit Crépu",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 144
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.145",
+      "geometry": { "type": "Point", "coordinates": [4.8265, 45.7584] },
+      "properties": {
+        "adresse": "Place Benoit Crépu, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "Place Benoit Crépu",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 145
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.146",
+      "geometry": { "type": "Point", "coordinates": [4.899, 45.7656] },
+      "properties": {
+        "adresse": "Square Dreieich, Villeurbanne",
+        "commune": "Villeurbanne",
+        "insee": "69266",
+        "address": {
+          "postalCode": "69100",
+          "streetAddress": "Square Dreieich",
+          "addressCountry": "FR",
+          "addressLocality": "Villeurbanne"
+        },
+        "source": "Open Street Map",
+        "gid": 146
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.147",
+      "geometry": { "type": "Point", "coordinates": [4.8207, 45.7689] },
+      "properties": {
+        "nom": "Fontaine de Camille Roy",
+        "adresse": "35 Cours Général Giraud, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "35 Cours Général Giraud",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 147
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.148",
+      "geometry": { "type": "Point", "coordinates": [4.9047, 45.8183] },
+      "properties": {
+        "nom": "Place Maréchal Juin",
+        "adresse": "Place Maréchal Juin, Rillieux-la-Pape",
+        "commune": "Rillieux-la-Pape",
+        "insee": "69286",
+        "address": {
+          "postalCode": "69140",
+          "streetAddress": "Place Maréchal Juin",
+          "addressCountry": "FR",
+          "addressLocality": "Rillieux-la-Pape"
+        },
+        "source": "Open Street Map",
+        "gid": 148
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.154",
+      "geometry": { "type": "Point", "coordinates": [4.8361, 45.7683] },
+      "properties": {
+        "nom": "Le Soleil",
+        "adresse": "15 Place Louis Pradel, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "15 Place Louis Pradel",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 154
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.155",
+      "geometry": { "type": "Point", "coordinates": [4.8356, 45.7605] },
+      "properties": {
+        "nom": "Le bassin central de la place",
+        "adresse": "Place de la République, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "Place de la République",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 155
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.156",
+      "geometry": { "type": "Point", "coordinates": [4.8915, 45.7535] },
+      "properties": {
+        "adresse": "Rue de l'Eglise, Lyon 3e Arrondissement",
+        "commune": "Lyon 3e Arrondissement",
+        "insee": "69383",
+        "address": {
+          "postalCode": "69003",
+          "streetAddress": "Rue de l'Eglise",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 3e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 156
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.157",
+      "geometry": { "type": "Point", "coordinates": [4.8128, 45.7551] },
+      "properties": {
+        "adresse": "Place Saint Irénée, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "Place Saint Irénée",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 157
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.158",
+      "geometry": { "type": "Point", "coordinates": [4.8627, 45.7791] },
+      "properties": {
+        "adresse": "3 Avenue Roberto Rossellini, Villeurbanne",
+        "commune": "Villeurbanne",
+        "insee": "69266",
+        "address": {
+          "postalCode": "69100",
+          "streetAddress": "3 Avenue Roberto Rossellini",
+          "addressCountry": "FR",
+          "addressLocality": "Villeurbanne"
+        },
+        "source": "Open Street Map",
+        "gid": 158
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.160",
+      "geometry": { "type": "Point", "coordinates": [4.8335, 45.7676] },
+      "properties": {
+        "nom": "Fontaine Bartholdi",
+        "adresse": "6 Place des Terreaux, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "6 Place des Terreaux",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 160
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.161",
+      "geometry": { "type": "Point", "coordinates": [4.8708, 45.8244] },
+      "properties": {
+        "adresse": "115 Allée du 4 Avril 1908, Sathonay-Camp",
+        "commune": "Sathonay-Camp",
+        "insee": "69292",
+        "address": {
+          "postalCode": "69580",
+          "streetAddress": "115 Allée du 4 Avril 1908",
+          "addressCountry": "FR",
+          "addressLocality": "Sathonay-Camp"
+        },
+        "source": "Open Street Map",
+        "gid": 161
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.162",
+      "geometry": { "type": "Point", "coordinates": [4.8421, 45.7685] },
+      "properties": {
+        "adresse": "11bis Place Maréchal Lyautey, Lyon 6e Arrondissement",
+        "commune": "Lyon 6e Arrondissement",
+        "insee": "69386",
+        "address": {
+          "postalCode": "69006",
+          "streetAddress": "11bis Place Maréchal Lyautey",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 6e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 162
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.163",
+      "geometry": { "type": "Point", "coordinates": [5.0063, 45.7663] },
+      "properties": {
+        "adresse": "2 Rue Jean Jaurès, Meyzieu",
+        "commune": "Meyzieu",
+        "insee": "69282",
+        "address": {
+          "postalCode": "69330",
+          "streetAddress": "2 Rue Jean Jaurès",
+          "addressCountry": "FR",
+          "addressLocality": "Meyzieu"
+        },
+        "source": "Open Street Map",
+        "gid": 163
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.164",
+      "geometry": { "type": "Point", "coordinates": [4.7869, 45.6918] },
+      "properties": {
+        "adresse": "Avenue de Gadagne, Saint-Genis-Laval",
+        "commune": "Saint-Genis-Laval",
+        "insee": "69204",
+        "address": {
+          "postalCode": "69230",
+          "streetAddress": "Avenue de Gadagne",
+          "addressCountry": "FR",
+          "addressLocality": "Saint-Genis-Laval"
+        },
+        "source": "Open Street Map",
+        "gid": 164
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.165",
+      "geometry": { "type": "Point", "coordinates": [4.8336, 45.7668] },
+      "properties": {
+        "adresse": "20 Place des Terreaux, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "20 Place des Terreaux",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 165
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.166",
+      "geometry": { "type": "Point", "coordinates": [4.8736, 45.7338] },
+      "properties": {
+        "nom": "Bassin",
+        "adresse": "75 Rue Maryse Bastié, Lyon 8e Arrondissement",
+        "commune": "Lyon 8e Arrondissement",
+        "insee": "69388",
+        "address": {
+          "postalCode": "69008",
+          "streetAddress": "75 Rue Maryse Bastié",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 8e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 166
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.167",
+      "geometry": { "type": "Point", "coordinates": [4.8005, 45.7371] },
+      "properties": {
+        "adresse": "3 Rue Deshay, Sainte-Foy-lès-Lyon",
+        "commune": "Sainte-Foy-lès-Lyon",
+        "insee": "69202",
+        "address": {
+          "postalCode": "69110",
+          "streetAddress": "3 Rue Deshay",
+          "addressCountry": "FR",
+          "addressLocality": "Sainte-Foy-lès-Lyon"
+        },
+        "source": "Open Street Map",
+        "gid": 167
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.168",
+      "geometry": { "type": "Point", "coordinates": [4.7872, 45.6917] },
+      "properties": {
+        "adresse": "54bis Avenue Maréchal Foch, Saint-Genis-Laval",
+        "commune": "Saint-Genis-Laval",
+        "insee": "69204",
+        "address": {
+          "postalCode": "69230",
+          "streetAddress": "54bis Avenue Maréchal Foch",
+          "addressCountry": "FR",
+          "addressLocality": "Saint-Genis-Laval"
+        },
+        "source": "Open Street Map",
+        "gid": 168
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.169",
+      "geometry": { "type": "Point", "coordinates": [4.8209, 45.7596] },
+      "properties": {
+        "adresse": "Rue de l'Antiquaille, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "Rue de l'Antiquaille",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 169
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.170",
+      "geometry": { "type": "Point", "coordinates": [4.8328, 45.7662] },
+      "properties": {
+        "adresse": "Place Meissonnier, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "Place Meissonnier",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 170
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.171",
+      "geometry": { "type": "Point", "coordinates": [4.8622, 45.7747] },
+      "properties": {
+        "nom": "Fontaine des Géants",
+        "adresse": "1 Allée Buster Keaton, Villeurbanne",
+        "commune": "Villeurbanne",
+        "insee": "69266",
+        "address": {
+          "postalCode": "69100",
+          "streetAddress": "1 Allée Buster Keaton",
+          "addressCountry": "FR",
+          "addressLocality": "Villeurbanne"
+        },
+        "source": "Open Street Map",
+        "gid": 171
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.172",
+      "geometry": { "type": "Point", "coordinates": [4.9197, 45.7606] },
+      "properties": {
+        "adresse": "Esplanade Miriam Makeba, Villeurbanne",
+        "commune": "Villeurbanne",
+        "insee": "69266",
+        "address": {
+          "postalCode": "69100",
+          "streetAddress": "Esplanade Miriam Makeba",
+          "addressCountry": "FR",
+          "addressLocality": "Villeurbanne"
+        },
+        "source": "Open Street Map",
+        "gid": 172
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.173",
+      "geometry": { "type": "Point", "coordinates": [4.8688, 45.7368] },
+      "properties": {
+        "adresse": "Place du 11 Novembre 1918, Lyon 8e Arrondissement",
+        "commune": "Lyon 8e Arrondissement",
+        "insee": "69388",
+        "address": {
+          "postalCode": "69008",
+          "streetAddress": "Place du 11 Novembre 1918",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 8e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 173
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.174",
+      "geometry": { "type": "Point", "coordinates": [4.8367, 45.7684] },
+      "properties": {
+        "adresse": "Place Louis Pradel, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "Place Louis Pradel",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 174
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.175",
+      "geometry": { "type": "Point", "coordinates": [4.8275, 45.7557] },
+      "properties": {
+        "adresse": "Place Antoine Vollon, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "Place Antoine Vollon",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 175
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.176",
+      "geometry": { "type": "Point", "coordinates": [4.9254, 45.7609] },
+      "properties": {
+        "adresse": "Esplanade Tase, Vaulx-en-Velin",
+        "commune": "Vaulx-en-Velin",
+        "insee": "69256",
+        "address": {
+          "postalCode": "69120",
+          "streetAddress": "Esplanade Tase",
+          "addressCountry": "FR",
+          "addressLocality": "Vaulx-en-Velin"
+        },
+        "source": "Open Street Map",
+        "gid": 176
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.177",
+      "geometry": { "type": "Point", "coordinates": [4.9502, 45.7695] },
+      "properties": {
+        "adresse": "156 Avenue Jean Jaurès, Décines-Charpieu",
+        "commune": "Décines-Charpieu",
+        "insee": "69275",
+        "address": {
+          "postalCode": "69150",
+          "streetAddress": "156 Avenue Jean Jaurès",
+          "addressCountry": "FR",
+          "addressLocality": "Décines-Charpieu"
+        },
+        "source": "Open Street Map",
+        "gid": 177
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.178",
+      "geometry": { "type": "Point", "coordinates": [4.8285, 45.762] },
+      "properties": {
+        "adresse": "Place Paul Duquaire, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "Place Paul Duquaire",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 178
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.179",
+      "geometry": { "type": "Point", "coordinates": [4.8656, 45.7298] },
+      "properties": {
+        "adresse": "27 Rue Ludovic Arrachart, Lyon 8e Arrondissement",
+        "commune": "Lyon 8e Arrondissement",
+        "insee": "69388",
+        "address": {
+          "postalCode": "69008",
+          "streetAddress": "27 Rue Ludovic Arrachart",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 8e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 179
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.180",
+      "geometry": { "type": "Point", "coordinates": [4.8346, 45.7778] },
+      "properties": {
+        "adresse": "3 Place Marcel Bertone, Lyon 4e Arrondissement",
+        "commune": "Lyon 4e Arrondissement",
+        "insee": "69384",
+        "address": {
+          "postalCode": "69004",
+          "streetAddress": "3 Place Marcel Bertone",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 4e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 180
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.181",
+      "geometry": { "type": "Point", "coordinates": [4.9653, 45.7632] },
+      "properties": {
+        "adresse": "8 Place Henri Barbusse, Décines-Charpieu",
+        "commune": "Décines-Charpieu",
+        "insee": "69275",
+        "address": {
+          "postalCode": "69150",
+          "streetAddress": "8 Place Henri Barbusse",
+          "addressCountry": "FR",
+          "addressLocality": "Décines-Charpieu"
+        },
+        "source": "Open Street Map",
+        "gid": 181
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.182",
+      "geometry": { "type": "Point", "coordinates": [4.8794, 45.766] },
+      "properties": {
+        "adresse": "Place Docteur Lazare Goujon, Villeurbanne",
+        "commune": "Villeurbanne",
+        "insee": "69266",
+        "address": {
+          "postalCode": "69100",
+          "streetAddress": "Place Docteur Lazare Goujon",
+          "addressCountry": "FR",
+          "addressLocality": "Villeurbanne"
+        },
+        "source": "Open Street Map",
+        "gid": 182
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.183",
+      "geometry": { "type": "Point", "coordinates": [4.8303, 45.7953] },
+      "properties": {
+        "adresse": "45 Quai Clemenceau, Caluire-et-Cuire",
+        "commune": "Caluire-et-Cuire",
+        "insee": "69034",
+        "address": {
+          "postalCode": "69300",
+          "streetAddress": "45 Quai Clemenceau",
+          "addressCountry": "FR",
+          "addressLocality": "Caluire-et-Cuire"
+        },
+        "source": "Open Street Map",
+        "gid": 183
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.184",
+      "geometry": { "type": "Point", "coordinates": [4.8871, 45.7192] },
+      "properties": {
+        "adresse": "2ter Avenue Jules Guesde, Vénissieux",
+        "commune": "Vénissieux",
+        "insee": "69259",
+        "address": {
+          "postalCode": "69200",
+          "streetAddress": "2ter Avenue Jules Guesde",
+          "addressCountry": "FR",
+          "addressLocality": "Vénissieux"
+        },
+        "source": "Open Street Map",
+        "gid": 184
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.185",
+      "geometry": { "type": "Point", "coordinates": [4.8367, 45.7644] },
+      "properties": {
+        "adresse": "41 Rue de la Bourse, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "41 Rue de la Bourse",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 185
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.186",
+      "geometry": { "type": "Point", "coordinates": [4.8335, 45.7605] },
+      "properties": {
+        "nom": "Fontaine des Jacobins",
+        "adresse": "Place des Jacobins, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "Place des Jacobins",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 186
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.187",
+      "geometry": { "type": "Point", "coordinates": [4.866, 45.7697] },
+      "properties": {
+        "adresse": "Place des Passementiers, Villeurbanne",
+        "commune": "Villeurbanne",
+        "insee": "69266",
+        "address": {
+          "postalCode": "69100",
+          "streetAddress": "Place des Passementiers",
+          "addressCountry": "FR",
+          "addressLocality": "Villeurbanne"
+        },
+        "source": "Open Street Map",
+        "gid": 187
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.188",
+      "geometry": { "type": "Point", "coordinates": [4.803, 45.7737] },
+      "properties": {
+        "adresse": "29b Rue du Bourbonnais, Lyon 9e Arrondissement",
+        "commune": "Lyon 9e Arrondissement",
+        "insee": "69389",
+        "address": {
+          "postalCode": "69009",
+          "streetAddress": "29b Rue du Bourbonnais",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 9e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 188
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.189",
+      "geometry": { "type": "Point", "coordinates": [4.8352, 45.7677] },
+      "properties": {
+        "adresse": "Rue Puits Gaillot, Lyon 1er Arrondissement",
+        "commune": "Lyon 1er Arrondissement",
+        "insee": "69381",
+        "address": {
+          "postalCode": "69001",
+          "streetAddress": "Rue Puits Gaillot",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 1er Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 189
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.190",
+      "geometry": { "type": "Point", "coordinates": [4.8799, 45.7661] },
+      "properties": {
+        "adresse": "Place Docteur Lazare Goujon, Villeurbanne",
+        "commune": "Villeurbanne",
+        "insee": "69266",
+        "address": {
+          "postalCode": "69100",
+          "streetAddress": "Place Docteur Lazare Goujon",
+          "addressCountry": "FR",
+          "addressLocality": "Villeurbanne"
+        },
+        "source": "Open Street Map",
+        "gid": 190
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.191",
+      "geometry": { "type": "Point", "coordinates": [4.8283, 45.7616] },
+      "properties": {
+        "adresse": "Place Paul Duquaire, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "Place Paul Duquaire",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 191
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.192",
+      "geometry": { "type": "Point", "coordinates": [4.7865, 45.6918] },
+      "properties": {
+        "adresse": "Avenue de Gadagne, Saint-Genis-Laval",
+        "commune": "Saint-Genis-Laval",
+        "insee": "69204",
+        "address": {
+          "postalCode": "69230",
+          "streetAddress": "Avenue de Gadagne",
+          "addressCountry": "FR",
+          "addressLocality": "Saint-Genis-Laval"
+        },
+        "source": "Open Street Map",
+        "gid": 192
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.193",
+      "geometry": { "type": "Point", "coordinates": [4.9428, 45.6992] },
+      "properties": {
+        "nom": "Fontaine des Dauphins",
+        "adresse": "16 Grande Rue, Saint-Priest",
+        "commune": "Saint-Priest",
+        "insee": "69290",
+        "address": {
+          "postalCode": "69800",
+          "streetAddress": "16 Grande Rue",
+          "addressCountry": "FR",
+          "addressLocality": "Saint-Priest"
+        },
+        "source": "Open Street Map",
+        "gid": 193
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.194",
+      "geometry": { "type": "Point", "coordinates": [4.7913, 45.7482] },
+      "properties": {
+        "adresse": "126 Rue Commandant Charcot, Lyon 5e Arrondissement",
+        "commune": "Lyon 5e Arrondissement",
+        "insee": "69385",
+        "address": {
+          "postalCode": "69005",
+          "streetAddress": "126 Rue Commandant Charcot",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 5e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 194
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.195",
+      "geometry": { "type": "Point", "coordinates": [4.8521, 45.7827] },
+      "properties": {
+        "adresse": "93 Quai Charles de Gaulle, Lyon 6e Arrondissement",
+        "commune": "Lyon 6e Arrondissement",
+        "insee": "69386",
+        "address": {
+          "postalCode": "69006",
+          "streetAddress": "93 Quai Charles de Gaulle",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 6e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 195
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.196",
+      "geometry": { "type": "Point", "coordinates": [4.8704, 45.7066] },
+      "properties": {
+        "adresse": "Square Louis Aulagne, Vénissieux",
+        "commune": "Vénissieux",
+        "insee": "69259",
+        "address": {
+          "postalCode": "69200",
+          "streetAddress": "Square Louis Aulagne",
+          "addressCountry": "FR",
+          "addressLocality": "Vénissieux"
+        },
+        "source": "Open Street Map",
+        "gid": 196
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.198",
+      "geometry": { "type": "Point", "coordinates": [4.8848, 45.6986] },
+      "properties": {
+        "nom": "La Vénissieuse",
+        "adresse": "17 Place de la Paix, Vénissieux",
+        "commune": "Vénissieux",
+        "insee": "69259",
+        "address": {
+          "postalCode": "69200",
+          "streetAddress": "17 Place de la Paix",
+          "addressCountry": "FR",
+          "addressLocality": "Vénissieux"
+        },
+        "source": "Open Street Map",
+        "gid": 198
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.199",
+      "geometry": { "type": "Point", "coordinates": [4.8854, 45.6969] },
+      "properties": {
+        "nom": "Hôtel de Ville - Fontaien d'été",
+        "adresse": "7 Avenue Marcel Houel, Vénissieux",
+        "commune": "Vénissieux",
+        "insee": "69259",
+        "address": {
+          "postalCode": "69200",
+          "streetAddress": "7 Avenue Marcel Houel",
+          "addressCountry": "FR",
+          "addressLocality": "Vénissieux"
+        },
+        "source": "Open Street Map",
+        "gid": 199
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.200",
+      "geometry": { "type": "Point", "coordinates": [4.8945, 45.6676] },
+      "properties": {
+        "adresse": "32 Rue des Cèdres, Corbas",
+        "commune": "Corbas",
+        "insee": "69273",
+        "address": {
+          "postalCode": "69960",
+          "streetAddress": "32 Rue des Cèdres",
+          "addressCountry": "FR",
+          "addressLocality": "Corbas"
+        },
+        "source": "Open Street Map",
+        "gid": 200
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.201",
+      "geometry": { "type": "Point", "coordinates": [4.8602, 45.7475] },
+      "properties": {
+        "adresse": "1 Avenue des Frères Lumière, Lyon 8e Arrondissement",
+        "commune": "Lyon 8e Arrondissement",
+        "insee": "69388",
+        "address": {
+          "postalCode": "69008",
+          "streetAddress": "1 Avenue des Frères Lumière",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 8e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 201
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "adr_voie_lieu.adrfontaineornem_latest.202",
+      "geometry": { "type": "Point", "coordinates": [4.8181, 45.7374] },
+      "properties": {
+        "nom": "Pataugeoire enfants Caterpilou",
+        "adresse": "Rue Francisque Collomb, Lyon 2e Arrondissement",
+        "commune": "Lyon 2e Arrondissement",
+        "insee": "69382",
+        "address": {
+          "postalCode": "69002",
+          "streetAddress": "Rue Francisque Collomb",
+          "addressCountry": "FR",
+          "addressLocality": "Lyon 2e Arrondissement"
+        },
+        "source": "Open Street Map",
+        "gid": 202
+      }
+    }
+  ],
+  "totalFeatures": 188,
+  "numberMatched": 188,
+  "numberReturned": 188,
+  "timeStamp": "2025-01-24T12:51:23.200Z",
+  "crs": {
+    "type": "name",
+    "properties": { "name": "urn:ogc:def:crs:EPSG::4171" }
+  },
+  "bbox": [4.7167279, 45.6082017, 5.006340464336581, 45.8978014]
+}
