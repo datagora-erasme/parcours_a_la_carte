@@ -1,0 +1,12 @@
+# Ignore artifacts:
+build
+coverage
+
+# Ignore all HTML files:
+**/*.html
+
+# Ignore all svg files:
+**/*.svg
+
+# Ignore all json files:
+**/*.json

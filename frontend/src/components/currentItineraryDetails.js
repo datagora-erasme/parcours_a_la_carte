@@ -84,7 +84,7 @@ const CurrentItineraryDetails = ({ showMenu }) => {
                 })}
             </div>
 
-            {currentItinerariesWithExtraDetails.filter(itineraries => itineraries.id === "IF").length > 0 ? (
+            {currentItinerariesWithExtraDetails.filter(itineraries => itineraries.id === 'IF').length > 0 ? (
                 <div className="mt-2 flex flex-col items-start gap-2">
                     <h6 className="font-bold text-mainText">Sur votre chemin :</h6>
                     <ul className="flex flex-row gap-8 flex-wrap">
