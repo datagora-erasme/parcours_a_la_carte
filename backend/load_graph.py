@@ -13,12 +13,12 @@ def cache_merged_network_graphs_from_pickles():
 
     print(datetime.now(), f"Load pickle file start")
 
-    with gzip.open(merged_network_pickle_path, 'rb') as f:
-        pickle_file = pickle.load(f)
+    with gzip.open(f"{merged_network_pickle_path}.gz", 'rb') as file:
+        pickle_file = pickle.load(file)
         merged_network_cache[merged_network_pickle_path] = pickle_file
     
-    with gzip.open(merged_network_multidigraph_pickle_path, 'rb') as f:
-        multidi_pickle_file = pickle.load(f)
+    with gzip.open(f"{merged_network_multidigraph_pickle_path}.gz", 'rb') as file:
+        multidi_pickle_file = pickle.load(file)
         merged_network_cache[merged_network_multidigraph_pickle_path] = multidi_pickle_file
         
     print(datetime.now(), f"Load pickle file end")

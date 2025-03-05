@@ -148,14 +148,14 @@ def create_pickles():
     G2 = nx.Graph(G)
     G_digraph = nx.MultiDiGraph(G2)
 
-    with gzip.open(merged_network_pickle_path, mode="wb", compresslevel=9) as f:
-        pickle.dump(G2, f, protocol=5)
+    with gzip.open(f"{merged_network_pickle_path}.gz", mode="wb") as file:
+        pickle.dump(G2, file, protocol=5)
 
-    with gzip.open(merged_network_multidigraph_pickle_path, mode="wb", compresslevel=9) as f:
-        pickle.dump(G_digraph, f, protocol=5)
+    with gzip.open(f"{merged_network_multidigraph_pickle_path}.gz", mode="wb") as file:
+        pickle.dump(G_digraph, file, protocol=5)
     
     print(datetime.now(), f"Pickle file creation end")
 
-prepare_edges()
-create_graph()
+# prepare_edges()
+# create_graph()
 create_pickles()
