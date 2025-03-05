@@ -11,9 +11,6 @@ import osmnx as ox
 from function_utils import *
 from global_variable import *
 
-###### NETWORK SCORE CALCULATION #######
-create_folder("./../output_data/network/graph/")
-
 ### GLOBAL VARIABLES ###
 score_columns_tourisme = ["score_tourisme_count"]
 
@@ -114,34 +111,6 @@ def score_tourisme(input_path, output_path):
     print(edges["tourisme_score"].describe())
     edges.to_file(output_path, driver="GPKG")
 
-def create_graph_tourisme(graph_path, edges_buffered_path, graph_output_path):
-    """
-    Create a tourism graph by applying tourism-related scores to the edges and saving it in a GeoPackage.
-
-    Parameters:
-    - graph_path: Path to the input graph containing the nodes and edges layers.
-    - edges_buffered_path: Path to the buffered edges file containing tourism scores.
-    - graph_output_path: Path where the resulting tourism graph will be saved.
-    """
-    graph_e = gpd.read_file(graph_path, layer="edges")
-    graph_n = gpd.read_file(graph_path, layer="nodes")
-    edges_buffered = gpd.read_file(edges_buffered_path)
-
-    graph_e["uniqId"] = graph_e.apply(create_uniqID, axis=1)
-
-    graph_e = graph_e.set_index(["u", "v", "key"])
-    edges_buffered = edges_buffered.set_index(["u", "v", "key"])
-    graph_n = graph_n.set_index(["osmid"])
-
-    graph_e["total_score_tourisme"] = edges_buffered["total_score_tourisme"]
-    graph_e["score_distance_tourisme"] = edges_buffered["score_distance_tourisme"]
-
-    graph_e["tourisme_score"] = edges_buffered["tourisme_score"]
-
-    G = ox.graph_from_gdfs(graph_n, graph_e)
-
-    ox.save_graph_geopackage(G, graph_output_path)
-
 params = {
     "count" : {
         "edges_path": edges_buffer_tourisme_prop_path,
@@ -154,4 +123,3 @@ all_score_edges(edges_buffer_path, edges_buffer_scored_path, params)
 total_score(edges_buffer_scored_path, edges_buffer_total_score_path, score_columns_tourisme)
 score_distance(edges_buffer_total_score_path, edges_buffer_total_score_distance_path)
 score_tourisme(edges_buffer_total_score_distance_path, edges_buffer_total_score_distance_tourisme_path)
-create_graph_tourisme(metrop_network_bouding_path, edges_buffer_total_score_distance_tourisme_path, final_network_tourisme_path)

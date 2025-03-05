@@ -8,35 +8,18 @@ from models.data import *
 from load_graph import *
 from models.itinerary import *
 from global_variable import *
-from concurrent.futures import ThreadPoolExecutor
 
 app = Flask(__name__)
 CORS(app)
 
-def load_graphs(criterion):
-    """
-    Loads the graph data for the specified criterion from pickled files.
-    If the pickle files do not exist, it creates them by calling `create_pickles_from_graph_criterion()`.
-    Finally, it loads the graphs from the pickled files using `load_graphs_from_pickles()`.
-    
-    Parameters:
-    - `criterion`: The criterion to load the graph data for.
-    """
-    global graphs_local_cache, graph_paths
-    pickle_graph_path = graph_paths[criterion]["pickle"]
-    pickle_multidigraph_path = graph_paths[criterion]["multidigraph_pickle"]
+def preload_merged_network_graphs_in_cache():
+    """    
+    Preloads the merged network graph into the local cache, if not already present.
+    """    
+    if not are_pickle_files_in_cache():
+        print(datetime.now(), f"Caching merged network graphs")
+        cache_merged_network_graphs_from_pickles()
 
-    print(f"Loading network for {criterion}...")
-
-    # Check if pickle files already exist
-    if not (os.path.isfile(pickle_graph_path) and os.path.isfile(pickle_multidigraph_path)):
-        print(f"Pickle files not found for {criterion}, creating them...")
-        try:
-            create_pickles_from_graph_criterion(criterion)
-        except Exception as e:
-            return
-
-    load_graphs_from_pickles(criterion)
 
 @app.route('/data/', methods=['GET'])
 def get_layers():
@@ -129,8 +112,6 @@ def get_itinerary():
     - The `shortest_path` function calculates the itineraries based on the loaded graph.
     - If no valid criteria are found or if an error occurs, the request will return a 500 status.
     """
-    global graph_paths
-
     criteria_list = request.args.getlist("criteria[]")
 
     start_lat = request.args.get("start[lat]")
@@ -140,37 +121,40 @@ def get_itinerary():
 
     start = (float(start_lon), float(start_lat))
     end = (float(end_lon), float(end_lat))
+    
+    if (("pollen" in criteria_list) and is_fevmai_period()):
+        criteria_list.remove("pollen")
+        criteria_list.append("pollen_fevmai")
 
-    print(start_lat, start_lon, end_lat, end_lon, criteria_list)
+    print(datetime.now(), start_lat, start_lon, end_lat, end_lon, criteria_list)
 
     origin_node, destination_node = nearest_nodes(start, end)
 
     results = []
     try:
+        preload_merged_network_graphs_in_cache()
         for criterion in criteria_list:
-            load_graphs(criterion)  #charger le graphe en fonction du critère
-            print(datetime.now(), f"Calculating itinerary for {criterion}...")
+            print(datetime.now(), f"Calculating itinerary for {criterion}")
 
-            geojson = shortest_path_criterion(criterion, origin_node, destination_node)
+            geojson = shortest_path(criterion, origin_node, destination_node)
             path_score = path_mean_score_criterion(criterion, geojson)
             results.append({
                 "id": "IF",
                 "idcriteria": criterion,
-                "name": graph_paths[criterion]["label"],
+                "name": graph_columns[criterion]["label"],
                 "geojson": geojson, 
-                "color": "#1f8b2c",
                 "score": path_score
             })
             
-        load_graphs("length")
-        geojson = shortest_path_length(origin_node, destination_node)
+        criterion = "length"
+        print(datetime.now(), f"Calculating itinerary for {criterion}")
+        geojson = shortest_path(criterion, origin_node, destination_node)
         path_score = path_mean_score_length(geojson, criteria_list)
         results.append({
             "id": "LENGTH",
             "idcriteria": "length",
-            "name": graph_paths["length"]["label"],
+            "name": graph_columns[criterion]["label"],
             "geojson": geojson,
-            "color": " #1b2599 ",
             "score": path_score
         })
 
@@ -190,29 +174,8 @@ def force_error():
     """Route to force a 500 error for testing"""
     raise Exception("This is a forced error to test the 500 error handler.")
 
-
-def preload_graphs():
-    """    
-    Preloads the graphs for different criteria (e.g. "bruit", "tourisme") into the local cache.
-    It uses a thread pool executor to parallelize the loading process, and only loads the graphs if they are not already present in the cache.
-    """    
-    global graph_paths, graphs_local_cache
-
-    futures = []
-    with ThreadPoolExecutor() as executor:
-        for criterion in graph_paths:
-            pickle_graph_path = graph_paths[criterion]["pickle"]
-            pickle_multidigraph_path = graph_paths[criterion]["multidigraph_pickle"]
-            # Only preload if not already in cache.
-            if ((pickle_graph_path not in graphs_local_cache) or (graphs_local_cache[pickle_graph_path] is None)) or ((pickle_multidigraph_path not in graphs_local_cache) or (graphs_local_cache[pickle_multidigraph_path] is None)):
-                print(datetime.now(), f"Pre-loading graphs for {criterion}.")
-                futures.append(executor.submit(load_graphs, criterion))
-        # Wait for all tasks to finish.
-        for future in futures:
-            future.result()
-
-# Pre-load graphs on application startup
-preload_graphs()
+# Pre-load graph on application startup
+preload_merged_network_graphs_in_cache()
 
 # Launch application
 if __name__ == "__main__":

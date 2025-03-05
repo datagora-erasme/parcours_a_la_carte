@@ -181,6 +181,7 @@ function renderIcon(criterion) {
         case 'frais':
             return <FaHotjar className="mt-1 text-startGradientLegend" />;
         case 'pollen':
+        case 'pollen_fevmai':
             return <TbFlower className="mt-1 text-startGradientLegendPollen" />;
         case 'bruit':
             return <HiSpeakerWave className="text-startGradientLegendBruit" />;
@@ -198,6 +199,7 @@ function renderEndIcon(criterion) {
         case 'frais':
             return <FaSnowflake className="mt-1 text-endGradientLegend" />;
         case 'pollen':
+        case 'pollen_fevmai':
             return <TbFlowerOff className="mt-1 text-endGradientLegendPollen" />;
         case 'bruit':
             return <HiSpeakerXMark className="text-endGradientLegendBruit" />;
@@ -215,6 +217,7 @@ function getGradientClasses(criterion) {
         case 'frais':
             return 'bg-gradient-to-r from-startGradientLegend to-endGradientLegend';
         case 'pollen':
+        case 'pollen_fevmai':
             return 'bg-gradient-to-r from-startGradientLegendPollen to-endGradientLegendPollen';
         case 'bruit':
             return 'bg-gradient-to-r from-startGradientLegendBruit to-endGradientLegendBruit';
@@ -230,6 +233,7 @@ function renderScoreIcon(criterion) {
         case 'frais':
             return <FaSnowflake className="mt-1 text-black" />;
         case 'pollen':
+        case 'pollen_fevmai':
             return <TbFlowerOff className="mt-1 text-black" />;
         case 'bruit':
             return <HiSpeakerXMark className="mt-1 text-black" />;

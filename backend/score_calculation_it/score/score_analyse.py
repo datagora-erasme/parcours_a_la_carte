@@ -18,7 +18,7 @@ from shapely.geometry import Polygon
 
 from scipy.stats import ttest_rel
 
-from score_calculation import *
+from score_calculation_frais import *
 
 from global_variable import *
 

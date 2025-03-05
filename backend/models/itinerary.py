@@ -5,7 +5,7 @@ import geopandas as gpd
 import networkx as nx
 import osmnx as ox
 import json
-from global_variable import graphs_local_cache, graph_paths
+from global_variable import merged_network_cache, merged_network_pickle_path, merged_network_multidigraph_pickle_path, graph_columns, current_month
 
 def nearest_nodes(start, end):
     """
@@ -20,10 +20,8 @@ def nearest_nodes(start, end):
 
     Notes:
         - We use this function before shortest_path for performance reasons: Since this calculation is expensive, we do it only once.
-        - The nodes are the same on all graphs. The function uses the 'frais' graph for the nearest node search, but it could be any other graph.
     """
-    global graphs_local_cache, graph_paths
-    pickle_graph = graphs_local_cache[graph_paths["frais"]["pickle"]] 
+    pickle_graph = merged_network_cache[merged_network_pickle_path] 
 
     print(datetime.now(), f"Preparing nodes start")
 
@@ -35,7 +33,10 @@ def nearest_nodes(start, end):
     return origin_node, destination_node
 
 
-def shortest_path_criterion(criterion, origin_node, destination_node):
+def is_fevmai_period():
+    return current_month in [2, 3, 4, 5]
+
+def shortest_path(criterion, origin_node, destination_node):
     """
     Finds the best (based on criterion) path between the given start and destination nodes.
     
@@ -50,57 +51,23 @@ def shortest_path_criterion(criterion, origin_node, destination_node):
     Notes:
         The term "if" is for "indicator of freshness" (i.e criterion).
     """
-    global graphs_local_cache, graph_paths
-    pickle_graph = graphs_local_cache[graph_paths[criterion]["pickle"]]
-    pickle_multidigraph = graphs_local_cache[graph_paths[criterion]["multidigraph_pickle"]]
-    weight = graph_paths[criterion]["score_weigth"]
+    cached_pickle_graph = merged_network_cache[merged_network_pickle_path]
+    cached_pickle_multidigraph = merged_network_cache[merged_network_multidigraph_pickle_path]
+    weight = graph_columns[criterion]["score_weigth"]
 
     #TODO change the weight according to the hour (8h, 13h, 18h)
-    shortest_path_if = nx.shortest_path(pickle_graph, source=origin_node, target=destination_node, weight=weight)
+    shortest_path = nx.shortest_path(cached_pickle_graph, source=origin_node, target=destination_node, weight=weight)
 
-    route_edges_if = ox.utils_graph.get_route_edge_attributes(pickle_multidigraph, shortest_path_if)
+    route_edges = ox.utils_graph.get_route_edge_attributes(cached_pickle_multidigraph, shortest_path)
 
-    gdf_route_edges_if = gpd.GeoDataFrame(route_edges_if, crs=pickle_graph.graph['crs'], geometry='geometry')
+    gdf_route_edges = gpd.GeoDataFrame(route_edges, crs=cached_pickle_graph.graph['crs'], geometry='geometry')
 
     #epsg = 4326 is the epsg need by Leaflet in order to display the results on the map
-    gdf_route_edges_if = gdf_route_edges_if.to_crs(epsg=4326)
+    gdf_route_edges = gdf_route_edges.to_crs(epsg=4326)
 
-    geojson_if = json.loads(gdf_route_edges_if.to_json())
+    geojson = json.loads(gdf_route_edges.to_json())
 
-    return geojson_if
-
-
-def shortest_path_length(origin_node, destination_node):
-    """
-    Finds the shortest path between the given start and destination nodes.
-    
-    Args:
-        origin_node (int): The ID of the starting node.
-        destination_node (int): The ID of the ending node.
-    
-    Returns:
-        A GeoJSON object representing the shortest path.
-
-    Notes:
-        The term "if" is for "indicator of freshness" (i.e criteron).
-    """
-    global graphs_local_cache, graph_paths
-    pickle_graph = graphs_local_cache[graph_paths["length"]["pickle"]]
-    pickle_multidigraph = graphs_local_cache[graph_paths["length"]["multidigraph_pickle"]]
-
-    print(datetime.now(), f"Finding shortest path Length ...")
-
-    shortest_path_len = nx.shortest_path(pickle_graph, source=origin_node, target=destination_node, weight="length")
-
-    route_edges_len = ox.utils_graph.get_route_edge_attributes(pickle_multidigraph, shortest_path_len)
-
-    gdf_route_edges_len = gpd.GeoDataFrame(route_edges_len, crs=pickle_graph.graph['crs'], geometry='geometry')
-
-    gdf_route_edges_len = gdf_route_edges_len.to_crs(epsg=4326)
-
-    geojson_len = json.loads(gdf_route_edges_len.to_json())
-
-    return geojson_len
+    return geojson
 
 
 def path_mean_score_criterion(criterion, geojson):
@@ -115,7 +82,7 @@ def path_mean_score_criterion(criterion, geojson):
         dict: A dictionary containing the mean score for the given criterion.
     """
 
-    scores = [feature["properties"][graph_paths[criterion]["score_value"]] for feature in geojson["features"]]   
+    scores = [feature["properties"][graph_columns[criterion]["score_value"]] for feature in geojson["features"]]   
     meanScore = sum(scores) / len(scores)
 
     return {criterion: meanScore}

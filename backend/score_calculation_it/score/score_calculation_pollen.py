@@ -6,23 +6,12 @@ sys.path.append("../../")
 sys.path.append("../../script_python")
 os.environ['USE_PYGEOS'] = '0'
 import geopandas as gpd
-import pandas as pd
 import osmnx as ox
 from function_utils import *
 from global_variable import *
-from app import load_graphs
-import pickle
-
-
-
 
 #%%
-###### NETWORK SCORE CALCULATION #######
-#create_folder("./output_data/network/graph/")
-
-
 ### GLOBAL VARIABLES ###
-
 score_columns_pollen = ["score_pollen_arbres_weight", "score_pollen_parcs_prop"]
 
 ### FUNCTIONS ###
@@ -109,34 +98,6 @@ def score_pollen(input_path, output_path):
 
     edges.to_file(output_path, driver="GPKG")
 
-def create_graph_pollen(graph_path, edges_buffered_path, graph_output_path):
-    """
-    Create a graph with the pollen scores applied to each edge and save it as a GeoPackage.
-
-    Parameters:
-    - graph_path: Path to the graph data file containing both nodes and edges.
-    - edges_buffered_path: Path to the edges file containing the pollen score data.
-    - graph_output_path: Path where the resulting graph with applied pollen scores will be saved.
-    """
-    graph_e = gpd.read_file(graph_path, layer="edges")
-    graph_n = gpd.read_file(graph_path, layer="nodes")
-    edges_buffered = gpd.read_file(edges_buffered_path)
-
-    graph_e["uniqId"] = graph_e.apply(create_uniqID, axis=1)
-
-    graph_e = graph_e.set_index(["u", "v", "key"])
-    edges_buffered = edges_buffered.set_index(["u", "v", "key"])
-    graph_n = graph_n.set_index(["osmid"])
-
-    graph_e["total_score_pollen"] = edges_buffered["total_score_pollen"]
-    graph_e["score_distance_pollen"] = edges_buffered["score_distance_pollen"]
-
-    graph_e["pollen_score"] = edges_buffered["pollen_score"]
-
-    G = ox.graph_from_gdfs(graph_n, graph_e)
-
-    ox.save_graph_geopackage(G, graph_output_path)
-
 params = {
     "arbres_weight" : {
         "edges_path": edges_buffer_arbres_pollen_prop_path,
@@ -150,14 +111,7 @@ params = {
     },
 }
 
-
-
 all_score_edges(edges_buffer_path, edges_buffer_scored_path, params)
-
 total_score(edges_buffer_scored_path, edges_buffer_total_score_path, score_columns_pollen)
-
 score_distance(edges_buffer_total_score_path, edges_buffer_total_score_distance_path)
 score_pollen(edges_buffer_total_score_distance_path, edges_buffer_total_score_distance_pollen_path)
-create_graph_pollen(metrop_network_bouding_path, edges_buffer_total_score_distance_pollen_path, final_network_pollen_path)
-
-load_graphs("pollen")

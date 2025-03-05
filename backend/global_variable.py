@@ -24,29 +24,14 @@ metrop_network_bouding_path = globpath("./score_calculation_it/input_data/networ
 
 ### GRAPH PATH ###
 final_network_path = globpath("./score_calculation_it/output_data/network/graph/final_network_P0_01O5At0_01Ar10C0_01E5Ca.gpkg")
-final_network_pickle_path = globpath("./score_calculation_it/output_data/network/graph/final_network_P0_01O5At0_01Ar10C0_01E5Ca.pickle")
-final_network_multidigraph_pickle_path = globpath("./score_calculation_it/output_data/network/graph/final_network_P0_01O5At0_01Ar10C0_01E5Ca_multidigraph.pickle")
 
 final_network_pollen_path = globpath("./score_calculation_it/output_data/network/graph/final_network_pollen.gpkg")
-final_network_pickle_pollen_path = globpath("./score_calculation_it/output_data/network/graph/final_network_pollen.pickle")
-final_network_multidigraph_pickle_pollen_path = globpath("./score_calculation_it/output_data/network/graph/final_network_pollen_multidigraph.pickle")
 
 final_network_pollen_fevmai_path = globpath("./score_calculation_it/output_data/network/graph/final_network_pollen_fevmai.gpkg")
-final_network_pickle_pollen_fevmai_path = globpath("./score_calculation_it/output_data/network/graph/final_network_pollen_fevmai.pickle")
-final_network_multidigraph_pickle_pollen_fevmai_path = globpath("./score_calculation_it/output_data/network/graph/final_network_pollen_fevmai_multidigraph.pickle")
 
 final_network_bruit_path = globpath("./score_calculation_it/output_data/network/graph/final_network_bruit.gpkg")
-final_network_pickle_bruit_path = globpath("./score_calculation_it/output_data/network/graph/final_network_bruit.pickle")
-final_network_multidigraph_pickle_bruit_path = globpath("./score_calculation_it/output_data/network/graph/final_network_bruit_multidigraph.pickle")
 
 final_network_tourisme_path = globpath("./score_calculation_it/output_data/network/graph/final_network_tourisme.gpkg")
-final_network_pickle_tourisme_path = globpath("./score_calculation_it/output_data/network/graph/final_network_tourisme.pickle")
-final_network_multidigraph_pickle_tourisme_path = globpath("./score_calculation_it/output_data/network/graph/final_network_tourisme_multidigraph.pickle")
-
-final_network_length_path = globpath("./score_calculation_it/output_data/network/graph/final_network_length.gpkg")
-final_network_pickle_length_path = globpath("./score_calculation_it/output_data/network/graph/final_network_length.pickle")
-final_network_multidigraph_pickle_length_path = globpath("./score_calculation_it/output_data/network/graph/final_network_length_multidigraph.pickle")
-
 
 ### EDGES PATH ###
 edges_buffer_path = globpath("./score_calculation_it/input_data/network/edges_buffered_12_bounding.gpkg")
@@ -78,6 +63,7 @@ edges_buffer_total_score_path = globpath("./score_calculation_it/output_data/net
 edges_buffer_total_score_distance_path = globpath("./score_calculation_it/output_data/network/edges/edges_buffered_total_score_distance_bounding.gpkg")
 edges_buffer_total_score_distance_freshness_path = globpath("./score_calculation_it/output_data/network/edges/edges_buffered_total_score_distance_freshness_bounding.gpkg")
 edges_buffer_total_score_distance_pollen_path = globpath("./score_calculation_it/output_data/network/edges/edges_buffered_total_score_distance_pollen_bounding.gpkg")
+edges_buffer_total_score_distance_pollen_fevmai_path = globpath("./score_calculation_it/output_data/network/edges/edges_buffered_total_score_distance_pollen_fevmai_bounding.gpkg")
 edges_buffer_total_score_distance_bruit_path = globpath("./score_calculation_it/output_data/network/edges/edges_buffered_total_score_distance_bruit_bounding.gpkg")
 edges_buffer_total_score_distance_tourisme_path = globpath("./score_calculation_it/output_data/network/edges/edges_buffered_total_score_distance_tourisme_bounding.gpkg")
 
@@ -85,8 +71,6 @@ edges_buffer_bruit_wavg_path = globpath("./score_calculation_it/output_data/netw
 edges_buffer_bruit_wavg_path_no_na = globpath("./score_calculation_it/output_data/network/edges/edges_buffered_bruit_wavg_bounding_no_na.gpkg")
 
 edges_buffer_tourisme_prop_path = globpath("./score_calculation_it/output_data/network/edges/edges_buffered_tourisme_prop_bounding.gpkg")
-
-edges_buffer_length_path = globpath("./score_calculation_it/output_data/network/edges/edges_buffered_length.gpkg")
 
 ### DATA PATH ###
 #### VEGETATION ####
@@ -318,50 +302,46 @@ data_params = {
     },
 }
 
+### MERGED NETWORK VARIABLES ####
+edges_buffer_merged_network_path = globpath("./score_calculation_it/output_data/network/edges/edges_buffer_merged_network.gpkg")
+merged_network_graph_path = globpath("./score_calculation_it/output_data/network/graph/merged_network.gpkg")
+merged_network_pickle_path = globpath("./score_calculation_it/output_data/network/graph/merged_network.pickle")
+merged_network_multidigraph_pickle_path = globpath("./score_calculation_it/output_data/network/graph/merged_network_multidigraph.pickle")
+
 #### RUNTIME GLOBAL VARIABLES ####
 current_month = datetime.now().month
 print("current_month", current_month)
 
-graph_paths = {
+graph_columns = {
     "frais": {
-        "gpkg": final_network_path, 
-        "pickle": final_network_pickle_path,
-        "multidigraph_pickle": final_network_multidigraph_pickle_path,
         "score_weigth": "score_distance_13",
         "score_value": "freshness_score_13", 
         "label": "Itinéraire le plus au frais"
     },
     "pollen": {
-        "gpkg": final_network_pollen_fevmai_path if current_month >= 2 and current_month <= 5 else final_network_pollen_path,  
-        "pickle": final_network_pickle_pollen_fevmai_path if current_month >= 2 and current_month <= 5 else final_network_pickle_pollen_path,
-        "multidigraph_pickle": final_network_multidigraph_pickle_pollen_fevmai_path if current_month >= 2 and current_month <= 5 else final_network_multidigraph_pickle_pollen_path,
         "score_weigth": "score_distance_pollen",
         "score_value": "pollen_score",
         "label": "Itinéraire le moins allergène"
     },
+    "pollen_fevmai": {
+        "score_weigth": "score_distance_pollen_fevmai",
+        "score_value": "pollen_fevmai_score",
+        "label": "Itinéraire le moins allergène"
+    },
     "bruit": {
-        "gpkg": final_network_bruit_path,
-        "pickle": final_network_pickle_bruit_path,
-        "multidigraph_pickle": final_network_multidigraph_pickle_bruit_path,
         "score_weigth": "score_distance_bruit",
         "score_value": "bruit_score",
         "label": "Itinéraire le moins bruyant"
     },
     "tourisme": {
-        "gpkg": final_network_tourisme_path,
-        "pickle": final_network_pickle_tourisme_path,
-        "multidigraph_pickle": final_network_multidigraph_pickle_tourisme_path,
         "score_weigth": "score_distance_tourisme",
         "score_value": "tourisme_score",
         "label": "Itinéraire le plus touristique"
     },
     "length": {
-        "gpkg": final_network_length_path,
-        "pickle": final_network_pickle_length_path,
-        "multidigraph_pickle": final_network_multidigraph_pickle_length_path,
         "score_weigth": "length",
-        "label": "Itinéraire le plus court"
-    }
+        "label": "Itinéraire le plus touristique"
+    },
 }
 
-graphs_local_cache = {}
+merged_network_cache = {}
