@@ -340,7 +340,7 @@ graph_columns = {
     },
     "length": {
         "score_weigth": "length",
-        "label": "Itinéraire le plus touristique"
+        "label": "Itinéraire le plus court"
     },
 }
 
