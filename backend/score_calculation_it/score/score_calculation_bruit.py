@@ -5,7 +5,7 @@ sys.path.append("../../")
 sys.path.append("../../script_python")
 os.environ['USE_PYGEOS'] = '0'
 import geopandas as gpd
-import osmnx as ox
+import osmnx as oxpyt
 from function_utils import *
 from global_variable import *
 
@@ -36,17 +36,17 @@ def score_distance(input_path, output_path):
 
 
 def score_bruit(input_path, output_path):
-    """Calculate a noise score from 0 to 10, based on the score_distance_bruit"""
+    """Calculate a noise score from 0 to 10, based on the total_score_bruit"""
     edges_data = gpd.read_file(input_path)
     
     # Get the minimum and maximum values of score_distance_bruit for normalization
-    min_score = edges_data["score_distance_bruit"].min()  
-    max_score = edges_data["score_distance_bruit"].max()  
+    min_score = edges_data["total_score_bruit"].min()  
+    max_score = edges_data["total_score_bruit"].max()  
     slope = (0 - 10) / (max_score - min_score)  # Calculate the slope for scaling
     origin_ordinate = -slope * max_score  # Y-intercept for normalization
     
     # Apply normalization to score_distance_bruit to get a bruit_score between 0 and 10
-    edges_data["bruit_score"] = edges_data["score_distance_bruit"].apply(lambda x: round(slope * x + origin_ordinate, 2))
+    edges_data["bruit_score"] = edges_data["total_score_bruit"].apply(lambda x: round(slope * x + origin_ordinate, 2))
     
     print(f"Calculation of bruit_score completed.")
 
