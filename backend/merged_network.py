@@ -156,6 +156,6 @@ def create_pickles():
     
     print(datetime.now(), f"Pickle file creation end")
 
-# prepare_edges()
-# create_graph()
+prepare_edges()
+create_graph()
 create_pickles()
