@@ -5,7 +5,6 @@ sys.path.append("../../")
 sys.path.append("../../script_python")
 os.environ['USE_PYGEOS'] = '0'
 import geopandas as gpd
-import osmnx as oxpyt
 from function_utils import *
 from global_variable import *
 
