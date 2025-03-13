@@ -121,7 +121,7 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
             setStartAddress(`${userAddress.properties.label.slice(0, 30)}...`);
             setSelectedStartAddress(userAddress);
         } else {
-            navigator.geolocation.getCurrentPosition(
+            navigator?.geolocation?.getCurrentPosition(
                 pos => {
                     const { latitude, longitude } = pos.coords;
                     setUserPosition([latitude, longitude]);

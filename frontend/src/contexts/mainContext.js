@@ -96,7 +96,7 @@ export const MainContextProvider = ({ children }) => {
 
     useEffect(() => {
         // Get user's current position using geolocation API
-        navigator.geolocation.getCurrentPosition(
+        navigator?.geolocation?.getCurrentPosition(
             pos => {
                 const { latitude, longitude } = pos.coords;
                 setUserPosition([latitude, longitude]);
