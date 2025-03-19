@@ -38,6 +38,7 @@
       var _paq = window._paq = window._paq || [];
       _paq.push(['trackPageView']);
       _paq.push(['enableLinkTracking']);
+      _paq.push(['enableHeartBeatTimer']);
       (function () {
         var u = "https://statweb.grandlyon.com/";
         _paq.push(['setTrackerUrl', u + 'matomo.php']);
@@ -48,6 +49,10 @@
 
       function trackButtonClick(buttonName) {
         _paq.push(['trackEvent', 'Button', 'Click', buttonName]);
+      }
+
+      function trackItineraryOptions(itineraryOptions) {
+        _paq.push(['trackEvent', 'ItineraryOptions', 'Validation', itineraryOptions]);
       }
     </script>
     <!-- End Matomo Code -->

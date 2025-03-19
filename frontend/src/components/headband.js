@@ -3,6 +3,8 @@ import { FaInfoCircle } from 'react-icons/fa';
 
 function HeadBand() {
     const [showHeadBand, setShowHeadBand] = useState(false);
+    let formLink = 'https://form.typeform.com/to/yP5LDsXk';
+
     return (
         <>
             <div style={{ zIndex: 1000 }} className="bg-primary md:rounded-b-3xl w-full h-fit">
@@ -12,7 +14,7 @@ function HeadBand() {
                     <a
                         target="_blank"
                         rel="noreferrer"
-                        href="https://form.typeform.com/to/NkCgR8ie"
+                        href={formLink}
                         className="text-mainText underline-offset-4 font-bold"
                     >
                         ici
@@ -32,7 +34,7 @@ function HeadBand() {
                             <a
                                 target="_blank"
                                 rel="noreferrer"
-                                href="https://form.typeform.com/to/NkCgR8ie"
+                                href={formLink}
                                 className="text-mainText underline-offset-4 font-bold"
                             >
                                 ici

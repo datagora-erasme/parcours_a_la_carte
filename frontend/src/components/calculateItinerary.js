@@ -340,7 +340,17 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                                 <div className="w-6 h-6 rounded-full border-4 border-gray-300 border-t-primary animate-spin mr-3"></div>
                             </div>
                         ) : (
-                            <div className="flex items-center gap-2" onClick={() => window.trackButtonClick('ValidateCalculateItinerary')}>
+                            <div
+                                className="flex items-center gap-2"
+                                onClick={() => {
+                                    window.trackButtonClick('ValidateCalculateItinerary');
+                                    window.trackItineraryOptions(JSON.stringify({
+                                        startAddress: selectedStartAddress,
+                                        endAddress: selectedEndAddress,
+                                        criteria: criteria,
+                                    }));
+                                }}
+                            >
                                 <span className="">Valider ma recherche </span>
                                 <FaCheck />
                             </div>
