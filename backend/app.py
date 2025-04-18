@@ -10,7 +10,9 @@ from models.itinerary import *
 from global_variable import *
 
 app = Flask(__name__)
-CORS(app)
+
+frontend_url = os.environ.get('FRONTEND_URL')
+CORS(app, origins=[frontend_url])
 
 def preload_merged_network_graphs_in_cache():
     """    
