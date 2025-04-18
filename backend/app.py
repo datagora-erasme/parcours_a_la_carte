@@ -22,6 +22,9 @@ def preload_merged_network_graphs_in_cache():
         print(datetime.now(), f"Caching merged network graphs")
         cache_merged_network_graphs_from_pickles()
 
+@app.route('/healthcheck', methods=['GET'])
+def healthcheck():
+    return 'Tout va bien !', 200
 
 @app.route('/data/', methods=['GET'])
 def get_layers():
