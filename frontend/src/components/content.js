@@ -129,7 +129,7 @@ function Content({ showMenu, setShowMenu }) {
                     {showLayers && <ListLayers />}
 
                     <div className="cursor-pointer secondary-btn secondary-btn-mobile md:overflow-y-hidden md:main-btn-desktop md:rounded-t-none md:rounded-b-none md:rounded-b-3xl">
-                        <a target="_blank" rel="noopener noreferrer" href="https://datagora.erasme.org/projets/sortons-au-frais/">
+                        <a target="_blank" rel="noopener noreferrer" href="https://datagora.erasme.org/projets/parcours-a-la-carte/">
                             En savoir plus
                         </a>
                     </div>
