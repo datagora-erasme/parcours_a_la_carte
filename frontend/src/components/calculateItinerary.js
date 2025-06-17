@@ -36,11 +36,25 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
         setCriteria,
     } = useContext(MainContext);
 
+    const isSameAddress = (baseAddress, candidateAddress) => {
+        if (baseAddress.properties.osm_id) {
+            return baseAddress.properties.osm_id === candidateAddress.properties.osm_id;
+        }
+        if (baseAddress.properties.banId) {
+            //Case where the address comes from user position instead of the user input.
+            const baseAddressFormatted = `${baseAddress.properties.name} ${baseAddress.properties.citycode}`.toUpperCase();
+            const cadidateAddressFormatted =
+                `${candidateAddress.properties.housenumber} ${candidateAddress.properties.name} ${candidateAddress.properties.extra.insee}`.toUpperCase();
+
+            return baseAddressFormatted === cadidateAddressFormatted;
+        } else return false;
+    };
+
     const handleStartAddressAPI = query => {
         axios
             .get(`https://download.data.grandlyon.com/geocoding/photon-bal/api?q=${query}`)
             .then(response => {
-                setStartAddressSuggestions(response.data.features);
+                setStartAddressSuggestions(response.data.features.filter(address => !isSameAddress(selectedEndAddress, address)));
             })
             .catch(error => {
                 console.log(error);
@@ -51,15 +65,15 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
         axios
             .get(`https://download.data.grandlyon.com/geocoding/photon-bal/api?q=${query}`)
             .then(response => {
-                setEndAddressSuggestions(response.data.features);
+                setEndAddressSuggestions(response.data.features.filter(address => !isSameAddress(selectedStartAddress, address)));
             })
             .catch(error => {
                 console.log(error);
             });
     };
 
-    const debounceStartAddress = useCallback(_debounce(handleStartAddressAPI, 300), []);
-    const debounceEndAddress = useCallback(_debounce(handleEndAddressAPI, 300), []);
+    const debounceStartAddress = useCallback(handleStartAddressAPI, [selectedEndAddress]);
+    const debounceEndAddress = useCallback(handleEndAddressAPI, [selectedStartAddress]);
 
     const handleStartAddressChange = event => {
         const value = event.target.value;
@@ -344,11 +358,13 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                                 className="flex items-center gap-2"
                                 onClick={() => {
                                     window.trackButtonClick('ValidateCalculateItinerary');
-                                    window.trackItineraryOptions(JSON.stringify({
-                                        startAddress: selectedStartAddress,
-                                        endAddress: selectedEndAddress,
-                                        criteria: criteria,
-                                    }));
+                                    window.trackItineraryOptions(
+                                        JSON.stringify({
+                                            startAddress: selectedStartAddress,
+                                            endAddress: selectedEndAddress,
+                                            criteria: criteria,
+                                        })
+                                    );
                                 }}
                             >
                                 <span className="">Valider ma recherche </span>
