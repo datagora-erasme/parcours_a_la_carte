@@ -169,7 +169,6 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                 },
             })
             .then(response => {
-                // sessionStorage.setItem('previousEndAddress', JSON.stringify(selectedEndAddress));
                 const roundIt = roundGeographicalCoordinatesOnItineraries(response.data);
                 setCurrentItinerary(roundIt);
                 setIsLoading(false);
