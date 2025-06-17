@@ -119,12 +119,14 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                 setEndAddress(`${addressName(address.properties).slice(0, 30)}...`);
                 setSelectedEndAddress(address);
                 setEndAddressSuggestions([]);
+                sessionStorage.setItem('previousEndAddress', JSON.stringify(address));
             }
         }
     };
 
     const handlePreviousEndAddress = () => {
         const previousEndAddress = JSON.parse(sessionStorage.getItem('previousEndAddress'));
+        if (!previousEndAddress) return;
         setEndAddress(`${addressName(previousEndAddress.properties).slice(0, 30)}...`);
         setSelectedEndAddress(previousEndAddress);
         setEndAddressSuggestions([]);
@@ -167,7 +169,7 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                 },
             })
             .then(response => {
-                sessionStorage.setItem('previousEndAddress', JSON.stringify(selectedEndAddress));
+                // sessionStorage.setItem('previousEndAddress', JSON.stringify(selectedEndAddress));
                 const roundIt = roundGeographicalCoordinatesOnItineraries(response.data);
                 setCurrentItinerary(roundIt);
                 setIsLoading(false);
