@@ -37,10 +37,10 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
     } = useContext(MainContext);
 
     const isSameAddress = (baseAddress, candidateAddress) => {
-        if (baseAddress.properties.osm_id) {
+        if (baseAddress?.properties?.osm_id) {
             return baseAddress.properties.osm_id === candidateAddress.properties.osm_id;
         }
-        if (baseAddress.properties.banId) {
+        if (baseAddress?.properties?.banId) {
             //Case where the address comes from user position instead of the user input.
             const baseAddressFormatted = `${baseAddress.properties.name} ${baseAddress.properties.citycode}`.toUpperCase();
             const cadidateAddressFormatted =
