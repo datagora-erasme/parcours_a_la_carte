@@ -93,6 +93,30 @@ function ZoomItinerary({ zoomToItinerary, setZoomToItinerary, currentItinerary }
     }
 }
 
+/**
+ * Manage the display of the GeoJSON items on the map, 
+ * except for the items from "Trouver un lieu frais" section.
+ */
+const GeoJsonItem = ({ geoJsonFeature, geoJsonData }) => {
+    const coordinates = [geoJsonFeature.geometry.coordinates[1], geoJsonFeature.geometry.coordinates[0]];
+    const isTourismeFeature = geoJsonData.id === 'tourisme';
+    const markerOption = geoJsonData.markerOption;
+
+    return (
+        <Marker
+            position={coordinates}
+            icon={
+                new L.icon({
+                    ...markerOption,
+                    className: isTourismeFeature ? 'pointer-cursor' : '',
+                })
+            }
+        >
+            {isTourismeFeature && <Popup>{geoJsonFeature.properties.nom}</Popup>}
+        </Marker>
+    );
+};
+
 function Map() {
     const [geojsonFiles, setGeojsonFiles] = useState([]);
     const [loadingLayer, setLoadingLayer] = useState(false);
@@ -367,16 +391,8 @@ function Map() {
                                         }}
                                         iconCreateFunction={cluster => createClusterCustomIcon(cluster, markerOption)}
                                     >
-                                        {data.geojson.features.map((point, index) => {
-                                            const coordinates = point.geometry.coordinates;
-                                            return (
-                                                <Marker
-                                                    key={index}
-                                                    position={[coordinates[1], coordinates[0]]}
-                                                    icon={new L.icon(markerOption)}
-                                                    className="cursor-wait"
-                                                ></Marker>
-                                            );
+                                        {data.geojson.features.map((item, index) => {
+                                            return <GeoJsonItem key={index} geoJsonFeature={item} geoJsonData={data} />;
                                         })}
                                     </MarkerClusterGroup>
                                 );
@@ -499,24 +515,8 @@ function Map() {
                                         }}
                                         iconCreateFunction={cluster => createClusterCustomIcon(cluster, markerOption)}
                                     >
-                                        {data.geojson.map((dta, i) => {
-                                            const coordinates = [dta.geometry.coordinates[1], dta.geometry.coordinates[0]];
-                                            const isTourismeFeature = data.id === 'tourisme';
-
-                                            return (
-                                                <Marker
-                                                    key={Math.random()}
-                                                    position={coordinates}
-                                                    icon={
-                                                        new L.icon({
-                                                            ...markerOption,
-                                                            className: isTourismeFeature ? 'pointer-cursor' : '',
-                                                        })
-                                                    }
-                                                >
-                                                    {isTourismeFeature && <Popup>{dta.properties.nom}</Popup>}
-                                                </Marker>
-                                            );
+                                        {data.geojson.map((dta, index) => {
+                                            return <GeoJsonItem key={index} geoJsonFeature={dta} geoJsonData={data} />;
                                         })}
                                     </MarkerClusterGroup>
                                 );
