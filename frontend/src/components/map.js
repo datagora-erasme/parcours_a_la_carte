@@ -94,7 +94,7 @@ function ZoomItinerary({ zoomToItinerary, setZoomToItinerary, currentItinerary }
 }
 
 /**
- * Manage the display of the GeoJSON items on the map, 
+ * Manage the display of the GeoJSON items on the map,
  * except for the items from "Trouver un lieu frais" section.
  */
 const GeoJsonItem = ({ geoJsonFeature, geoJsonData }) => {
@@ -115,6 +115,14 @@ const GeoJsonItem = ({ geoJsonFeature, geoJsonData }) => {
             {isTourismeFeature && <Popup>{geoJsonFeature.properties.nom}</Popup>}
         </Marker>
     );
+};
+
+/**
+ * Manages the popup on the map when a user clicks inside a geojson area.
+ * Tipically used for 'Parcs et jardins'.
+ */
+const geoJsonArea = (feature, layer) => {
+    layer.bindPopup(`${feature?.properties?.nom}`);
 };
 
 function Map() {
@@ -397,7 +405,8 @@ function Map() {
                                     </MarkerClusterGroup>
                                 );
                             } else if (dataType === 'MultiPolygon' || dataType === 'Polygon') {
-                                return <GeoJSON data={data.geojson} style={getColor} key={Math.random()} />;
+                                //Parcs et jardins
+                                return <GeoJSON data={data.geojson} style={getColor} onEachFeature={geoJsonArea} />;
                             }
                         }
                         return null;
