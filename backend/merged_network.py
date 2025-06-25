@@ -40,6 +40,11 @@ def prepare_edges():
         # Vérifier que les fichiers secondaires ont bien les colonnes "u", "v", "key"
         df_subset = df[["u", "v", "key", "geometry"] + cols]
         df_final = df_final.merge(df_subset, on=["u", "v", "key", "geometry"], how="left")
+        
+        # AJOUT : Remplacer les valeurs None/NaN par 0 après chaque merge
+        for col in cols:
+            if col in df_final.columns:
+                df_final[col] = df_final[col].fillna(0)
 
     # Liste des colonnes à conserver après fusion
     column = ["u", "v", "key", "osmid", "length", "from", "to", "geometry",
@@ -51,6 +56,18 @@ def prepare_edges():
     ]
     # Sélectionner uniquement les colonnes nécessaires
     df_final = df_final[column]
+
+    # AJOUT : Vérification finale des valeurs manquantes
+    print("Vérification des valeurs manquantes après fusion:")
+    for col in column:
+        if col in df_final.columns:
+            null_count = df_final[col].isna().sum()
+            if null_count > 0:
+                print(f"    {col}: {null_count} valeurs manquantes")
+                # Remplacer par 0 si c'est une colonne de score
+                if "score" in col:
+                    df_final[col] = df_final[col].fillna(0)
+                    print(f"     → Remplacées par 0")
 
     # Vérification des colonnes après filtrage
     print("Colonnes finales après filtrage:", df_final.columns)
@@ -74,10 +91,23 @@ def create_graph():
     # Charger les scores (edges_buffered_data)
     edges_buffered_data = gpd.read_file(edges_buffer_merged_network_path)
 
+    # AJOUT : Diagnostics pour comprendre le problème
+    print(f"Graphe edges: {len(graph_e)} lignes")
+    print(f"Données de scores: {len(edges_buffered_data)} lignes")
+
     # Mettre les index sur les bonnes colonnes
     graph_e = graph_e.set_index(["u", "v", "key"])
     edges_buffered_data = edges_buffered_data.set_index(["u", "v", "key"])
     graph_n = graph_n.set_index(["osmid"])
+
+    # AJOUT : Ne garder que les edges qui ont des scores correspondants
+    common_indices = graph_e.index.intersection(edges_buffered_data.index)
+    print(f"Indices communs: {len(common_indices)}")
+    
+    if len(common_indices) < len(graph_e):
+        print(f"  {len(graph_e) - len(common_indices)} edges du graphe n'ont pas de scores")
+        print("   → Filtrage du graphe pour ne garder que les edges avec scores")
+        graph_e = graph_e.loc[common_indices]
 
     # Appliquer les scores aux arêtes
     for col in [
@@ -90,6 +120,16 @@ def create_graph():
         
         if col in edges_buffered_data.columns:  # Vérifier si la colonne existe avant d'appliquer
             graph_e[col] = edges_buffered_data[col]
+            # AJOUT : Remplacer les valeurs None par 0
+            graph_e[col] = graph_e[col].fillna(0)
+            null_count = graph_e[col].isna().sum()
+            if null_count > 0:
+                print(f"  Encore {null_count} valeurs None dans {col}")
+
+    # AJOUT : Filtrer les nœuds pour ne garder que ceux utilisés
+    used_nodes = set(graph_e['from'].unique()) | set(graph_e['to'].unique())
+    graph_n = graph_n.loc[graph_n.index.intersection(used_nodes)]
+    print(f"Nœuds après filtrage: {len(graph_n)}")
 
     # Générer le graphe
     G = ox.graph_from_gdfs(graph_n, graph_e)
@@ -137,6 +177,26 @@ def create_pickles():
          graph_columns["pollen_fevmai"]["score_weigth"], graph_columns["pollen_fevmai"]["score_value"]
         ]
     ]
+    
+    # AJOUT : Vérification finale et nettoyage des valeurs None
+    score_columns = [
+        graph_columns["frais"]["score_weigth"], graph_columns["frais"]["score_value"],
+        graph_columns["tourisme"]["score_weigth"], graph_columns["tourisme"]["score_value"],
+        graph_columns["bruit"]["score_weigth"], graph_columns["bruit"]["score_value"],
+        graph_columns["pollen"]["score_weigth"], graph_columns["pollen"]["score_value"],
+        graph_columns["pollen_fevmai"]["score_weigth"], graph_columns["pollen_fevmai"]["score_value"]
+    ]
+    
+    print("Vérification finale des valeurs manquantes dans les edges:")
+    for col in score_columns:
+        if col in new_edges.columns:
+            null_count = new_edges[col].isna().sum()
+            if null_count > 0:
+                print(f"    {col}: {null_count} valeurs None → remplacées par 0")
+                new_edges[col] = new_edges[col].fillna(0)
+            else:
+                print(f"   {col}: OK")
+    
     new_edges = new_edges.set_geometry("geometry")
     new_edges.to_crs(gdf_edges.crs)
     
@@ -156,6 +216,21 @@ def create_pickles():
     
     print(datetime.now(), f"Pickle file creation end")
 
-prepare_edges()
-create_graph()
-create_pickles()
+# Exécution avec gestion d'erreur
+try:
+    print("Début du traitement...")
+    prepare_edges()
+    print("prepare_edges() terminé")
+    
+    create_graph()
+    print("create_graph() terminé")
+    
+    create_pickles()
+    print("create_pickles() terminé")
+    
+    print("Traitement complet terminé avec succès!")
+    
+except Exception as e:
+    print(f" Erreur durant le traitement: {e}")
+    import traceback
+    traceback.print_exc()
