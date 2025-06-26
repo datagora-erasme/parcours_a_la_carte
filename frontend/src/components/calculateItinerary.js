@@ -36,7 +36,6 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
         setCriteria,
     } = useContext(MainContext);
 
-
     /**
      * Check if 2 addresses are the same
      */
@@ -105,8 +104,12 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
         }
     };
 
-    const addressName = ({ city, street, postcode, housenumber }) => {
-        return `${housenumber ? housenumber : ''} ${street}, ${postcode} ${city.toUpperCase()}`;
+    const addressName = ({ city, street, postcode, housenumber, name, osm_value }) => {
+        const displayName = () => {
+            return osm_value !== 'street' && osm_value !== 'house';
+        };
+
+        return `${displayName() ? `${name}: ` : ''}${housenumber ? housenumber : ''} ${street}, ${postcode} ${city.toUpperCase()}`;
     };
 
     const handleSelectStartAddress = id => {
@@ -122,7 +125,7 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
     const handleSelectEndAddress = id => {
         for (let address of endAddressSuggestions) {
             if (address.properties.osm_id === id) {
-                setEndAddress(`${addressName(address.properties).slice(0, 30)}...`);
+                setEndAddress(addressName(address.properties));
                 setSelectedEndAddress(address);
                 setEndAddressSuggestions([]);
                 sessionStorage.setItem('previousEndAddress', JSON.stringify(address));
@@ -133,7 +136,7 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
     const handlePreviousEndAddress = () => {
         const previousEndAddress = JSON.parse(sessionStorage.getItem('previousEndAddress'));
         if (!previousEndAddress) return;
-        setEndAddress(`${addressName(previousEndAddress.properties).slice(0, 30)}...`);
+        setEndAddress(addressName(previousEndAddress.properties));
         setSelectedEndAddress(previousEndAddress);
         setEndAddressSuggestions([]);
     };
@@ -218,6 +221,28 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
         }
     };
 
+    /**
+     * Address style display on the UI.
+     * Note that other styles should be applied to the parent html tag
+     */
+    const AdressSuggestionDisplay = ({ address }) => {
+        /**
+         * Extracts the 'name' part of the address if it exists.
+         * This regex is based on the current configuration on the `addressName` function.
+         * If the `addressName` function changes, change this accordingly
+         */
+        const hasName = address.match(/^([^:]+: )\s*(.*)$/);
+        const name = hasName ? hasName[1] : '';
+        const restOfTheAddress = hasName ? hasName[2].trim() : address;
+
+        return (
+            <span className="whitespace-nowrap">
+                <i>{name}</i>
+                {restOfTheAddress}
+            </span>
+        );
+    };
+
     return (
         <div className="card md:card-desktop">
             <button className="md:hidden card-title">
@@ -249,11 +274,12 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                             const name = addressName(suggestion.properties);
                             return (
                                 <li
+                                    className="overflow-hidden text-ellipsis pl-2"
                                     key={suggestion.properties.osm_id}
                                     value={suggestion.properties.osm_id}
                                     onClick={() => handleSelectStartAddress(suggestion.properties.osm_id)}
                                 >
-                                    {name.length > 40 ? `${name.slice(0, 40)}...` : name}
+                                    <AdressSuggestionDisplay address={name} />
                                 </li>
                             );
                         })}
@@ -293,11 +319,12 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                             const name = addressName(suggestion.properties);
                             return (
                                 <li
+                                    className="overflow-hidden text-ellipsis pl-2"
                                     key={suggestion.properties.osm_id}
                                     value={suggestion.properties.osm_id}
                                     onClick={() => handleSelectEndAddress(suggestion.properties.osm_id)}
                                 >
-                                    {name.length > 40 ? `${name.slice(0, 40)}...` : name}
+                                    <AdressSuggestionDisplay address={name} />
                                 </li>
                             );
                         })}
