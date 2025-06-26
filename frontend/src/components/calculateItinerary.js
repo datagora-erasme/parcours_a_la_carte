@@ -36,6 +36,10 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
         setCriteria,
     } = useContext(MainContext);
 
+
+    /**
+     * Check if 2 addresses are the same
+     */
     const isSameAddress = (baseAddress, candidateAddress) => {
         if (baseAddress?.properties?.osm_id) {
             return baseAddress.properties.osm_id === candidateAddress.properties.osm_id;
@@ -54,6 +58,7 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
         axios
             .get(`https://download.data.grandlyon.com/geocoding/photon-bal/api?q=${query}`)
             .then(response => {
+                //If an end address is already select, we filter it from the start addresses suggestions. User can't be able to choose the same address
                 setStartAddressSuggestions(response.data.features.filter(address => !isSameAddress(selectedEndAddress, address)));
             })
             .catch(error => {
@@ -65,6 +70,7 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
         axios
             .get(`https://download.data.grandlyon.com/geocoding/photon-bal/api?q=${query}`)
             .then(response => {
+                //If a start address is already select, we filter it from the end addresses suggestions. User can't be able to choose the same address
                 setEndAddressSuggestions(response.data.features.filter(address => !isSameAddress(selectedStartAddress, address)));
             })
             .catch(error => {
