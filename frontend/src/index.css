@@ -115,3 +115,7 @@ img.huechange {
 .leaflet-marker-icon.pointer-cursor {
     @apply cursor-pointer;
 }
+
+.leaflet-popup-tip-container {
+    top: 100%;
+}

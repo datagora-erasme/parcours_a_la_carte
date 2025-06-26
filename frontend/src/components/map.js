@@ -93,6 +93,17 @@ function ZoomItinerary({ zoomToItinerary, setZoomToItinerary, currentItinerary }
     }
 }
 
+const TourismePopup = ({ tourismeItem }) => {
+    return (
+        <Popup className="flex flex-col">
+            <p>{tourismeItem.nom}</p>
+            <a href={`https://www.visiterlyon.com/oltc_redirect/apidaeId/${tourismeItem.id}`} target="_blank">
+                Consulter les informations sur VisiterLyon.com
+            </a>
+        </Popup>
+    );
+};
+
 /**
  * Manage the display of the GeoJSON items on the map,
  * except for the items from "Trouver un lieu frais" section.
@@ -112,7 +123,7 @@ const GeoJsonItem = ({ geoJsonFeature, geoJsonData }) => {
                 })
             }
         >
-            {isTourismeFeature && <Popup>{geoJsonFeature.properties.nom}</Popup>}
+            {isTourismeFeature && <TourismePopup tourismeItem={geoJsonFeature.properties} />}
         </Marker>
     );
 };
