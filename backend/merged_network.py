@@ -134,6 +134,29 @@ def create_graph():
     # Générer le graphe
     G = ox.graph_from_gdfs(graph_n, graph_e)
 
+    # NOUVEAU : Garder uniquement la composante connexe principale
+    print("Analyse des composantes connexes...")
+    
+    # Convertir en graphe non-dirigé pour l'analyse de connectivité
+    G_undirected = G.to_undirected()
+    
+    # Trouver toutes les composantes connexes
+    connected_components = list(nx.connected_components(G_undirected))
+    print(f"Nombre de composantes connexes: {len(connected_components)}")
+    
+    # Trouver la plus grande composante connexe
+    largest_component = max(connected_components, key=len)
+    print(f"Taille de la plus grande composante: {len(largest_component)} nœuds")
+    print(f"Pourcentage de nœuds conservés: {len(largest_component)/len(G.nodes)*100:.1f}%")
+    
+    # Garder uniquement les nœuds de la plus grande composante
+    nodes_to_keep = largest_component
+    
+    # Filtrer le graphe pour ne garder que la composante connexe principale
+    G = G.subgraph(nodes_to_keep).copy()
+    
+    print(f"Graphe final: {len(G.nodes)} nœuds, {len(G.edges)} arêtes")
+
     # Supprimer l'ancien fichier s'il existe
     if Path(merged_network_graph_path).exists():
         os.remove(merged_network_graph_path)
@@ -204,6 +227,17 @@ def create_pickles():
     gdf_nodes = gdf_nodes.set_index(['osmid'])
 
     G = ox.graph_from_gdfs(gdf_nodes, new_edges)
+
+    # NOUVEAU : Vérification finale de la connectivité
+    print("Vérification finale de la connectivité...")
+    G_undirected = G.to_undirected()
+    is_connected = nx.is_connected(G_undirected)
+    print(f"Le graphe final est-il connexe ? {is_connected}")
+    
+    if not is_connected:
+        print("ATTENTION: Le graphe n'est pas connexe après le traitement!")
+        components = list(nx.connected_components(G_undirected))
+        print(f"Composantes restantes: {[len(c) for c in components]}")
 
     G2 = nx.Graph(G)
     G_digraph = nx.MultiDiGraph(G2)
