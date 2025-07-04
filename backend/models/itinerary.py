@@ -32,6 +32,15 @@ def nearest_nodes(start, end):
 
     return origin_node, destination_node
 
+def get_node_coordinates(node_id):
+    """
+    Returns the (latitude, longitude) coordinates for a given node ID.
+    """
+    pickle_graph = merged_network_cache[merged_network_pickle_path] 
+    print(datetime.now(), f"getting coords")
+
+    node_data = pickle_graph.nodes[node_id]
+    return (node_data['y'], node_data['x'])  # (lat, lon)
 
 def is_fevmai_period():
     return current_month in [2, 3, 4, 5]

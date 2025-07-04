@@ -19,6 +19,8 @@ export const MainContextProvider = ({ children }) => {
     const [currentItinerary, setCurrentItinerary] = useState(null);
     const [showCurrentItineraryDetails, setShowCurrentItineraryDetails] = useState(false);
     const [showFindFreshness, setShowFindFreshness] = useState(false);
+    const [currentItineraryStartPointUsedForCalculation, setCurrentItineraryStartPointUsedForCalculation] = useState(null);
+    const [currentItineraryEndPointUsedForCalculation, setCurrentItineraryEndPointUsedForCalculation] = useState(null);
 
     const [startAddress, setStartAddress] = useState('');
     const [endAddress, setEndAddress] = useState('');
@@ -217,6 +219,10 @@ export const MainContextProvider = ({ children }) => {
                 roundGeographicalCoordinatesOnItineraries,
                 criteria,
                 setCriteria,
+                currentItineraryEndPointUsedForCalculation,
+                setCurrentItineraryEndPointUsedForCalculation,
+                currentItineraryStartPointUsedForCalculation,
+                setCurrentItineraryStartPointUsedForCalculation,
             }}
         >
             {children}

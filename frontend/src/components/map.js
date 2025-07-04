@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, GeoJSON, ZoomControl, useMap, Popup } from 'react-leaflet';
-import axios from 'axios';
-import L from 'leaflet';
-import { lineString, buffer, featureCollection, dissolve, booleanPointInPolygon, difference, circle } from '@turf/turf';
 import MarkerClusterGroup from '@changey/react-leaflet-markercluster';
-import MainContext from '../contexts/mainContext';
+import { booleanPointInPolygon, buffer, circle, difference, dissolve, featureCollection, lineString } from '@turf/turf';
+import axios from 'axios';
 import chroma from 'chroma-js';
+import L from 'leaflet';
+import { useContext, useEffect, useState } from 'react';
+import { GeoJSON, MapContainer, Marker, Popup, TileLayer, Tooltip, ZoomControl, useMap } from 'react-leaflet';
+import MainContext from '../contexts/mainContext';
 
 const colors = {
     1: ' #d6e4d7 ',
@@ -163,6 +163,8 @@ function Map() {
         setFilteredFreshnessFeatures,
         filteredItinerariesFeatures,
         setFilteredItinerariesFeatures,
+        currentItineraryEndPointUsedForCalculation,
+        currentItineraryStartPointUsedForCalculation,
     } = useContext(MainContext);
 
     function getColor(data) {
@@ -457,10 +459,47 @@ function Map() {
                         );
                     })}
 
-                {selectedStartAddress && (
+                {currentItinerary && (
                     <Marker
-                        position={[selectedStartAddress.geometry.coordinates[1], selectedStartAddress.geometry.coordinates[0]]}
-                    ></Marker>
+                        position={[currentItineraryStartPointUsedForCalculation[0], currentItineraryStartPointUsedForCalculation[1]]}
+                        eventHandlers={{
+                            add: event => {
+                                const marker = event.target;
+                                if (marker._icon) {
+                                    marker._icon.classList.add('saturate');
+                                }
+                            },
+                        }}
+                    >
+                        <Tooltip className="flex flex-col">
+                            <p>Point de départ retenu pour le calcul d'itinéraire</p>
+                        </Tooltip>
+                    </Marker>
+                )}
+                {currentItinerary && (
+                    <Marker
+                        position={[currentItineraryEndPointUsedForCalculation[0], currentItineraryEndPointUsedForCalculation[1]]}
+                        eventHandlers={{
+                            add: event => {
+                                const marker = event.target;
+                                if (marker._icon) {
+                                    marker._icon.classList.add('saturateRed');
+                                }
+                            },
+                        }}
+                    >
+                        <Tooltip className="flex flex-col">
+                            <p>Point d'arrivé retenu pour le calcul d'itinéraire</p>
+                        </Tooltip>
+                    </Marker>
+                )}
+
+                {selectedStartAddress && (
+                    <Marker position={[selectedStartAddress.geometry.coordinates[1], selectedStartAddress.geometry.coordinates[0]]}>
+                        <Tooltip className="flex flex-col">
+                            <p>Point de depart recherché</p>
+                        </Tooltip>
+                    </Marker>
                 )}
                 {selectedEndAddress && (
                     <Marker
@@ -473,7 +512,11 @@ function Map() {
                                 }
                             },
                         }}
-                    />
+                    >
+                        <Tooltip className="flex flex-col">
+                            <p>Point d'arrivé recherché</p>
+                        </Tooltip>
+                    </Marker>
                 )}
 
                 {filteredFreshnessFeatures.length !== 0 &&

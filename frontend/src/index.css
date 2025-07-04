@@ -103,8 +103,18 @@ input[type='range'].custom-slider::-moz-range-progress {
 }
 
 /* marker */
-img.huechange {
-    filter: hue-rotate(145deg); /* rouge */
+img {
+    &.huechange {
+        filter: hue-rotate(145deg); /* rouge */
+    }
+
+    &.saturate {
+        filter: saturate(3);
+    }
+
+    &.saturateRed {
+        filter: saturate(3) hue-rotate(145deg);
+    }
 }
 
 /* Override Leaflet default styling*/

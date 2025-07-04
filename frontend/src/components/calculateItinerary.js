@@ -34,6 +34,8 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
         roundGeographicalCoordinatesOnItineraries,
         criteria,
         setCriteria,
+        setCurrentItineraryStartPointUsedForCalculation,
+        setCurrentItineraryEndPointUsedForCalculation,
     } = useContext(MainContext);
 
     /**
@@ -178,8 +180,10 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                 },
             })
             .then(response => {
-                const roundIt = roundGeographicalCoordinatesOnItineraries(response.data);
+                const roundIt = roundGeographicalCoordinatesOnItineraries(response.data["itinerary"]);
                 setCurrentItinerary(roundIt);
+                setCurrentItineraryStartPointUsedForCalculation(response.data["nearest_node_start"])
+                setCurrentItineraryEndPointUsedForCalculation(response.data["nearest_node_end"])
                 setIsLoading(false);
                 setShowItineraryCalculation(false);
                 setShowCurrentItineraryDetails(true);
