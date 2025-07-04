@@ -489,7 +489,7 @@ function Map() {
                         }}
                     >
                         <Tooltip className="flex flex-col">
-                            <p>Point d'arrivé retenu pour le calcul d'itinéraire</p>
+                            <p>Point d'arrivée retenu pour le calcul d'itinéraire</p>
                         </Tooltip>
                     </Marker>
                 )}
@@ -514,7 +514,7 @@ function Map() {
                         }}
                     >
                         <Tooltip className="flex flex-col">
-                            <p>Point d'arrivé recherché</p>
+                            <p>Point d'arrivée recherché</p>
                         </Tooltip>
                     </Marker>
                 )}
