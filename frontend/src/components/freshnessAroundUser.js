@@ -19,7 +19,6 @@ const FreshnessAroundUser = () => {
         userAddress,
         radius,
         setRadius,
-        showCircle,
         setShowCircle,
     } = useContext(MainContext);
 
@@ -110,8 +109,7 @@ const FreshnessAroundUser = () => {
 
             <div className="flex flex-col p-2">
                 <label htmlFor="startAddress" className="block mb-1 mt-4 flex justify-between">
-                    <p>Départ</p>
-                    <input type="checkbox" onChange={() => setShowCircle(!showCircle)} checked={showCircle}></input>
+                    <p>Adresse</p>
                 </label>
                 <div className="relative flex gap-2">
                     <input
@@ -123,7 +121,7 @@ const FreshnessAroundUser = () => {
                         onFocus={() => setShowStartSuggestions(true)}
                         onBlur={() => setTimeout(() => setShowStartSuggestions(false), 200)}
                         className="main-input mb-2"
-                        placeholder="Adresse de départ"
+                        placeholder="Adresse"
                     />
                     {showStartSuggestions && (
                         <ul
