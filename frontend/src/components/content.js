@@ -2,17 +2,20 @@ import React, { useContext, useState } from 'react';
 import ListLayers from './listLayers';
 import CalculateItinerary from './calculateItinerary';
 import FreshnessAroundUser from './freshnessAroundUser';
-import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
+import { FaArrowRight, FaWalking, FaThermometerHalf, FaMapMarkedAlt, FaInfoCircle } from 'react-icons/fa';
 import MainContext from '../contexts/mainContext';
 import CurrentItineraryDetails from './currentItineraryDetails';
 import PoiDetails from './poiDetails';
-import HeadBand from './headband';
+// import HeadBand from './headband';
 import BackButton from './backButton';
+import ReadMore from './readMore';
 
 function Content({ showMenu, setShowMenu }) {
-    const [showItineraryCalculation, setShowItineraryCalculation] = useState(false);
+  const [showItineraryCalculation, setShowItineraryCalculation] = useState(false);
 
-    const [showLayers, setShowLayers] = useState(false);
+  const [showLayers, setShowLayers] = useState(false);
+  const [showReadMore, setShowReadMore] = useState(false)
+  const [activeMenu, setActiveMenu] = useState(null)
 
     const {
         history,
@@ -29,114 +32,185 @@ function Content({ showMenu, setShowMenu }) {
         setShowPoiDetails,
         showFindFreshness,
         setShowFindFreshness,
-    } = useContext(MainContext);
+  } = useContext(MainContext);
+  
+  function handleClickMenu(menuName) {
+    if (activeMenu === menuName) {
+      setActiveMenu(null)
+    } else {
+      setActiveMenu(menuName)
+    }
+  }
+
+  function openMenu(menuName) {
+    handleClickMenu(menuName)
+
+    setShowItineraryCalculation(menuName === 'itinerary')
+    setShowFindFreshness(menuName === 'findFreshness')
+    setShowLayers(menuName === 'layers')
+    setShowReadMore(menuName === 'more')
+
+    setShowPoiDetails(false)
+    setShowCircle(menuName === 'findFreshness')
+    setZoomToUserPosition(menuName === 'findFreshness')
+    setCurrentItinerary(null)
+    setSelectedEndAddress(null)
+    setEndAddress('')
+    setShowCurrentItineraryDetails(false)
+    setSelectedLayers([])
+
+    const historyFn = () => {
+      if (menuName === 'itinerary') setShowItineraryCalculation(false);
+      if (menuName === 'findFreshness') setShowFindFreshness(false);
+      if (menuName === 'layers') setShowLayers(false);
+      if (menuName === 'more') setShowReadMore(false);
+    };
+    setHistory([...history, { fn: historyFn }]);
+  
+    if (menuName === 'itinerary') window.trackButtonClick('OpenCalculateItinerary');
+    if (menuName === 'findFreshness') window.trackButtonClick('OpenFindFreshness');
+    if (menuName === 'layers') window.trackButtonClick('OpenLayers');
+  }
 
     return (
-        <>
-            <div
-                style={{ zIndex: 1000 }}
-                className="absolute md:top-8 flex flex-col gap-4 w-full p-8 md:pd-0 md:w-[400px] rounded-t-3xl md:gap-0 md:rounded-full bg-bgWhite md:bg-transparent"
-            >
-                <div className="hidden md:block bg-bgWhite w-[300px] ml-[20px] p-4 absolute top-0 rounded-full font-bold text-xl drop-shadow-lg">
-                    Parcours à la carte
-                </div>
-                <div className="hidden md:block h-8 bg-bgWhite rounded-t-3xl"></div>
-                <div className=" md:hidden flex flex-row justify-center">
-                    <BackButton showMenu={showMenu} />
-                    <div className="h-[12px] w-[100px] bg-ligneModale rounded-3xl -mt-2 mb-2" onClick={() => setShowMenu(!showMenu)}></div>
-                </div>
+      <>
+        {/* Container */}
+        <div style={{ zIndex: 1000 }} className="fixed top-0 left-0 h-screen bg-transparent px-8 flex flex-col items-center">
+          <div className="flex flex-row items-start">
+            {/* vertical menu */}
+            <div className="flex flex-col gap-2 mt-[40%]">
+              <button
+                onClick={() => openMenu('itinerary')}
+                className={`p-1 w-[40px] h-[40px] rounded-tl-lg flex justify-center items-center ${activeMenu === 'itinerary' ? 'bg-primary' : 'bg-bgWhite'}`}
+              >
+                <FaWalking className={`text-xl ${activeMenu === 'itinerary' ? 'text-white' : 'text-primary'}`} />
+              </button>
+              <button
+                onClick={() => openMenu('findFreshness')}
+                className={`p-1 w-[40px] h-[40px] flex justify-center items-center ${activeMenu === 'findFreshness' ? 'bg-primary' : 'bg-bgWhite'}`}
+              >
+                <FaThermometerHalf className={`text-xl ${activeMenu === 'findFreshness' ? 'text-white' : 'text-primary'}`} />
+              </button>
+              <button
+                onClick={() => openMenu('layers')}
+                className={`p-1 w-[40px] h-[40px] flex justify-center items-center ${activeMenu === 'layers' ? 'bg-primary' : 'bg-bgWhite'}`}
+              >
+                <FaMapMarkedAlt className={`text-xl ${activeMenu === 'layers' ? 'text-white' : 'text-primary'}`} />
+              </button>
+              <button
+                onClick={() => openMenu('more')}
+                className={`p-1 w-[40px] h-[40px] rounded-bl-lg flex justify-center items-center ${activeMenu === 'more' ? 'bg-primary' : 'bg-bgWhite'}`}
+              >
+                <FaInfoCircle className={`text-xl ${activeMenu === 'more' ? 'text-white' : 'text-primary'}`} />
+              </button>
+            </div>
+            {/*  */}
+            <div className="flex flex-col items-center">
+              {/* card title */}
+              <div className="relative bg-bgWhite top-10 text-primary max-w-xs rounded-3xl h-[100px] p-[10px] max-w-xs min-w-[310px] z-50 shadow-md">
+                <h1 className="text-2xl font-semibold">
+                  Parcours à la carte
+                </h1>
+                <h3 classNam="text-base font-normal">
+                  Une expérimentation ERASME pour la Métropole de Lyon
+                </h3>
+              </div>
+              <div className="relative bg-bgWhite pt-10 pb-5 max-w-sm w-[355px] rounded-[20px] shadow-md min-h-[280px]">
                 {showCurrentItineraryDetails && <CurrentItineraryDetails showMenu={showMenu} />}
                 {showPoiDetails && <PoiDetails showMenu={showMenu} />}
-                <div
-                    className={`${showMenu ? '' : 'hidden'} md:block md:top-8 bottom-0 flex flex-col gap-4 w-full md:pd-0 rounded-t-3xl md:gap-0`}
-                >
-                    <button
-                        onClick={() => {
-                            setShowItineraryCalculation(!showItineraryCalculation);
-                            setShowFindFreshness(false);
-                            setShowPoiDetails(false);
-                            setShowLayers(false);
-                            setHistory([...history, { fn: () => setShowItineraryCalculation(false) }]);
-                            setShowCircle(false);
-                            setSelectedLayers([]);
-                            window.trackButtonClick('OpenCalculateItinerary');
-                        }}
-                        className="main-btn main-btn-mobile md:main-btn-desktop md:rounded-none md:rounded-b-none md:border-b-2 md:border-b-gray-100"
-                    >
-                        {showItineraryCalculation ? (
-                            <FaChevronUp className="hidden md:block text-gray-500 mt-1" />
-                        ) : (
-                            <FaChevronDown className="hidden md:block text-gray-500 mt-1" />
-                        )}
-                        <span>Calculer un itinéraire piéton</span>
-                    </button>
-                    {showItineraryCalculation && (
-                        <CalculateItinerary
-                            showItineraryCalculation={showItineraryCalculation}
-                            setShowItineraryCalculation={setShowItineraryCalculation}
-                        />
-                    )}
-
-                    <button
-                        onClick={() => {
-                            setShowFindFreshness(!showFindFreshness);
-                            setShowItineraryCalculation(false);
-                            setShowLayers(false);
-                            setHistory([...history, { fn: () => setShowFindFreshness(false) }]);
-                            setShowCircle(true);
-                            setZoomToUserPosition(true);
-                            setCurrentItinerary(null);
-                            setSelectedEndAddress(null);
-                            setEndAddress('');
-                            setShowCurrentItineraryDetails(false);
-                            setSelectedLayers([]);
-                            window.trackButtonClick('OpenFindFreshness');
-                        }}
-                        className="main-btn main-btn-mobile md:main-btn-desktop md:rounded-none md:border-b-2 md:border-b-gray-100"
-                    >
-                        {showFindFreshness ? (
-                            <FaChevronUp className="hidden md:block text-gray-500 mt-1" />
-                        ) : (
-                            <FaChevronDown className="hidden md:block text-gray-500 mt-1" />
-                        )}
-                        <span>Trouver un lieu frais</span>
-                    </button>
-                    {showFindFreshness && <FreshnessAroundUser />}
-
-                    <button
-                        onClick={() => {
-                            setShowLayers(!showLayers);
-                            setShowItineraryCalculation(false);
-                            setShowFindFreshness(false);
-                            setShowPoiDetails(false);
-                            setHistory([...history, { fn: () => setShowLayers(false) }]);
-                            setCurrentItinerary(null);
-                            setSelectedEndAddress(null);
-                            setEndAddress('');
-                            setShowCurrentItineraryDetails(false);
-                            setShowCircle(false);
-                            window.trackButtonClick('OpenLayers');
-                        }}
-                        className="main-btn main-btn-mobile md:main-btn-desktop md:rounded-none md:border-b-2 md:border-b-gray-100"
-                    >
-                        {showLayers ? (
-                            <FaChevronUp className="hidden md:block text-gray-500 mt-1" />
-                        ) : (
-                            <FaChevronDown className="hidden md:block text-gray-500 mt-1" />
-                        )}
-                        <span>Consulter les cartes</span>
-                    </button>
-                    {showLayers && <ListLayers />}
-
-                    <div className="cursor-pointer secondary-btn secondary-btn-mobile md:overflow-y-hidden md:main-btn-desktop md:rounded-t-none md:rounded-b-none md:rounded-b-3xl">
-                        <a target="_blank" rel="noopener noreferrer" href="https://datagora.erasme.org/projets/parcours-a-la-carte/">
-                            En savoir plus
-                        </a>
+                <div className="pt-4">
+                  {/* menu */}
+                  {!activeMenu && (
+                    <>
+                    <div className="px-[10px] py-[11px] border-b-2 border-grey-500">
+                      <button
+                        onClick={() => openMenu('itinerary')}
+                        className="flex justify-between w-full px-4"
+                      >
+                        <div>Calculer un itinéraire piéton</div>
+                          {!showItineraryCalculation && (
+                              <FaArrowRight className="hidden md:block text-primary mt-1" />
+                          )}
+                      </button>
                     </div>
+                    <div className="px-[10px] py-[11px] border-b-2 border-grey-500">
+                      <button
+                        onClick={() => openMenu('findFreshness')}
+                        className="flex justify-between w-full px-4"
+                      >
+                        <span>Trouver un lieu frais</span>
+                        {!showFindFreshness && (
+                            <FaArrowRight className="hidden md:block text-primary mt-1" />
+                        )}
+                      </button>
+                    </div>
+                    <div className="px-[10px] py-[11px] border-b-2 border-grey-500">
+                      <button
+                          onClick={() => openMenu('layers')}
+                          className="flex justify-between w-full px-4"
+                      >
+                        <span>Consulter les cartes</span>
+                          {!showLayers && (
+                              <FaArrowRight className="hidden md:block text-primary mt-1" />
+                          )}
+                      </button>
+                    </div>
+                    <div className="px-[10px] py-[11px] border-b-2 border-grey-500">
+                        <button
+                          onClick={() => openMenu('more')}
+                          className="flex justify-between w-full px-4"
+                        >
+                          <span>En savoir plus</span>
+                          {!showReadMore && (
+                              <FaArrowRight className="hidden md:block text-primary mt-1" />
+                          )}
+                      </button>
+                    </div>
+                    </>
+                  )}
+                  {/* Contents */}
+                  <div className="flex flex-col items-start px-4">
+                    {activeMenu && (
+                      <BackButton setActiveMenu={setActiveMenu} setShowCircle={setShowCircle} />
+                    )}
+                    {/* If itinerary calculation */}
+                    {activeMenu === 'itinerary' && showItineraryCalculation && (
+                      <>
+                      <span className="font-bold pt-1">Calculer un itinéraire piéton</span>
+                      <CalculateItinerary
+                          showItineraryCalculation={showItineraryCalculation}
+                          setShowItineraryCalculation={setShowItineraryCalculation}
+                      />
+                      </>
+                    )}
+                    {activeMenu === "findFreshness" && showFindFreshness &&
+                      (
+                      <>
+                        <span className="font-bold pt-1">Trouver un lieu frais</span>
+                        <FreshnessAroundUser />
+                      </> 
+                      )
+                    }
+                    {activeMenu === "layers" && showLayers &&
+                      (<>
+                        <ListLayers />  
+                      </>)
+                    }
+                    {activeMenu === "more" && showReadMore &&
+                      (<>
+                      <span className="font-bold pt-1">En savoir plus</span>
+                      <ReadMore />
+                      </>)
+                    }
+                  </div>
                 </div>
-                <HeadBand />
+              </div>
             </div>
-        </>
+          </div>
+            {/* <div className="hidden md:block h-8 bg-bgWhite rounded-t-3xl"></div> */}
+            {/* <HeadBand /> */}
+        </div>
+      </>
     );
 }
 

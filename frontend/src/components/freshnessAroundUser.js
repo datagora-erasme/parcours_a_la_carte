@@ -101,15 +101,15 @@ const FreshnessAroundUser = () => {
     }, [userAddress]);
 
     return (
-        <div className="card md:card-desktop">
+        <div className="w-full">
             <button className="md:hidden card-title">
                 <FaChevronDown className="text-gray-500 mt-1 hidden md:block" />
                 <span className="text-lg font-bold mr-2">Lieu le plus frais autour de moi</span>
             </button>
 
-            <div className="flex flex-col p-2">
+            <div className="flex flex-col">
                 <label htmlFor="startAddress" className="block mb-1 mt-4 flex justify-between">
-                    <p>Adresse</p>
+                    <p>Départ</p>
                 </label>
                 <div className="relative flex gap-2">
                     <input
@@ -154,7 +154,7 @@ const FreshnessAroundUser = () => {
                 </div>
                 <div className="w-full mx-auto mb-2 flex flex-col gap-2 mt-2">
                     <div className="w-full flex justify-between">
-                        <p>Distance (km)</p>
+                        <p>Distance</p>
                         <p className="font-bold">{radius} km</p>
                     </div>
                     <input
@@ -164,17 +164,17 @@ const FreshnessAroundUser = () => {
                         step="0.2"
                         value={radius}
                         onChange={handleChangeRadius}
-                        className="w-full h-4 bg-gray-400 rounded-full appearance-none"
+                        className="w-full h-1 bg-gray-300 rounded-full appearance-none custom-slider-freshness"
                     />
                     <div className="flex justify-between">
-                        <span>0.2 km</span>
-                        <span>10 km</span>
+                        <span className="italic text-[#767676]">0.2 km</span>
+                        <span className="italic text-[#767676]">10 km</span>
                     </div>
                 </div>
                 <div className="w-full flex justify-center" onClick={() => window.trackButtonClick('FindFreshness')}>
                     <button
                         onClick={findFreshnessAroundMe}
-                        className={` main-btn ${!selectedStartAddress ? 'bg-gray-300 hover:bg-gray-400' : 'bg-primary md:opacity-80 hover:opacity-100'} text-mainText font-bold rounded-full transition duration-300`}
+                        className={`text-white p-4 rounded-full shadow-md mt-2 font-bold ${!selectedStartAddress ? 'bg-gray-500 ' : 'bg-primary'}`}
                         disabled={!selectedStartAddress}
                     >
                         Trouver les lieux frais

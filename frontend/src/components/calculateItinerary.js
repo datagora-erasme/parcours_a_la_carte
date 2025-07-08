@@ -248,14 +248,14 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
     };
 
     return (
-        <div className="card md:card-desktop">
-            <button className="md:hidden card-title">
-                <FaChevronDown className="text-gray-500 mt-1 hidden md:block" />
-                <span>Calculer un itinéraire piéton</span>
-            </button>
-            <label htmlFor="startAddress" className="block mb-1 mt-4 flex">
-                Départ
-            </label>
+        <div className="w-full">
+        <button className="md:hidden card-title">
+          <FaChevronDown className="text-gray-500 mt-1 hidden md:block" />
+            <span>Calculer un itinéraire piéton</span>
+          </button>
+          <label htmlFor="startAddress" className="block mb-1 mt-4 flex">
+              Départ
+          </label>
             <div className="relative flex gap-2">
                 <input
                     type="text"
@@ -344,9 +344,9 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                             toggleCriteria('frais');
                             window.trackButtonClick(`CalculateItinerary_PlusAuFrais`);
                         }}
-                        className={`main-btn inline-flex items-center mx-1 text-xs rounded-full transition duration-300 ${criteria.includes('frais') ? 'bg-black text-white' : 'bg-white text-black border border-gray-300'}`}
+                        className={`px-4 py-3 inline-flex items-center mx-1 text-sm rounded-full transition duration-300 ${criteria.includes('frais') ? 'bg-black text-white' : 'bg-white text-black shadow-md'}`}
                     >
-                        <FaSnowflake className="mr-1" /> Plus au frais
+                        <FaSnowflake className="mr-2 text-lg" /> Plus au frais
                     </button>
 
                     <button
@@ -354,9 +354,9 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                             toggleCriteria('pollen');
                             window.trackButtonClick(`CalculateItinerary_MoinsDePollen`);
                         }}
-                        className={`main-btn inline-flex items-center mx-1 text-xs rounded-full transition duration-300 ${criteria.includes('pollen') ? 'bg-black text-white' : 'bg-white text-black border border-gray-300'}`}
+                        className={`px-4 py-3 inline-flex items-center mx-1 text-sm rounded-full transition duration-300 ${criteria.includes('pollen') ? 'bg-black text-white' : 'bg-white text-black shadow-md'}`}
                     >
-                        <TbFlowerOff className="mr-1" /> Moins de pollen
+                        <TbFlowerOff className="mr-2 text-lg" /> Moins de pollen
                     </button>
                 </div>
                 <div className="flex justify-center items-center mb-4 ">
@@ -365,25 +365,25 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                             toggleCriteria('bruit');
                             window.trackButtonClick(`CalculateItinerary_MoinsDeBruit`);
                         }}
-                        className={`main-btn inline-flex items-center mx-1 text-xs rounded-full transition duration-300 ${criteria.includes('bruit') ? 'bg-black text-white' : 'bg-white text-black border border-gray-300'}`}
+                        className={`px-3 py-3 inline-flex items-center mx-1 text-sm rounded-full transition duration-300 ${criteria.includes('bruit') ? 'bg-black text-white' : 'bg-white text-black shadow-md'}`}
                     >
-                        <HiSpeakerXMark className="mr-1" /> Moins de bruit
+                        <HiSpeakerXMark className="mr-2 text-lg" /> Moins de bruit
                     </button>
                     <button
                         onClick={() => {
                             toggleCriteria('tourisme');
                             window.trackButtonClick(`CalculateItinerary_LieuxTouristiques`);
                         }}
-                        className={`main-btn inline-flex items-center mx-1 text-xs rounded-full transition duration-300 ${criteria.includes('tourisme') ? 'bg-black text-white' : 'bg-white text-black border border-gray-300'}`}
+                        className={`px-3 py-3 inline-flex items-center mx-1 text-sm rounded-full transition duration-300 ${criteria.includes('tourisme') ? 'bg-black text-white' : 'bg-white text-black shadow-md'}`}
                     >
-                        <MdPhotoCamera className="mr-1" /> Lieux touristiques
+                        <MdPhotoCamera className="mr-2 text-lg" /> Lieux touristiques
                     </button>
                 </div>
 
                 <div className="flex justify-center items-center">
                     <button
                         onClick={calculateItinerary}
-                        className={`main-btn ${!selectedStartAddress || !selectedEndAddress ? 'bg-gray-300 hover:bg-gray-400' : 'bg-primary md:opacity-80 hover:opacity-100'} text-mainText font-bold rounded-full transition duration-300`}
+                        className={`text-white p-4 rounded-full shadow-md mt-2 ${!selectedStartAddress || !selectedEndAddress ? 'bg-gray-500 ' : 'bg-primary'}`}
                         disabled={!selectedStartAddress || !selectedEndAddress}
                     >
                         {isLoading ? (
@@ -405,8 +405,8 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                                     );
                                 }}
                             >
-                                <span className="">Valider ma recherche </span>
-                                <FaCheck />
+                                <span className="font-bold">Valider ma recherche</span>
+                                {/* <FaCheck /> */}
                             </div>
                         )}
                     </button>

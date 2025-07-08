@@ -6,7 +6,8 @@ module.exports = {
             colors: {
                 bgWhite: '#F8F9F9',
                 bgGray: '#EEEEEE',
-                primary: '#D6EFF8',
+                // primary: '#D6EFF8',
+                primary: '#3C787E',
                 secondary: '#0C3745',
                 mainText: '#000000',
                 ligneModale: '#BDBDBD',

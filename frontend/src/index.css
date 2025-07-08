@@ -129,3 +129,23 @@ img {
 .leaflet-popup-tip-container {
     top: 100%;
 }
+
+/* --------- CHROME, EDGE, SAFARI --------- */
+input[type='range'].custom-slider-freshness::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 1em;
+    height: 1em;
+    border: none;
+    border-radius: 50%;
+    background: #3C787E;
+  }
+  
+  /* --------- FIREFOX --------- */
+  input[type='range'].custom-slider-freshness::-moz-range-thumb {
+    width: 1em;
+    height: 1em;
+    border: none;
+    border-radius: 50%;
+    background: #3C787E;
+  }
+

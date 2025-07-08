@@ -6,6 +6,7 @@ import L from 'leaflet';
 import { useContext, useEffect, useState } from 'react';
 import { GeoJSON, MapContainer, Marker, Popup, TileLayer, Tooltip, ZoomControl, useMap } from 'react-leaflet';
 import MainContext from '../contexts/mainContext';
+import MapCustomControls from './mapCustomControls';
 
 const colors = {
     1: ' #d6e4d7 ',
@@ -381,7 +382,8 @@ function Map() {
                     // url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
                     url="https://openmaptiles.data.grandlyon.com/styles/klokantech-basic/{z}/{x}/{y}.png"
                 />
-                <ZoomControl position="topright" />
+                <MapCustomControls />
+                {/* <ZoomControl position="bottomright" /> */}
                 <MapFreshness
                     zoomToUserPosition={zoomToUserPosition}
                     radius={radius}
