@@ -1,26 +1,15 @@
 import React, { useContext, useState } from 'react';
-import ListLayers from './listLayers';
-import CalculateItinerary from './calculateItinerary';
-import FreshnessAroundUser from './freshnessAroundUser';
-import { FaArrowRight, FaWalking, FaThermometerHalf, FaMapMarkedAlt, FaInfoCircle } from 'react-icons/fa';
+import { FaArrowRight, FaWalking, FaMapMarkedAlt, FaInfoCircle, FaSnowflake } from 'react-icons/fa';
 import MainContext from '../contexts/mainContext';
-import CurrentItineraryDetails from './currentItineraryDetails';
 import PoiDetails from './poiDetails';
-// import HeadBand from './headband';
-import BackButton from './backButton';
-import ReadMore from './readMore';
+import ContentBody from './contentBody';
 
-function Content({ showMenu, setShowMenu }) {
+function Content({ showMenu, setShowMenu, setActiveMenu, activeMenu, showLayers, setShowLayers, showReadMore, setShowReadMore }) {
   const [showItineraryCalculation, setShowItineraryCalculation] = useState(false);
-
-  const [showLayers, setShowLayers] = useState(false);
-  const [showReadMore, setShowReadMore] = useState(false)
-  const [activeMenu, setActiveMenu] = useState(null)
 
     const {
         history,
         setHistory,
-        showCurrentItineraryDetails,
         setShowCircle,
         setSelectedLayers,
         setCurrentItinerary,
@@ -32,6 +21,7 @@ function Content({ showMenu, setShowMenu }) {
         setShowPoiDetails,
         showFindFreshness,
         setShowFindFreshness,
+        showCurrentItineraryDetails
   } = useContext(MainContext);
   
   function handleClickMenu(menuName) {
@@ -89,7 +79,7 @@ function Content({ showMenu, setShowMenu }) {
                 onClick={() => openMenu('findFreshness')}
                 className={`p-1 w-[40px] h-[40px] flex justify-center items-center ${activeMenu === 'findFreshness' ? 'bg-primary' : 'bg-bgWhite'}`}
               >
-                <FaThermometerHalf className={`text-xl ${activeMenu === 'findFreshness' ? 'text-white' : 'text-primary'}`} />
+                <FaSnowflake className={`text-xl ${activeMenu === 'findFreshness' ? 'text-white' : 'text-primary'}`} />
               </button>
               <button
                 onClick={() => openMenu('layers')}
@@ -111,12 +101,11 @@ function Content({ showMenu, setShowMenu }) {
                 <h1 className="text-2xl font-semibold">
                   Parcours à la carte
                 </h1>
-                <h3 classNam="text-base font-normal">
+                <h3 className="text-base font-normal italic">
                   Une expérimentation ERASME pour la Métropole de Lyon
                 </h3>
               </div>
               <div className="relative bg-bgWhite pt-10 pb-5 max-w-sm w-[355px] rounded-[20px] shadow-md min-h-[280px]">
-                {showCurrentItineraryDetails && <CurrentItineraryDetails showMenu={showMenu} />}
                 {showPoiDetails && <PoiDetails showMenu={showMenu} />}
                 <div className="pt-4">
                   {/* menu */}
@@ -170,45 +159,23 @@ function Content({ showMenu, setShowMenu }) {
                   )}
                   {/* Contents */}
                   <div className="flex flex-col items-start px-4">
-                    {activeMenu && (
-                      <BackButton setActiveMenu={setActiveMenu} setShowCircle={setShowCircle} />
-                    )}
-                    {/* If itinerary calculation */}
-                    {activeMenu === 'itinerary' && showItineraryCalculation && (
-                      <>
-                      <span className="font-bold pt-1">Calculer un itinéraire piéton</span>
-                      <CalculateItinerary
-                          showItineraryCalculation={showItineraryCalculation}
-                          setShowItineraryCalculation={setShowItineraryCalculation}
-                      />
-                      </>
-                    )}
-                    {activeMenu === "findFreshness" && showFindFreshness &&
-                      (
-                      <>
-                        <span className="font-bold pt-1">Trouver un lieu frais</span>
-                        <FreshnessAroundUser />
-                      </> 
-                      )
-                    }
-                    {activeMenu === "layers" && showLayers &&
-                      (<>
-                        <ListLayers />  
-                      </>)
-                    }
-                    {activeMenu === "more" && showReadMore &&
-                      (<>
-                      <span className="font-bold pt-1">En savoir plus</span>
-                      <ReadMore />
-                      </>)
-                    }
+                    <ContentBody
+                      activeMenu={activeMenu}
+                      setActiveMenu={setActiveMenu}
+                      showCurrentItineraryDetails={showCurrentItineraryDetails}
+                      setShowCurrentItineraryDetails={setShowCurrentItineraryDetails}
+                      setShowCircle={setShowCircle}
+                      showItineraryCalculation={showItineraryCalculation}
+                      setShowItineraryCalculation={setShowItineraryCalculation}
+                      showFindFreshness={showFindFreshness}
+                      showLayers={showLayers}
+                      showReadMore={showReadMore}
+                    />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-            {/* <div className="hidden md:block h-8 bg-bgWhite rounded-t-3xl"></div> */}
-            {/* <HeadBand /> */}
         </div>
       </>
     );

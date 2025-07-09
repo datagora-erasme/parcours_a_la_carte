@@ -19,6 +19,7 @@ module.exports = {
                 endGradientLegendBruit: '#3FCA8C',
                 startGradientLegendTourisme: '#F9988B',
                 endGradientLegendTourisme: '#F77564',
+                grayBtn: '#767676'
             },
         },
     },

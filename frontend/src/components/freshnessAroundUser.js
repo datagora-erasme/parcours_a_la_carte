@@ -102,11 +102,8 @@ const FreshnessAroundUser = () => {
 
     return (
         <div className="w-full">
-            <button className="md:hidden card-title">
-                <FaChevronDown className="text-gray-500 mt-1 hidden md:block" />
-                <span className="text-lg font-bold mr-2">Lieu le plus frais autour de moi</span>
-            </button>
 
+            <div className="font-bold pt-1 text-start">Trouver un lieu frais</div>
             <div className="flex flex-col">
                 <label htmlFor="startAddress" className="block mb-1 mt-4 flex justify-between">
                     <p>Départ</p>

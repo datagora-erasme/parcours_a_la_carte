@@ -1,6 +1,7 @@
 const ReadMore = () => {
   return (
-    <div>
+    <div className="w-full text-start">
+      <div className="font-bold pt-1">En savoir plus</div>
       ...
     </div>
   )

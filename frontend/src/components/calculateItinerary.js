@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import _debounce from 'lodash/debounce';
-import { FaChevronDown, FaCheck, FaSnowflake } from 'react-icons/fa';
+// import _debounce from 'lodash/debounce';
+import { FaSnowflake } from 'react-icons/fa';
 import { HiSpeakerXMark } from 'react-icons/hi2';
 import { TbFlowerOff } from 'react-icons/tb';
 import { MdPhotoCamera } from 'react-icons/md';
@@ -9,7 +9,7 @@ import { MdPhotoCamera } from 'react-icons/md';
 import { BiCurrentLocation } from 'react-icons/bi';
 import MainContext from '../contexts/mainContext';
 
-const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculation }) => {
+const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculation, showCurrentItineraryDetails }) => {
     const [startAddressSuggestions, setStartAddressSuggestions] = useState([]);
     const [endAddressSuggestions, setEndAddressSuggestions] = useState([]);
     const [showStartSuggestions, setShowStartSuggestions] = useState(false);
@@ -248,11 +248,10 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
     };
 
     return (
+        <>
         <div className="w-full">
-        <button className="md:hidden card-title">
-          <FaChevronDown className="text-gray-500 mt-1 hidden md:block" />
-            <span>Calculer un itinéraire piéton</span>
-          </button>
+        
+        <div className="font-bold pt-1 text-start">Calculer un itinéraire piéton</div>
           <label htmlFor="startAddress" className="block mb-1 mt-4 flex">
               Départ
           </label>
@@ -413,6 +412,8 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                 </div>
             </div>
         </div>
+            </>
+        
     );
 };
 
