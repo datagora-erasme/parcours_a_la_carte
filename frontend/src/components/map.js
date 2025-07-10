@@ -4,9 +4,10 @@ import axios from 'axios';
 import chroma from 'chroma-js';
 import L from 'leaflet';
 import { useContext, useEffect, useState } from 'react';
-import { GeoJSON, MapContainer, Marker, Popup, TileLayer, Tooltip, ZoomControl, useMap } from 'react-leaflet';
+import { GeoJSON, MapContainer, Marker, Popup, TileLayer, Tooltip, useMap } from 'react-leaflet';
 import MainContext from '../contexts/mainContext';
 import MapCustomControls from './mapCustomControls';
+import FloatingTools from './floatingTools';
 
 const colors = {
     1: ' #d6e4d7 ',
@@ -137,10 +138,12 @@ const geoJsonArea = (feature, layer) => {
     layer.bindPopup(`${feature?.properties?.nom}`);
 };
 
-function Map() {
+
+function Map({ basemap, setBasemap, isBarOpen }) {
     const [geojsonFiles, setGeojsonFiles] = useState([]);
     const [loadingLayer, setLoadingLayer] = useState(false);
     const [bufferedItineraries, setBufferedItineraries] = useState([]);
+    const [showFloatingTools, setShowFloatingTools] = useState(false)
 
     const {
         zoomToUserPosition,
@@ -364,6 +367,31 @@ function Map() {
         }
     }, [bufferedItineraries]);
 
+    const getTileUrl = () => {
+        switch (basemap) {
+            case 'positron':
+                return 'https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+            case 'satellite':
+                return 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+            case 'grandlyon':
+                default:
+                    return 'https://openmaptiles.data.grandlyon.com/styles/klokantech-basic/{z}/{x}/{y}.png'; 
+        }
+    }
+
+    function MapWrapper() {
+        const map = useMap();
+        const { setLeafletMap } = useContext(MainContext);
+    
+    useEffect(() => {
+        setLeafletMap(map);
+    }, [map]);
+    
+    return null;
+    }
+    
+    
+
     return (
         <div>
             {loadingLayer && 'Loading ....'}
@@ -376,13 +404,16 @@ function Map() {
                 className="mapContainer"
                 zoomControl={false}
             >
+                <MapWrapper />
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     // url="http://{s}.tile.openstreetmap.fr/openriverboatmap/{z}/{x}/{y}.png"
                     // url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-                    url="https://openmaptiles.data.grandlyon.com/styles/klokantech-basic/{z}/{x}/{y}.png"
+                    // url="https://openmaptiles.data.grandlyon.com/styles/klokantech-basic/{z}/{x}/{y}.png"
+                    url={getTileUrl()}
                 />
-                <MapCustomControls />
+                <MapCustomControls setShowFloatingTools={setShowFloatingTools} />
+                <FloatingTools showFloatingTools={showFloatingTools} setShowFloatingTools={setShowFloatingTools} basemap={basemap} setBasemap={setBasemap} />
                 {/* <ZoomControl position="bottomright" /> */}
                 <MapFreshness
                     zoomToUserPosition={zoomToUserPosition}

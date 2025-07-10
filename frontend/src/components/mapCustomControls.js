@@ -1,11 +1,14 @@
 import { useMap } from 'react-leaflet';
+import { useContext } from 'react'
 import { FaCrosshairs, FaLayerGroup, FaPlus, FaMinus } from 'react-icons/fa';
+import MainContext from '../contexts/mainContext';
 
-export default function MapCustomControls() {
+export default function MapCustomControls({ setShowFloatingTools }) {
   const map = useMap();
+  const { isMobile } = useContext(MainContext);
 
   return (
-    <div className="absolute bottom-8 right-4 flex flex-col gap-2 z-[9994]">
+    <div className={`absolute right-4 flex flex-col gap-2 z-[9994] ${isMobile ? 'bottom-28' : 'bottom-8'}`}>
       {/* Btn center */}
       <button
         onClick={() => map.locate({ setView: true })}
@@ -15,12 +18,17 @@ export default function MapCustomControls() {
       </button>
 
       {/* Btn layers */}
-      <button
-        onClick={() => console.log('Toggle layers')}
-        className="bg-white w-8 h-8 rounded-full shadow-md flex items-center justify-center"
-      >
-        <FaLayerGroup className="text-primary text-lg" />
-      </button>
+      {!isMobile && 
+        <button
+          onClick={() => {
+            console.log('click');
+            setShowFloatingTools(true)
+          }}
+          className="bg-white w-8 h-8 rounded-full shadow-md flex items-center justify-center"
+        >
+          <FaLayerGroup className="text-primary text-lg" />
+        </button>
+      }
 
       {/* Btn zoom in */}
       <button

@@ -8,6 +8,7 @@ export default function useOpenMenu({
   setShowFindFreshness,
   setShowLayers,
   setShowReadMore,
+  setShowBasemap
 }) {
   const {
     history,
@@ -22,7 +23,7 @@ export default function useOpenMenu({
     setSelectedLayers,
   } = useContext(MainContext)
 
-  function handleClcikMenu(menuName) {
+  function handleClickMenu(menuName) {
     if (activeMenu === menuName) {
       setActiveMenu(null)
     } else {
@@ -31,13 +32,18 @@ export default function useOpenMenu({
   }
 
   function openMenu(menuName) {
-    handleClcikMenu(menuName)
-
+    // console.log(menuName);
+    handleClickMenu(menuName);
+  
     setShowItineraryCalculation(menuName === 'itinerary');
     setShowFindFreshness(menuName === 'findFreshness');
     setShowLayers(menuName === 'layers');
     setShowReadMore(menuName === 'more');
-
+  
+    if (typeof setShowBasemap === 'function') {
+      setShowBasemap(menuName === 'basemap');
+    }
+  
     setShowPoiDetails(false);
     setShowCircle(menuName === 'findFreshness');
     setZoomToUserPosition(menuName === 'findFreshness');
@@ -46,20 +52,25 @@ export default function useOpenMenu({
     setEndAddress('');
     setShowCurrentItineraryDetails(false);
     setSelectedLayers([]);
-
+  
     const historyFn = () => {
       if (menuName === 'itinerary') setShowItineraryCalculation(false);
       if (menuName === 'findFreshness') setShowFindFreshness(false);
       if (menuName === 'layers') setShowLayers(false);
       if (menuName === 'more') setShowReadMore(false);
+      if (menuName === 'basemap' && typeof setShowBasemap === 'function') {
+        setShowBasemap(false);
+      }
     };
     setHistory([...history, { fn: historyFn }]);
-
+  
     if (menuName === 'itinerary') window.trackButtonClick('OpenCalculateItinerary');
     if (menuName === 'findFreshness') window.trackButtonClick('OpenFindFreshness');
     if (menuName === 'layers') window.trackButtonClick('OpenLayers');
-
+    if (menuName === 'more') window.trackButtonClick('OpenMore');
+    if (menuName === 'basemap') window.trackButtonClick('OpenBasemap');
   }
+  
 
   return { openMenu }
 }

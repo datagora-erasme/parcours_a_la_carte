@@ -1,5 +1,4 @@
 import React, { useState, useContext, useCallback, useEffect } from 'react';
-import { FaChevronDown } from 'react-icons/fa';
 import { BiCurrentLocation } from 'react-icons/bi';
 import MainContext from '../contexts/mainContext';
 import axios from 'axios';

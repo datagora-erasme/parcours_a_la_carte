@@ -4,6 +4,7 @@ import FreshnessAroundUser from "./freshnessAroundUser";
 import ListLayers from "./listLayers";
 import ReadMore from "./readMore";
 import CurrentItineraryDetails from "./currentItineraryDetails";
+import BaseMapContent from "./baseMapContent";
 
 const ContentBody = ({
   activeMenu,
@@ -15,7 +16,11 @@ const ContentBody = ({
   setShowItineraryCalculation,
   showFindFreshness,
   showLayers,
-  showReadMore
+  showReadMore,
+  showBasemap,
+  setShowBasemap,
+  basemap,
+  setBasemap
 }) => (
   <div className="w-full">
     {/* Retour */}
@@ -23,7 +28,7 @@ const ContentBody = ({
       <BackButton setActiveMenu={setActiveMenu} setShowCircle={setShowCircle} />
     )}
 
-    <div className="max-h-[500px] overflow-auto w-full">
+    <div className="max-h-[50%] overflow-auto w-full">
       {activeMenu === 'itinerary' && showItineraryCalculation && (
         <CalculateItinerary
           showItineraryCalculation={showItineraryCalculation}
@@ -43,6 +48,13 @@ const ContentBody = ({
           setShowCurrentItineraryDetails={setShowCurrentItineraryDetails}
         />
       )}
+
+      {activeMenu === "basemap" && showBasemap &&
+        <>
+        <div className="font-bold pt-1 mb-2 flex justify-start">Plans</div>
+        <BaseMapContent basemap={basemap} setBasemap={setBasemap} />
+        </>
+      }
     </div>
   </div>
 )

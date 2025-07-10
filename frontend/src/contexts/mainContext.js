@@ -45,6 +45,9 @@ export const MainContextProvider = ({ children }) => {
 
     const [isMobile, setIsMobile] = useState(false)
 
+    const [leafletMap, setLeafletMap] = useState(null)
+
+
     //Rounds the geographical coordinates of the itinerary to 5 decimal places
     const roundGeographicalCoordinatesOnItineraries = itineraries => {
         return itineraries.map(it => {
@@ -238,7 +241,9 @@ export const MainContextProvider = ({ children }) => {
                 currentItineraryStartPointUsedForCalculation,
                 setCurrentItineraryStartPointUsedForCalculation,
                 isMobile,
-                checkIsMobile
+                checkIsMobile,
+                leafletMap,
+                setLeafletMap
             }}
         >
             {children}

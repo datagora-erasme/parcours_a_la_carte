@@ -388,7 +388,7 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                         {isLoading ? (
                             <div className="flex items-center gap-2">
                                 <span>En cours de chargement</span>
-                                <div className="w-6 h-6 rounded-full border-4 border-gray-300 border-t-primary animate-spin mr-3"></div>
+                                <div className="w-5 h-5 rounded-full border-4 border-gray-300 border-t-primary animate-spin"></div>
                             </div>
                         ) : (
                             <div

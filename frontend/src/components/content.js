@@ -3,64 +3,33 @@ import { FaArrowRight, FaWalking, FaMapMarkedAlt, FaInfoCircle, FaSnowflake } fr
 import MainContext from '../contexts/mainContext';
 import PoiDetails from './poiDetails';
 import ContentBody from './contentBody';
+import useOpenMenu from '../hooks/useOpenMenu';
 
-function Content({ showMenu, setShowMenu, setActiveMenu, activeMenu, showLayers, setShowLayers, showReadMore, setShowReadMore }) {
+function Content({
+  showMenu, setShowMenu,
+  setActiveMenu, activeMenu,
+  showLayers, setShowLayers,
+  showReadMore, setShowReadMore
+}) {
   const [showItineraryCalculation, setShowItineraryCalculation] = useState(false);
 
-    const {
-        history,
-        setHistory,
-        setShowCircle,
-        setSelectedLayers,
-        setCurrentItinerary,
-        setSelectedEndAddress,
-        setEndAddress,
-        setShowCurrentItineraryDetails,
-        setZoomToUserPosition,
-        showPoiDetails,
-        setShowPoiDetails,
-        showFindFreshness,
-        setShowFindFreshness,
-        showCurrentItineraryDetails
+  const {
+    setShowCircle,
+    setShowCurrentItineraryDetails,
+    showPoiDetails,
+    showFindFreshness,
+    setShowFindFreshness,
+    showCurrentItineraryDetails
   } = useContext(MainContext);
   
-  function handleClickMenu(menuName) {
-    if (activeMenu === menuName) {
-      setActiveMenu(null)
-    } else {
-      setActiveMenu(menuName)
-    }
-  }
-
-  function openMenu(menuName) {
-    handleClickMenu(menuName)
-
-    setShowItineraryCalculation(menuName === 'itinerary')
-    setShowFindFreshness(menuName === 'findFreshness')
-    setShowLayers(menuName === 'layers')
-    setShowReadMore(menuName === 'more')
-
-    setShowPoiDetails(false)
-    setShowCircle(menuName === 'findFreshness')
-    setZoomToUserPosition(menuName === 'findFreshness')
-    setCurrentItinerary(null)
-    setSelectedEndAddress(null)
-    setEndAddress('')
-    setShowCurrentItineraryDetails(false)
-    setSelectedLayers([])
-
-    const historyFn = () => {
-      if (menuName === 'itinerary') setShowItineraryCalculation(false);
-      if (menuName === 'findFreshness') setShowFindFreshness(false);
-      if (menuName === 'layers') setShowLayers(false);
-      if (menuName === 'more') setShowReadMore(false);
-    };
-    setHistory([...history, { fn: historyFn }]);
-  
-    if (menuName === 'itinerary') window.trackButtonClick('OpenCalculateItinerary');
-    if (menuName === 'findFreshness') window.trackButtonClick('OpenFindFreshness');
-    if (menuName === 'layers') window.trackButtonClick('OpenLayers');
-  }
+    const { openMenu } = useOpenMenu({
+      activeMenu,
+      setActiveMenu,
+      setShowItineraryCalculation,
+      setShowFindFreshness,
+      setShowLayers,
+      setShowReadMore,
+    })
 
     return (
       <>
@@ -73,25 +42,49 @@ function Content({ showMenu, setShowMenu, setActiveMenu, activeMenu, showLayers,
                 onClick={() => openMenu('itinerary')}
                 className={`p-1 w-[40px] h-[40px] rounded-tl-lg flex justify-center items-center ${activeMenu === 'itinerary' ? 'bg-primary' : 'bg-bgWhite'}`}
               >
-                <FaWalking className={`text-xl ${activeMenu === 'itinerary' ? 'text-white' : 'text-primary'}`} />
+                <FaWalking className={`text-xl ${
+                  activeMenu === null
+                    ? 'text-primary'
+                    : activeMenu === 'itinerary'
+                    ? 'text-white'
+                    : 'text-grayBtn'
+                }`} />
               </button>
               <button
                 onClick={() => openMenu('findFreshness')}
                 className={`p-1 w-[40px] h-[40px] flex justify-center items-center ${activeMenu === 'findFreshness' ? 'bg-primary' : 'bg-bgWhite'}`}
               >
-                <FaSnowflake className={`text-xl ${activeMenu === 'findFreshness' ? 'text-white' : 'text-primary'}`} />
+                <FaSnowflake className={`text-xl ${
+                  activeMenu === null
+                    ? 'text-primary'
+                    : activeMenu === 'findFreshness'
+                    ? 'text-white'
+                    : 'text-grayBtn'
+                }`} />
               </button>
               <button
                 onClick={() => openMenu('layers')}
                 className={`p-1 w-[40px] h-[40px] flex justify-center items-center ${activeMenu === 'layers' ? 'bg-primary' : 'bg-bgWhite'}`}
               >
-                <FaMapMarkedAlt className={`text-xl ${activeMenu === 'layers' ? 'text-white' : 'text-primary'}`} />
+                <FaMapMarkedAlt className={`text-xl ${
+                  activeMenu === null
+                    ? 'text-primary'
+                    : activeMenu === 'layers'
+                    ? 'text-white'
+                    : 'text-grayBtn'
+                }`} />
               </button>
               <button
                 onClick={() => openMenu('more')}
                 className={`p-1 w-[40px] h-[40px] rounded-bl-lg flex justify-center items-center ${activeMenu === 'more' ? 'bg-primary' : 'bg-bgWhite'}`}
               >
-                <FaInfoCircle className={`text-xl ${activeMenu === 'more' ? 'text-white' : 'text-primary'}`} />
+                <FaInfoCircle className={`text-xl ${
+                  activeMenu === null
+                    ? 'text-primary'
+                    : activeMenu === 'more'
+                    ? 'text-white'
+                    : 'text-grayBtn'
+                }`} />
               </button>
             </div>
             {/*  */}
