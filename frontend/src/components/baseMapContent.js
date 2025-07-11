@@ -1,7 +1,7 @@
 const BaseMapContent = ({ basemap, setBasemap, showBasemap, setShowBasemap }) => {
   const basemaps = [
-    { key: 'grandlyon', label: 'Open Street Map', img: '/basemap_osm.png' },
-    { key: 'positron', label: 'Positron Light', img: '/basemap_positron.png' },
+    { key: 'grandlyon', label: (<>Fond de plan de <br></br> la Métropole de Lyon</>), img: '/basemap_osm.png' },
+    { key: 'osm', label: 'Open Street Map', img: '/basemap_osm_default.png' },
     { key: 'satellite', label: 'Satellite', img: '/basemap_satellite.png' },
   ]
   return (
@@ -23,9 +23,9 @@ const BaseMapContent = ({ basemap, setBasemap, showBasemap, setShowBasemap }) =>
         ))}
         <div className="text-black flex justify-start w-full text-left">
           {basemap === "grandlyon"
+            ? (<span>© OpenStreetMap contributors / <a className="!text-primary italic underline underline decoration-1" href="https://data.grandlyon.com/portail/fr/jeux-de-donnees/fond-de-plan-openstreetmap/donnees" target="blank">www.data.grandlyon.com</a></span>)
+            : basemap === "osm"
             ? (<span>© OpenStreetMap contributors / <a className="!text-primary italic underline underline decoration-1" href="https://www.openstreetmap.org/copyright" target="blank">www.openstreetmap.org</a></span>)
-            : basemap === "positron"
-            ? (<span>© CARTO / <a className="!text-primary italic underline decoration-1" href="https://github.com/CartoDB/basemap-styles" target="blank">github.com/CartoDB</a></span>)
             : basemap === "satellite"
             ? (<span>© IGN – Geoportail / <a className="!text-primary italic underline decoration-1" href="hhttps://geoservices.ign.fr/" target="blank">www.geoservices.ign.fr</a></span>)
             : ""}

@@ -3,6 +3,8 @@ import { BiCurrentLocation } from 'react-icons/bi';
 import MainContext from '../contexts/mainContext';
 import axios from 'axios';
 import _debounce from 'lodash/debounce';
+import PoiDetails from './poiDetails';
+
 
 const FreshnessAroundUser = () => {
     const [startAddressSuggestions, setStartAddressSuggestions] = useState([]);
@@ -19,6 +21,7 @@ const FreshnessAroundUser = () => {
         radius,
         setRadius,
         setShowCircle,
+        isMobile
     } = useContext(MainContext);
 
     const handleStartAddressAPI = query => {
@@ -64,7 +67,8 @@ const FreshnessAroundUser = () => {
     const handleSelectStartAddress = id => {
         for (let address of startAddressSuggestions) {
             if (address.properties.osm_id === id) {
-                setStartAddress(`${addressName(address.properties).slice(0, 30)}...`);
+                // setStartAddress(`${addressName(address.properties).slice(0, 30)}...`);
+                setStartAddress(addressName(address.properties));
                 setSelectedStartAddress(address);
                 setStartAddressSuggestions([]);
             }
@@ -77,7 +81,8 @@ const FreshnessAroundUser = () => {
 
     const handleSelectUserAddress = () => {
         if (userAddress) {
-            setStartAddress(`${userAddress.properties.label.slice(0, 30)}...`);
+            // setStartAddress(`${userAddress.properties.label.slice(0, 30)}...`);
+            setStartAddress(userAddress.properties.label);
             setSelectedStartAddress(userAddress);
         } else {
             navigator?.geolocation?.getCurrentPosition(
@@ -94,10 +99,28 @@ const FreshnessAroundUser = () => {
 
     useEffect(() => {
         if (userAddress && startAddress === '') {
-            setStartAddress(`${userAddress.properties.label.slice(0, 30)}...`);
+            // setStartAddress(`${userAddress.properties.label.slice(0, 30)}...`);
+            setStartAddress(userAddress.properties.label);
             setSelectedStartAddress(userAddress);
         }
     }, [userAddress]);
+
+    const AdressSuggestionDisplay = ({ address }) => {
+
+    const parts = address.split(',');
+    const name = parts[0].trim();
+    const restOfTheAddress = parts.slice(1).join(',').trim(); 
+
+    return (
+        <span className="whitespace-nowrap">
+        <span className="text-primary font-bold">{name}</span>
+        {restOfTheAddress && (
+            <span className="italic">, {restOfTheAddress}</span>
+        )}
+        </span>
+    );
+    };
+
 
     return (
         <div className="w-full">
@@ -125,28 +148,34 @@ const FreshnessAroundUser = () => {
                             className="absolute z-10 w-full bg-white border-gray-300 rounded-md shadow-lg mt-12 md:mt-10"
                             value={startAddress}
                         >
+                        <div className="italic flex items-center cursor-pointer py-2" onClick={() => {
+                            handleSelectUserAddress();
+                            window.trackButtonClick(`FindFreshness_UseUserPosition`);
+                        }}>
+                            <BiCurrentLocation
+                                size={30}
+                                className="mt-2 cursor-pointer"
+                            />
+                            <span className="ml-1">Utiliser ma position</span> 
+                            </div>
+                            <hr></hr>
                             {startAddressSuggestions.map(suggestion => {
                                 const name = addressName(suggestion.properties);
                                 return (
                                     <li
+                                        className='py-1 text-start'
                                         key={suggestion.properties.osm_id}
                                         value={suggestion.properties.osm_id}
                                         onClick={() => handleSelectStartAddress(suggestion.properties.osm_id)}
                                     >
-                                        {name > 40 ? `${name.slice(0, 40)}...` : name}
+                                        {/* {name > 40 ? `${name.slice(0, 40)}...` : name} */}
+                                        <AdressSuggestionDisplay address={name} />
                                     </li>
                                 );
                             })}
                         </ul>
                     )}
-                    <BiCurrentLocation
-                        size={30}
-                        className="mt-2 cursor-pointer"
-                        onClick={() => {
-                            handleSelectUserAddress();
-                            window.trackButtonClick(`FindFreshness_UseUserPosition`);
-                        }}
-                    />
+
                 </div>
                 <div className="w-full mx-auto mb-2 flex flex-col gap-2 mt-2">
                     <div className="w-full flex justify-between">
@@ -176,6 +205,11 @@ const FreshnessAroundUser = () => {
                         Trouver les lieux frais
                     </button>
                 </div>
+                {!isMobile && 
+                <div className="mt-4">
+                    <PoiDetails />
+                </div>
+                }
             </div>
         </div>
     );

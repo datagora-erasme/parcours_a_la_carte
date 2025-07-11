@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { FaCrosshairs, FaLayerGroup, FaPlus, FaMinus } from 'react-icons/fa';
 import MainContext from '../contexts/mainContext';
 
-export default function MapCustomControls({ setShowFloatingTools }) {
+export default function MapCustomControls({ setShowFloatingTools, showFloatingTools }) {
   const map = useMap();
   const { isMobile } = useContext(MainContext);
 
@@ -21,8 +21,7 @@ export default function MapCustomControls({ setShowFloatingTools }) {
       {!isMobile && 
         <button
           onClick={() => {
-            console.log('click');
-            setShowFloatingTools(true)
+            setShowFloatingTools(!showFloatingTools)
           }}
           className="bg-white w-8 h-8 rounded-full shadow-md flex items-center justify-center"
         >
