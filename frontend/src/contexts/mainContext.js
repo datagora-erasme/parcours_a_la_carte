@@ -43,6 +43,11 @@ export const MainContextProvider = ({ children }) => {
 
     const [criteria, setCriteria] = useState([]);
 
+    const [isMobile, setIsMobile] = useState(false)
+
+    const [leafletMap, setLeafletMap] = useState(null)
+
+
     //Rounds the geographical coordinates of the itinerary to 5 decimal places
     const roundGeographicalCoordinatesOnItineraries = itineraries => {
         return itineraries.map(it => {
@@ -170,6 +175,18 @@ export const MainContextProvider = ({ children }) => {
         }
     }, [currentItinerary]);
 
+    // IsMobile
+    const checkIsMobile = () => window.innerWidth < 768
+
+    useEffect(() => {
+        function handleResize() {
+            setIsMobile(checkIsMobile())
+        }
+        handleResize()
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
+
     return (
         <MainContext.Provider
             value={{
@@ -223,6 +240,10 @@ export const MainContextProvider = ({ children }) => {
                 setCurrentItineraryEndPointUsedForCalculation,
                 currentItineraryStartPointUsedForCalculation,
                 setCurrentItineraryStartPointUsedForCalculation,
+                isMobile,
+                checkIsMobile,
+                leafletMap,
+                setLeafletMap
             }}
         >
             {children}

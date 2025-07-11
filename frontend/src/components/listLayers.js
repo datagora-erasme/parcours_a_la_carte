@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import { FaChevronDown } from 'react-icons/fa';
 import MainContext from '../contexts/mainContext';
 
 function ListLayers() {
@@ -14,12 +13,7 @@ function ListLayers() {
     };
 
     return (
-        <div className="card md:card-desktop">
-            <button className="md:hidden card-title">
-                {isLayerLoading && <div class="w-6 h-6 rounded-full border-4 border-gray-300 border-t-blue-500 animate-spin mr-3"></div>}
-                <FaChevronDown className="text-gray-500 mt-1 hidden md:block" />
-                <span className="text-lg font-bold mr-2">Afficher sur la carte</span>
-            </button>
+        <div className="w-full">
             {listLayers.length !== 0 ? (
                 <ul className="mt-2 grid grid-cols-3">
                     {checkboxes.map(layer => {
