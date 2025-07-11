@@ -8,7 +8,9 @@ export default function useOpenMenu({
   setShowFindFreshness,
   setShowLayers,
   setShowReadMore,
-  setShowBasemap
+  setShowBasemap,
+  isBarOpen,
+  setIsBarOpen
 }) {
   const {
     history,
@@ -24,6 +26,10 @@ export default function useOpenMenu({
   } = useContext(MainContext)
 
   function handleClickMenu(menuName) {
+    if (typeof setIsBarOpen === 'function' && !isBarOpen) {
+      setIsBarOpen(true);
+    }
+
     if (activeMenu === menuName) {
       setActiveMenu(null)
     } else {

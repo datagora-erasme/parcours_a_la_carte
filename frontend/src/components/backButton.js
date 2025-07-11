@@ -3,7 +3,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import MainContext from '../contexts/mainContext';
 
 const BackButton = ({ setActiveMenu, setShowCircle }) => {
-    const { history, setHistory } = useContext(MainContext);
+    const { history, setHistory, setPoiDetails } = useContext(MainContext);
     return (
         <button
             style={{ zIndex: 1000 }}
@@ -12,6 +12,7 @@ const BackButton = ({ setActiveMenu, setShowCircle }) => {
                 setHistory(history.slice(0, -1));
                 setActiveMenu(null)
                 setShowCircle(false)
+                setPoiDetails(null)
             }}
             className="flex"
         >

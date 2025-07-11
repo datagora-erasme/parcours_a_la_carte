@@ -117,7 +117,8 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
     const handleSelectStartAddress = id => {
         for (let address of startAddressSuggestions) {
             if (address.properties.osm_id === id) {
-                setStartAddress(`${addressName(address.properties).slice(0, 30)}...`);
+                // setStartAddress(`${addressName(address.properties).slice(0, 30)}...`);
+                setStartAddress(addressName(address.properties))
                 setSelectedStartAddress(address);
                 setStartAddressSuggestions([]);
             }
@@ -145,7 +146,8 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
 
     const handleSelectUserAddress = () => {
         if (userAddress) {
-            setStartAddress(`${userAddress.properties.label.slice(0, 30)}...`);
+            // setStartAddress(`${userAddress.properties.label.slice(0, 30)}...`);
+            setStartAddress(userAddress.properties.label)
             setSelectedStartAddress(userAddress);
         } else {
             navigator?.geolocation?.getCurrentPosition(
@@ -208,7 +210,8 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
 
     useEffect(() => {
         if (userAddress && startAddress === '') {
-            setStartAddress(`${userAddress.properties.label.slice(0, 30)}...`);
+            // setStartAddress(`${userAddress.properties.label.slice(0, 30)}...`);
+            setStartAddress(userAddress.properties.label)
             setSelectedStartAddress(userAddress);
         }
 
@@ -241,8 +244,8 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
 
         return (
             <span className="whitespace-nowrap">
-                <i>{name}</i>
-                {restOfTheAddress}
+                <span className="text-primary font-bold">{name}</span>
+                <span className="italic">{restOfTheAddress}</span>
             </span>
         );
     };
@@ -267,17 +270,29 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                     className="main-input"
                     placeholder="Adresse de départ"
                 />
-                {showStartSuggestions && (
+                    {showStartSuggestions && (
+                        <>
                     <ul
                         id="startAddressSuggestions"
                         className="absolute z-10 w-full max-h-[200px] bg-white border-gray-300 rounded-md shadow-lg mt-12 md:mt-10 overflow-y-scroll"
                         value={startAddress}
-                    >
+                            >
+                    <div className="italic flex items-center cursor-pointer py-2" onClick={() => {
+                        handleSelectUserAddress();
+                        window.trackButtonClick(`CalculateItinerary_UseUserPosition`);
+                    }}>
+                        <BiCurrentLocation
+                            size={30}
+                            className="mt-1 cursor-pointer"
+                            />
+                            <span className="ml-1">Utiliser ma position</span>    
+                        </div>
+                        <hr></hr>
                         {startAddressSuggestions.map(suggestion => {
                             const name = addressName(suggestion.properties);
                             return (
                                 <li
-                                    className="overflow-hidden text-ellipsis pl-2"
+                                    className="overflow-hidden pl-2 py-1 text-start"
                                     key={suggestion.properties.osm_id}
                                     value={suggestion.properties.osm_id}
                                     onClick={() => handleSelectStartAddress(suggestion.properties.osm_id)}
@@ -287,15 +302,8 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                             );
                         })}
                     </ul>
+                    </>
                 )}
-                <BiCurrentLocation
-                    size={30}
-                    className="mt-1 cursor-pointer"
-                    onClick={() => {
-                        handleSelectUserAddress();
-                        window.trackButtonClick(`CalculateItinerary_UseUserPosition`);
-                    }}
-                />
             </div>
             <label htmlFor="endAddress" className="block my-2 flex ">
                 Arrivée

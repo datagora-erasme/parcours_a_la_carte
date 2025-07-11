@@ -10,7 +10,7 @@ const FloatingTools = ({ showFloatingTools, setShowFloatingTools, basemap, setBa
             <h1 className="text-2xl font-bold text-primary">
               Plans
             </h1>
-            <FaTimes className="text-lg" onClick={() => setShowFloatingTools(false)} />
+            <FaTimes className="text-lg cursor-pointer" onClick={() => setShowFloatingTools(false)} />
           </div>
           <BaseMapContent basemap={basemap} setBasemap={setBasemap} />
         </div>

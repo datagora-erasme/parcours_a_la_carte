@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { FaLayerGroup, FaWalking, FaSnowflake, FaMapMarkedAlt, FaInfoCircle, FaArrowRight, FaChevronUp, FaChevronDown } from 'react-icons/fa';
 import MainContext from '../contexts/mainContext';
 import ContentBody from './contentBody';
@@ -11,7 +11,7 @@ const ContentMobile = ({
   showItineraryCalculation, setShowItineraryCalculation,
   showBasemap, setShowBasemap,
   basemap, setBasemap,
-  isBarOpen, setIsBarOpen, 
+  isBarOpen, setIsBarOpen,
 }) => {
   const {
     showCurrentItineraryDetails,
@@ -19,7 +19,9 @@ const ContentMobile = ({
     setShowCurrentItineraryDetails,
     showFindFreshness,
     setShowFindFreshness,
-    leafletMap
+    leafletMap,
+    showPoiDetails,
+    setShowPoiDetails,
   } = useContext(MainContext);
 
   const { openMenu } = useOpenMenu({
@@ -29,8 +31,31 @@ const ContentMobile = ({
     setShowFindFreshness,
     setShowLayers,
     setShowReadMore,
-    setShowBasemap
+    setShowBasemap,
+    isBarOpen,
+    setIsBarOpen,
   })
+
+  const contentRef = useRef(null)
+  const [panelHeight, setPanelHeight] = useState(300)
+
+  const handleClose = () => {
+    setIsBarOpen(false)
+    if (contentRef.current) {
+      const height = contentRef.current.offsetHeight
+      setPanelHeight(height)
+      if (leafletMap) {
+        leafletMap.panBy([0, -height], { animate: true })
+      }
+    }
+  }
+
+  const handleOpen = () => {
+    setIsBarOpen(true)
+    if (leafletMap) {
+      leafletMap.panBy([0, panelHeight], { animated: true })
+    }
+  }
 
   return (
     <>
@@ -38,16 +63,11 @@ const ContentMobile = ({
       {isBarOpen && (
         <>
           {/* Wrapper bloc */}
-          <div className="fixed bottom-[60px] left-0 w-full z-[9995] bg-bgWhite flex flex-col rounded-tl-[20px] rounded-tr-[20px]">
+          <div ref={contentRef} className="fixed bottom-[60px] left-0 w-full z-[9995] bg-bgWhite flex flex-col rounded-tl-[20px] rounded-tr-[20px]">
             {/* Handle */}
             <div className="w-full flex justify-center rounded-tl-[20px] rounded-tr-[20px]">
               <button
-                onClick={() => {
-                  setIsBarOpen(false);
-                  if (leafletMap) {
-                    leafletMap.panBy([0, -200], { animate: true });
-                  }
-                }}
+                onClick={handleClose}
                 className="bg-white w-full flex justify-center py-2 rounded-tl-[20px] rounded-tr-[20px]"
               >
                 <FaChevronDown className="text-black" />
@@ -120,12 +140,15 @@ const ContentMobile = ({
                   showItineraryCalculation={showItineraryCalculation}
                   setShowItineraryCalculation={setShowItineraryCalculation}
                   showFindFreshness={showFindFreshness}
+                  setShowFindFreshness={setShowFindFreshness}
                   showLayers={showLayers}
                   showReadMore={showReadMore}
                   showBasemap={showBasemap}
                   setShowBasemap={setShowBasemap}
                   basemap={basemap}
                   setBasemap={setBasemap}
+                  showPoiDetails={showPoiDetails}
+                  setShowPoiDetails={setShowPoiDetails}
                 />
               )}
             </div>
@@ -137,12 +160,7 @@ const ContentMobile = ({
       {!isBarOpen && (
         <div className="fixed bottom-[60px] w-full z-[9995] flex justify-center rounded-tl-[20px] rounded-tr-[20px]">
           <button
-            onClick={() => {
-              setIsBarOpen(true);
-              if (leafletMap) {
-                leafletMap.panBy([0, 200], { animate: true });
-              }
-            }}
+            onClick={handleOpen}
             className="bg-white w-full py-2 flex justify-center rounded-tl-[20px] rounded-tr-[20px]"
           >
             <FaChevronUp className="text-black" />

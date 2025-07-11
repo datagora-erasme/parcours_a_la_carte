@@ -169,6 +169,7 @@ function Map({ basemap, setBasemap, isBarOpen }) {
         setFilteredItinerariesFeatures,
         currentItineraryEndPointUsedForCalculation,
         currentItineraryStartPointUsedForCalculation,
+        isMobile
     } = useContext(MainContext);
 
     function getColor(data) {
@@ -251,17 +252,14 @@ function Map({ basemap, setBasemap, isBarOpen }) {
 
     const handleShowDetailsPopupMarker = informations => {
         setPoiDetails(informations);
-        setShowFindFreshness(false);
-        setShowPoiDetails(true);
-        setHistory([
-            ...history,
-            {
-                fn: () => {
-                    setShowPoiDetails(false);
-                    setShowFindFreshness(true);
-                },
-            },
-        ]);
+        if (isMobile) {
+            setShowFindFreshness(false);
+            setShowPoiDetails(true);
+        } else {
+            setShowFindFreshness(true);
+            setShowPoiDetails(false);
+
+        }
     };
 
     useEffect(() => {
@@ -369,8 +367,8 @@ function Map({ basemap, setBasemap, isBarOpen }) {
 
     const getTileUrl = () => {
         switch (basemap) {
-            case 'positron':
-                return 'https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+            case 'osm':
+                return 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
             case 'satellite':
                 return 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
             case 'grandlyon':
@@ -383,11 +381,11 @@ function Map({ basemap, setBasemap, isBarOpen }) {
         const map = useMap();
         const { setLeafletMap } = useContext(MainContext);
     
-    useEffect(() => {
-        setLeafletMap(map);
-    }, [map]);
-    
-    return null;
+        useEffect(() => {
+            setLeafletMap(map);
+        }, [map]);
+        
+        return null;
     }
     
     
@@ -412,7 +410,7 @@ function Map({ basemap, setBasemap, isBarOpen }) {
                     // url="https://openmaptiles.data.grandlyon.com/styles/klokantech-basic/{z}/{x}/{y}.png"
                     url={getTileUrl()}
                 />
-                <MapCustomControls setShowFloatingTools={setShowFloatingTools} />
+                <MapCustomControls setShowFloatingTools={setShowFloatingTools} showFloatingTools={showFloatingTools} />
                 <FloatingTools showFloatingTools={showFloatingTools} setShowFloatingTools={setShowFloatingTools} basemap={basemap} setBasemap={setBasemap} />
                 {/* <ZoomControl position="bottomright" /> */}
                 <MapFreshness

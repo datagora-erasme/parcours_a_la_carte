@@ -1,12 +1,10 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { FaArrowRight, FaWalking, FaMapMarkedAlt, FaInfoCircle, FaSnowflake } from 'react-icons/fa';
 import MainContext from '../contexts/mainContext';
-import PoiDetails from './poiDetails';
 import ContentBody from './contentBody';
 import useOpenMenu from '../hooks/useOpenMenu';
 
 function Content({
-  showMenu, setShowMenu,
   setActiveMenu, activeMenu,
   showLayers, setShowLayers,
   showReadMore, setShowReadMore
@@ -17,6 +15,7 @@ function Content({
     setShowCircle,
     setShowCurrentItineraryDetails,
     showPoiDetails,
+    setShowPoiDetails,
     showFindFreshness,
     setShowFindFreshness,
     showCurrentItineraryDetails
@@ -98,8 +97,7 @@ function Content({
                   Une expérimentation ERASME pour la Métropole de Lyon
                 </h3>
               </div>
-              <div className="relative bg-bgWhite pt-10 pb-5 max-w-sm w-[355px] rounded-[20px] shadow-md min-h-[280px]">
-                {showPoiDetails && <PoiDetails showMenu={showMenu} />}
+              <div className="relative bg-bgWhite pt-10 pb-5 max-w-sm w-[355px] rounded-[20px] shadow-md min-h-[280px] max-h-[580px]">
                 <div className="pt-4">
                   {/* menu */}
                   {!activeMenu && (
@@ -110,9 +108,7 @@ function Content({
                         className="flex justify-between w-full px-4"
                       >
                         <div>Calculer un itinéraire piéton</div>
-                          {!showItineraryCalculation && (
-                              <FaArrowRight className="hidden md:block text-primary mt-1" />
-                          )}
+                          <FaArrowRight className="hidden md:block text-primary mt-1" />
                       </button>
                     </div>
                     <div className="px-[10px] py-[11px] border-b-2 border-grey-500">
@@ -121,9 +117,7 @@ function Content({
                         className="flex justify-between w-full px-4"
                       >
                         <span>Trouver un lieu frais</span>
-                        {!showFindFreshness && (
-                            <FaArrowRight className="hidden md:block text-primary mt-1" />
-                        )}
+                          <FaArrowRight className="hidden md:block text-primary mt-1" />
                       </button>
                     </div>
                     <div className="px-[10px] py-[11px] border-b-2 border-grey-500">
@@ -132,9 +126,7 @@ function Content({
                           className="flex justify-between w-full px-4"
                       >
                         <span>Consulter les cartes</span>
-                          {!showLayers && (
-                              <FaArrowRight className="hidden md:block text-primary mt-1" />
-                          )}
+                          <FaArrowRight className="hidden md:block text-primary mt-1" />
                       </button>
                     </div>
                     <div className="px-[10px] py-[11px] border-b-2 border-grey-500">
@@ -143,9 +135,7 @@ function Content({
                           className="flex justify-between w-full px-4"
                         >
                           <span>En savoir plus</span>
-                          {!showReadMore && (
                               <FaArrowRight className="hidden md:block text-primary mt-1" />
-                          )}
                       </button>
                     </div>
                     </>
@@ -161,8 +151,11 @@ function Content({
                       showItineraryCalculation={showItineraryCalculation}
                       setShowItineraryCalculation={setShowItineraryCalculation}
                       showFindFreshness={showFindFreshness}
+                      setShowFindFreshness={setShowFindFreshness}
                       showLayers={showLayers}
                       showReadMore={showReadMore}
+                      showPoiDetails={showPoiDetails}
+                      setShowPoiDetails={setShowPoiDetails}
                     />
                   </div>
                 </div>
