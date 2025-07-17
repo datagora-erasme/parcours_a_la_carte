@@ -19,6 +19,8 @@ export const MainContextProvider = ({ children }) => {
     const [currentItinerary, setCurrentItinerary] = useState(null);
     const [showCurrentItineraryDetails, setShowCurrentItineraryDetails] = useState(false);
     const [showFindFreshness, setShowFindFreshness] = useState(false);
+    const [currentItineraryStartPointUsedForCalculation, setCurrentItineraryStartPointUsedForCalculation] = useState(null);
+    const [currentItineraryEndPointUsedForCalculation, setCurrentItineraryEndPointUsedForCalculation] = useState(null);
 
     const [startAddress, setStartAddress] = useState('');
     const [endAddress, setEndAddress] = useState('');
@@ -40,6 +42,11 @@ export const MainContextProvider = ({ children }) => {
     const [poiDetails, setPoiDetails] = useState(null);
 
     const [criteria, setCriteria] = useState([]);
+
+    const [isMobile, setIsMobile] = useState(false)
+
+    const [leafletMap, setLeafletMap] = useState(null)
+
 
     //Rounds the geographical coordinates of the itinerary to 5 decimal places
     const roundGeographicalCoordinatesOnItineraries = itineraries => {
@@ -168,6 +175,18 @@ export const MainContextProvider = ({ children }) => {
         }
     }, [currentItinerary]);
 
+    // IsMobile
+    const checkIsMobile = () => window.innerWidth < 768
+
+    useEffect(() => {
+        function handleResize() {
+            setIsMobile(checkIsMobile())
+        }
+        handleResize()
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
+
     return (
         <MainContext.Provider
             value={{
@@ -217,6 +236,14 @@ export const MainContextProvider = ({ children }) => {
                 roundGeographicalCoordinatesOnItineraries,
                 criteria,
                 setCriteria,
+                currentItineraryEndPointUsedForCalculation,
+                setCurrentItineraryEndPointUsedForCalculation,
+                currentItineraryStartPointUsedForCalculation,
+                setCurrentItineraryStartPointUsedForCalculation,
+                isMobile,
+                checkIsMobile,
+                leafletMap,
+                setLeafletMap
             }}
         >
             {children}

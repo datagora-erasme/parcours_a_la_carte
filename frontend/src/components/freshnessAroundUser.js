@@ -1,9 +1,10 @@
 import React, { useState, useContext, useCallback, useEffect } from 'react';
-import { FaChevronDown } from 'react-icons/fa';
 import { BiCurrentLocation } from 'react-icons/bi';
 import MainContext from '../contexts/mainContext';
 import axios from 'axios';
 import _debounce from 'lodash/debounce';
+import PoiDetails from './poiDetails';
+
 
 const FreshnessAroundUser = () => {
     const [startAddressSuggestions, setStartAddressSuggestions] = useState([]);
@@ -19,8 +20,8 @@ const FreshnessAroundUser = () => {
         userAddress,
         radius,
         setRadius,
-        showCircle,
         setShowCircle,
+        isMobile
     } = useContext(MainContext);
 
     const handleStartAddressAPI = query => {
@@ -66,7 +67,8 @@ const FreshnessAroundUser = () => {
     const handleSelectStartAddress = id => {
         for (let address of startAddressSuggestions) {
             if (address.properties.osm_id === id) {
-                setStartAddress(`${addressName(address.properties).slice(0, 30)}...`);
+                // setStartAddress(`${addressName(address.properties).slice(0, 30)}...`);
+                setStartAddress(addressName(address.properties));
                 setSelectedStartAddress(address);
                 setStartAddressSuggestions([]);
             }
@@ -79,7 +81,8 @@ const FreshnessAroundUser = () => {
 
     const handleSelectUserAddress = () => {
         if (userAddress) {
-            setStartAddress(`${userAddress.properties.label.slice(0, 30)}...`);
+            // setStartAddress(`${userAddress.properties.label.slice(0, 30)}...`);
+            setStartAddress(userAddress.properties.label);
             setSelectedStartAddress(userAddress);
         } else {
             navigator?.geolocation?.getCurrentPosition(
@@ -96,22 +99,36 @@ const FreshnessAroundUser = () => {
 
     useEffect(() => {
         if (userAddress && startAddress === '') {
-            setStartAddress(`${userAddress.properties.label.slice(0, 30)}...`);
+            // setStartAddress(`${userAddress.properties.label.slice(0, 30)}...`);
+            setStartAddress(userAddress.properties.label);
             setSelectedStartAddress(userAddress);
         }
     }, [userAddress]);
 
-    return (
-        <div className="card md:card-desktop">
-            <button className="md:hidden card-title">
-                <FaChevronDown className="text-gray-500 mt-1 hidden md:block" />
-                <span className="text-lg font-bold mr-2">Lieu le plus frais autour de moi</span>
-            </button>
+    const AdressSuggestionDisplay = ({ address }) => {
 
-            <div className="flex flex-col p-2">
+    const parts = address.split(',');
+    const name = parts[0].trim();
+    const restOfTheAddress = parts.slice(1).join(',').trim(); 
+
+    return (
+        <span className="whitespace-nowrap">
+        <span className="text-primary font-bold">{name}</span>
+        {restOfTheAddress && (
+            <span className="italic">, {restOfTheAddress}</span>
+        )}
+        </span>
+    );
+    };
+
+
+    return (
+        <div className="w-full">
+
+            <div className="font-bold pt-1 text-start">Trouver un lieu frais</div>
+            <div className="flex flex-col">
                 <label htmlFor="startAddress" className="block mb-1 mt-4 flex justify-between">
                     <p>Départ</p>
-                    <input type="checkbox" onChange={() => setShowCircle(!showCircle)} checked={showCircle}></input>
                 </label>
                 <div className="relative flex gap-2">
                     <input
@@ -123,7 +140,7 @@ const FreshnessAroundUser = () => {
                         onFocus={() => setShowStartSuggestions(true)}
                         onBlur={() => setTimeout(() => setShowStartSuggestions(false), 200)}
                         className="main-input mb-2"
-                        placeholder="Adresse de départ"
+                        placeholder="Adresse"
                     />
                     {showStartSuggestions && (
                         <ul
@@ -131,32 +148,38 @@ const FreshnessAroundUser = () => {
                             className="absolute z-10 w-full bg-white border-gray-300 rounded-md shadow-lg mt-12 md:mt-10"
                             value={startAddress}
                         >
+                        <div className="italic flex items-center cursor-pointer py-2" onClick={() => {
+                            handleSelectUserAddress();
+                            window.trackButtonClick(`FindFreshness_UseUserPosition`);
+                        }}>
+                            <BiCurrentLocation
+                                size={30}
+                                className="mt-2 cursor-pointer"
+                            />
+                            <span className="ml-1">Utiliser ma position</span> 
+                            </div>
+                            <hr></hr>
                             {startAddressSuggestions.map(suggestion => {
                                 const name = addressName(suggestion.properties);
                                 return (
                                     <li
+                                        className='py-1 text-start'
                                         key={suggestion.properties.osm_id}
                                         value={suggestion.properties.osm_id}
                                         onClick={() => handleSelectStartAddress(suggestion.properties.osm_id)}
                                     >
-                                        {name > 40 ? `${name.slice(0, 40)}...` : name}
+                                        {/* {name > 40 ? `${name.slice(0, 40)}...` : name} */}
+                                        <AdressSuggestionDisplay address={name} />
                                     </li>
                                 );
                             })}
                         </ul>
                     )}
-                    <BiCurrentLocation
-                        size={30}
-                        className="mt-2 cursor-pointer"
-                        onClick={() => {
-                            handleSelectUserAddress();
-                            window.trackButtonClick(`FindFreshness_UseUserPosition`);
-                        }}
-                    />
+
                 </div>
                 <div className="w-full mx-auto mb-2 flex flex-col gap-2 mt-2">
                     <div className="w-full flex justify-between">
-                        <p>Distance (km)</p>
+                        <p>Distance</p>
                         <p className="font-bold">{radius} km</p>
                     </div>
                     <input
@@ -166,22 +189,27 @@ const FreshnessAroundUser = () => {
                         step="0.2"
                         value={radius}
                         onChange={handleChangeRadius}
-                        className="w-full h-4 bg-gray-400 rounded-full appearance-none"
+                        className="w-full h-1 bg-gray-300 rounded-full appearance-none custom-slider-freshness"
                     />
                     <div className="flex justify-between">
-                        <span>0.2 km</span>
-                        <span>10 km</span>
+                        <span className="italic text-[#767676]">0.2 km</span>
+                        <span className="italic text-[#767676]">10 km</span>
                     </div>
                 </div>
                 <div className="w-full flex justify-center" onClick={() => window.trackButtonClick('FindFreshness')}>
                     <button
                         onClick={findFreshnessAroundMe}
-                        className={` main-btn ${!selectedStartAddress ? 'bg-gray-300 hover:bg-gray-400' : 'bg-primary md:opacity-80 hover:opacity-100'} text-mainText font-bold rounded-full transition duration-300`}
+                        className={`text-white p-4 rounded-full shadow-md mt-2 font-bold ${!selectedStartAddress ? 'bg-gray-500 ' : 'bg-primary'}`}
                         disabled={!selectedStartAddress}
                     >
                         Trouver les lieux frais
                     </button>
                 </div>
+                {!isMobile && 
+                <div className="mt-4">
+                    <PoiDetails />
+                </div>
+                }
             </div>
         </div>
     );

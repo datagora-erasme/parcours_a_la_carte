@@ -11,8 +11,9 @@ from global_variable import *
 
 app = Flask(__name__)
 
-frontend_url = os.environ.get('FRONTEND_URL')
+frontend_url = os.environ.get('FRONTEND_URL', '*') 
 CORS(app, resources={r"/*": {"origins": frontend_url}})
+
 
 def preload_merged_network_graphs_in_cache():
     """    
@@ -104,13 +105,15 @@ def get_itinerary():
 
     Returns:
     --------
-    - A JSON response with a list of itinerary results for each criteria. Each result contains:
-        - id: The ID for the type of itinerary (LENGTH or IF).
-        - idcriteria: The ID for the criteria used (e.g., frais, pollen).
-        - name: A descriptive name for the itinerary.
-        - geojson: The GeoJSON path for the calculated itinerary.
-        - color: A color code for displaying the itinerary on a map.
-
+    - A JSON response with 
+        - "itinerary": A list of itinerary results for each criteria. Each result contains:
+            - id: The ID for the type of itinerary (LENGTH or IF).
+            - idcriteria: The ID for the criteria used (e.g., frais, pollen).
+            - name: A descriptive name for the itinerary.
+            - geojson: The GeoJSON path for the calculated itinerary.
+            - color: A color code for displaying the itinerary on a map.
+        - "nearest_node_start": Coordinates of the nearest node to the starting point.
+        - "nearest_node_end": Coordinates of the nearest node to the destination point.
     Notes:
     -----
     - The `load_graphs` function loads the network graph based on the specified criteria.
@@ -134,6 +137,8 @@ def get_itinerary():
     print(datetime.now(), start_lat, start_lon, end_lat, end_lon, criteria_list)
 
     origin_node, destination_node = nearest_nodes(start, end)
+    origin_node_coordinates = get_node_coordinates(origin_node)
+    destination_node_coordinates = get_node_coordinates(destination_node)
 
     results = []
     try:
@@ -162,8 +167,13 @@ def get_itinerary():
             "geojson": geojson,
             "score": path_score
         })
+        
+        return jsonify({
+            "itinerary": results,
+            "nearest_node_start": origin_node_coordinates,
+            "nearest_node_end": destination_node_coordinates
+        }), 200
 
-        return jsonify(results)
     except Exception as e:
         print('error:', e)
         return '', 500

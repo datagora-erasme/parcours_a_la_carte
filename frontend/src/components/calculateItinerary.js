@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import _debounce from 'lodash/debounce';
-import { FaChevronDown, FaCheck, FaSnowflake } from 'react-icons/fa';
+// import _debounce from 'lodash/debounce';
+import { FaSnowflake } from 'react-icons/fa';
 import { HiSpeakerXMark } from 'react-icons/hi2';
 import { TbFlowerOff } from 'react-icons/tb';
 import { MdPhotoCamera } from 'react-icons/md';
@@ -9,7 +9,7 @@ import { MdPhotoCamera } from 'react-icons/md';
 import { BiCurrentLocation } from 'react-icons/bi';
 import MainContext from '../contexts/mainContext';
 
-const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculation }) => {
+const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculation, showCurrentItineraryDetails }) => {
     const [startAddressSuggestions, setStartAddressSuggestions] = useState([]);
     const [endAddressSuggestions, setEndAddressSuggestions] = useState([]);
     const [showStartSuggestions, setShowStartSuggestions] = useState(false);
@@ -34,13 +34,33 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
         roundGeographicalCoordinatesOnItineraries,
         criteria,
         setCriteria,
+        setCurrentItineraryStartPointUsedForCalculation,
+        setCurrentItineraryEndPointUsedForCalculation,
     } = useContext(MainContext);
+
+    /**
+     * Check if 2 addresses are the same
+     */
+    const isSameAddress = (baseAddress, candidateAddress) => {
+        if (baseAddress?.properties?.osm_id) {
+            return baseAddress.properties.osm_id === candidateAddress.properties.osm_id;
+        }
+        if (baseAddress?.properties?.banId) {
+            //Case where the address comes from user position instead of the user input.
+            const baseAddressFormatted = `${baseAddress.properties.name} ${baseAddress.properties.citycode}`.toUpperCase();
+            const cadidateAddressFormatted =
+                `${candidateAddress.properties.housenumber} ${candidateAddress.properties.name} ${candidateAddress.properties.extra.insee}`.toUpperCase();
+
+            return baseAddressFormatted === cadidateAddressFormatted;
+        } else return false;
+    };
 
     const handleStartAddressAPI = query => {
         axios
             .get(`https://download.data.grandlyon.com/geocoding/photon-bal/api?q=${query}`)
             .then(response => {
-                setStartAddressSuggestions(response.data.features);
+                //If an end address is already select, we filter it from the start addresses suggestions. User can't be able to choose the same address
+                setStartAddressSuggestions(response.data.features.filter(address => !isSameAddress(selectedEndAddress, address)));
             })
             .catch(error => {
                 console.log(error);
@@ -51,15 +71,16 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
         axios
             .get(`https://download.data.grandlyon.com/geocoding/photon-bal/api?q=${query}`)
             .then(response => {
-                setEndAddressSuggestions(response.data.features);
+                //If a start address is already select, we filter it from the end addresses suggestions. User can't be able to choose the same address
+                setEndAddressSuggestions(response.data.features.filter(address => !isSameAddress(selectedStartAddress, address)));
             })
             .catch(error => {
                 console.log(error);
             });
     };
 
-    const debounceStartAddress = useCallback(_debounce(handleStartAddressAPI, 300), []);
-    const debounceEndAddress = useCallback(_debounce(handleEndAddressAPI, 300), []);
+    const debounceStartAddress = useCallback(handleStartAddressAPI, [selectedEndAddress]);
+    const debounceEndAddress = useCallback(handleEndAddressAPI, [selectedStartAddress]);
 
     const handleStartAddressChange = event => {
         const value = event.target.value;
@@ -85,14 +106,19 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
         }
     };
 
-    const addressName = ({ city, street, postcode, housenumber }) => {
-        return `${housenumber ? housenumber : ''} ${street}, ${postcode} ${city.toUpperCase()}`;
+    const addressName = ({ city, street, postcode, housenumber, name, osm_value }) => {
+        const displayName = () => {
+            return osm_value !== 'street' && osm_value !== 'house';
+        };
+
+        return `${displayName() ? `${name}: ` : ''}${housenumber ? housenumber : ''} ${street}, ${postcode} ${city.toUpperCase()}`;
     };
 
     const handleSelectStartAddress = id => {
         for (let address of startAddressSuggestions) {
             if (address.properties.osm_id === id) {
-                setStartAddress(`${addressName(address.properties).slice(0, 30)}...`);
+                // setStartAddress(`${addressName(address.properties).slice(0, 30)}...`);
+                setStartAddress(addressName(address.properties))
                 setSelectedStartAddress(address);
                 setStartAddressSuggestions([]);
             }
@@ -102,23 +128,26 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
     const handleSelectEndAddress = id => {
         for (let address of endAddressSuggestions) {
             if (address.properties.osm_id === id) {
-                setEndAddress(`${addressName(address.properties).slice(0, 30)}...`);
+                setEndAddress(addressName(address.properties));
                 setSelectedEndAddress(address);
                 setEndAddressSuggestions([]);
+                sessionStorage.setItem('previousEndAddress', JSON.stringify(address));
             }
         }
     };
 
     const handlePreviousEndAddress = () => {
         const previousEndAddress = JSON.parse(sessionStorage.getItem('previousEndAddress'));
-        setEndAddress(`${addressName(previousEndAddress.properties).slice(0, 30)}...`);
+        if (!previousEndAddress) return;
+        setEndAddress(addressName(previousEndAddress.properties));
         setSelectedEndAddress(previousEndAddress);
         setEndAddressSuggestions([]);
     };
 
     const handleSelectUserAddress = () => {
         if (userAddress) {
-            setStartAddress(`${userAddress.properties.label.slice(0, 30)}...`);
+            // setStartAddress(`${userAddress.properties.label.slice(0, 30)}...`);
+            setStartAddress(userAddress.properties.label)
             setSelectedStartAddress(userAddress);
         } else {
             navigator?.geolocation?.getCurrentPosition(
@@ -153,9 +182,10 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                 },
             })
             .then(response => {
-                sessionStorage.setItem('previousEndAddress', JSON.stringify(selectedEndAddress));
-                const roundIt = roundGeographicalCoordinatesOnItineraries(response.data);
+                const roundIt = roundGeographicalCoordinatesOnItineraries(response.data["itinerary"]);
                 setCurrentItinerary(roundIt);
+                setCurrentItineraryStartPointUsedForCalculation(response.data["nearest_node_start"])
+                setCurrentItineraryEndPointUsedForCalculation(response.data["nearest_node_end"])
                 setIsLoading(false);
                 setShowItineraryCalculation(false);
                 setShowCurrentItineraryDetails(true);
@@ -180,7 +210,8 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
 
     useEffect(() => {
         if (userAddress && startAddress === '') {
-            setStartAddress(`${userAddress.properties.label.slice(0, 30)}...`);
+            // setStartAddress(`${userAddress.properties.label.slice(0, 30)}...`);
+            setStartAddress(userAddress.properties.label)
             setSelectedStartAddress(userAddress);
         }
 
@@ -197,15 +228,36 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
         }
     };
 
+    /**
+     * Address style display on the UI.
+     * Note that other styles should be applied to the parent html tag
+     */
+    const AdressSuggestionDisplay = ({ address }) => {
+        /**
+         * Extracts the 'name' part of the address if it exists.
+         * This regex is based on the current configuration on the `addressName` function.
+         * If the `addressName` function changes, change this accordingly
+         */
+        const hasName = address.match(/^([^:]+: )\s*(.*)$/);
+        const name = hasName ? hasName[1] : '';
+        const restOfTheAddress = hasName ? hasName[2].trim() : address;
+
+        return (
+            <span className="whitespace-nowrap">
+                <span className="text-primary font-bold">{name}</span>
+                <span className="italic">{restOfTheAddress}</span>
+            </span>
+        );
+    };
+
     return (
-        <div className="card md:card-desktop">
-            <button className="md:hidden card-title">
-                <FaChevronDown className="text-gray-500 mt-1 hidden md:block" />
-                <span>Calculer un itinéraire piéton</span>
-            </button>
-            <label htmlFor="startAddress" className="block mb-1 mt-4 flex">
-                Départ
-            </label>
+        <>
+        <div className="w-full">
+        
+        <div className="font-bold pt-1 text-start">Calculer un itinéraire piéton</div>
+          <label htmlFor="startAddress" className="block mb-1 mt-4 flex">
+              Départ
+          </label>
             <div className="relative flex gap-2">
                 <input
                     type="text"
@@ -218,34 +270,40 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                     className="main-input"
                     placeholder="Adresse de départ"
                 />
-                {showStartSuggestions && (
+                    {showStartSuggestions && (
+                        <>
                     <ul
                         id="startAddressSuggestions"
                         className="absolute z-10 w-full max-h-[200px] bg-white border-gray-300 rounded-md shadow-lg mt-12 md:mt-10 overflow-y-scroll"
                         value={startAddress}
-                    >
+                            >
+                    <div className="italic flex items-center cursor-pointer py-2" onClick={() => {
+                        handleSelectUserAddress();
+                        window.trackButtonClick(`CalculateItinerary_UseUserPosition`);
+                    }}>
+                        <BiCurrentLocation
+                            size={30}
+                            className="mt-1 cursor-pointer"
+                            />
+                            <span className="ml-1">Utiliser ma position</span>    
+                        </div>
+                        <hr></hr>
                         {startAddressSuggestions.map(suggestion => {
                             const name = addressName(suggestion.properties);
                             return (
                                 <li
+                                    className="overflow-hidden pl-2 py-1 text-start"
                                     key={suggestion.properties.osm_id}
                                     value={suggestion.properties.osm_id}
                                     onClick={() => handleSelectStartAddress(suggestion.properties.osm_id)}
                                 >
-                                    {name.length > 40 ? `${name.slice(0, 40)}...` : name}
+                                    <AdressSuggestionDisplay address={name} />
                                 </li>
                             );
                         })}
                     </ul>
+                    </>
                 )}
-                <BiCurrentLocation
-                    size={30}
-                    className="mt-1 cursor-pointer"
-                    onClick={() => {
-                        handleSelectUserAddress();
-                        window.trackButtonClick(`CalculateItinerary_UseUserPosition`);
-                    }}
-                />
             </div>
             <label htmlFor="endAddress" className="block my-2 flex ">
                 Arrivée
@@ -272,11 +330,12 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                             const name = addressName(suggestion.properties);
                             return (
                                 <li
+                                    className="overflow-hidden text-ellipsis pl-2"
                                     key={suggestion.properties.osm_id}
                                     value={suggestion.properties.osm_id}
                                     onClick={() => handleSelectEndAddress(suggestion.properties.osm_id)}
                                 >
-                                    {name.length > 40 ? `${name.slice(0, 40)}...` : name}
+                                    <AdressSuggestionDisplay address={name} />
                                 </li>
                             );
                         })}
@@ -292,9 +351,9 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                             toggleCriteria('frais');
                             window.trackButtonClick(`CalculateItinerary_PlusAuFrais`);
                         }}
-                        className={`main-btn inline-flex items-center mx-1 text-xs rounded-full transition duration-300 ${criteria.includes('frais') ? 'bg-black text-white' : 'bg-white text-black border border-gray-300'}`}
+                        className={`px-4 py-3 inline-flex items-center mx-1 text-sm rounded-full transition duration-300 ${criteria.includes('frais') ? 'bg-black text-white' : 'bg-white text-black shadow-md'}`}
                     >
-                        <FaSnowflake className="mr-1" /> Plus au frais
+                        <FaSnowflake className="mr-2 text-lg" /> Plus au frais
                     </button>
 
                     <button
@@ -302,9 +361,9 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                             toggleCriteria('pollen');
                             window.trackButtonClick(`CalculateItinerary_MoinsDePollen`);
                         }}
-                        className={`main-btn inline-flex items-center mx-1 text-xs rounded-full transition duration-300 ${criteria.includes('pollen') ? 'bg-black text-white' : 'bg-white text-black border border-gray-300'}`}
+                        className={`px-4 py-3 inline-flex items-center mx-1 text-sm rounded-full transition duration-300 ${criteria.includes('pollen') ? 'bg-black text-white' : 'bg-white text-black shadow-md'}`}
                     >
-                        <TbFlowerOff className="mr-1" /> Moins de pollen
+                        <TbFlowerOff className="mr-2 text-lg" /> Moins de pollen
                     </button>
                 </div>
                 <div className="flex justify-center items-center mb-4 ">
@@ -313,52 +372,56 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                             toggleCriteria('bruit');
                             window.trackButtonClick(`CalculateItinerary_MoinsDeBruit`);
                         }}
-                        className={`main-btn inline-flex items-center mx-1 text-xs rounded-full transition duration-300 ${criteria.includes('bruit') ? 'bg-black text-white' : 'bg-white text-black border border-gray-300'}`}
+                        className={`px-3 py-3 inline-flex items-center mx-1 text-sm rounded-full transition duration-300 ${criteria.includes('bruit') ? 'bg-black text-white' : 'bg-white text-black shadow-md'}`}
                     >
-                        <HiSpeakerXMark className="mr-1" /> Moins de bruit
+                        <HiSpeakerXMark className="mr-2 text-lg" /> Moins de bruit
                     </button>
                     <button
                         onClick={() => {
                             toggleCriteria('tourisme');
                             window.trackButtonClick(`CalculateItinerary_LieuxTouristiques`);
                         }}
-                        className={`main-btn inline-flex items-center mx-1 text-xs rounded-full transition duration-300 ${criteria.includes('tourisme') ? 'bg-black text-white' : 'bg-white text-black border border-gray-300'}`}
+                        className={`px-3 py-3 inline-flex items-center mx-1 text-sm rounded-full transition duration-300 ${criteria.includes('tourisme') ? 'bg-black text-white' : 'bg-white text-black shadow-md'}`}
                     >
-                        <MdPhotoCamera className="mr-1" /> Lieux touristiques
+                        <MdPhotoCamera className="mr-2 text-lg" /> Lieux touristiques
                     </button>
                 </div>
 
                 <div className="flex justify-center items-center">
                     <button
                         onClick={calculateItinerary}
-                        className={`main-btn ${!selectedStartAddress || !selectedEndAddress ? 'bg-gray-300 hover:bg-gray-400' : 'bg-primary md:opacity-80 hover:opacity-100'} text-mainText font-bold rounded-full transition duration-300`}
+                        className={`text-white p-4 rounded-full shadow-md mt-2 ${!selectedStartAddress || !selectedEndAddress ? 'bg-gray-500 ' : 'bg-primary'}`}
                         disabled={!selectedStartAddress || !selectedEndAddress}
                     >
                         {isLoading ? (
                             <div className="flex items-center gap-2">
                                 <span>En cours de chargement</span>
-                                <div className="w-6 h-6 rounded-full border-4 border-gray-300 border-t-primary animate-spin mr-3"></div>
+                                <div className="w-5 h-5 rounded-full border-4 border-gray-300 border-t-primary animate-spin"></div>
                             </div>
                         ) : (
                             <div
                                 className="flex items-center gap-2"
                                 onClick={() => {
                                     window.trackButtonClick('ValidateCalculateItinerary');
-                                    window.trackItineraryOptions(JSON.stringify({
-                                        startAddress: selectedStartAddress,
-                                        endAddress: selectedEndAddress,
-                                        criteria: criteria,
-                                    }));
+                                    window.trackItineraryOptions(
+                                        JSON.stringify({
+                                            startAddress: selectedStartAddress,
+                                            endAddress: selectedEndAddress,
+                                            criteria: criteria,
+                                        })
+                                    );
                                 }}
                             >
-                                <span className="">Valider ma recherche </span>
-                                <FaCheck />
+                                <span className="font-bold">Valider ma recherche</span>
+                                {/* <FaCheck /> */}
                             </div>
                         )}
                     </button>
                 </div>
             </div>
         </div>
+            </>
+        
     );
 };
 

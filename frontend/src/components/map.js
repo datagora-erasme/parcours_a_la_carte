@@ -1,11 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, GeoJSON, ZoomControl, useMap, Popup } from 'react-leaflet';
-import axios from 'axios';
-import L from 'leaflet';
-import { lineString, buffer, featureCollection, dissolve, booleanPointInPolygon, difference, circle } from '@turf/turf';
 import MarkerClusterGroup from '@changey/react-leaflet-markercluster';
-import MainContext from '../contexts/mainContext';
+import { booleanPointInPolygon, buffer, circle, difference, dissolve, featureCollection, lineString } from '@turf/turf';
+import axios from 'axios';
 import chroma from 'chroma-js';
+import L from 'leaflet';
+import { useContext, useEffect, useState } from 'react';
+import { GeoJSON, MapContainer, Marker, Popup, TileLayer, Tooltip, useMap } from 'react-leaflet';
+import MainContext from '../contexts/mainContext';
+import MapCustomControls from './mapCustomControls';
+import FloatingTools from './floatingTools';
 
 const colors = {
     1: ' #d6e4d7 ',
@@ -93,10 +95,55 @@ function ZoomItinerary({ zoomToItinerary, setZoomToItinerary, currentItinerary }
     }
 }
 
-function Map() {
+const TourismePopup = ({ tourismeItem }) => {
+    return (
+        <Popup className="flex flex-col">
+            <p>{tourismeItem.nom}</p>
+            <a href={`https://www.visiterlyon.com/oltc_redirect/apidaeId/${tourismeItem.id}`} target="_blank">
+                Consulter les informations sur VisiterLyon.com
+            </a>
+        </Popup>
+    );
+};
+
+/**
+ * Manage the display of the GeoJSON items on the map,
+ * except for the items from "Trouver un lieu frais" section.
+ */
+const GeoJsonItem = ({ geoJsonFeature, geoJsonData }) => {
+    const coordinates = [geoJsonFeature.geometry.coordinates[1], geoJsonFeature.geometry.coordinates[0]];
+    const isTourismeFeature = geoJsonData.id === 'tourisme';
+    const markerOption = geoJsonData.markerOption;
+
+    return (
+        <Marker
+            position={coordinates}
+            icon={
+                new L.icon({
+                    ...markerOption,
+                    className: isTourismeFeature ? 'pointer-cursor' : '',
+                })
+            }
+        >
+            {isTourismeFeature && <TourismePopup tourismeItem={geoJsonFeature.properties} />}
+        </Marker>
+    );
+};
+
+/**
+ * Manages the popup on the map when a user clicks inside a geojson area.
+ * Tipically used for 'Parcs et jardins'.
+ */
+const geoJsonArea = (feature, layer) => {
+    layer.bindPopup(`${feature?.properties?.nom}`);
+};
+
+
+function Map({ basemap, setBasemap, isBarOpen }) {
     const [geojsonFiles, setGeojsonFiles] = useState([]);
     const [loadingLayer, setLoadingLayer] = useState(false);
     const [bufferedItineraries, setBufferedItineraries] = useState([]);
+    const [showFloatingTools, setShowFloatingTools] = useState(false)
 
     const {
         zoomToUserPosition,
@@ -120,6 +167,9 @@ function Map() {
         setFilteredFreshnessFeatures,
         filteredItinerariesFeatures,
         setFilteredItinerariesFeatures,
+        currentItineraryEndPointUsedForCalculation,
+        currentItineraryStartPointUsedForCalculation,
+        isMobile
     } = useContext(MainContext);
 
     function getColor(data) {
@@ -202,17 +252,14 @@ function Map() {
 
     const handleShowDetailsPopupMarker = informations => {
         setPoiDetails(informations);
-        setShowFindFreshness(false);
-        setShowPoiDetails(true);
-        setHistory([
-            ...history,
-            {
-                fn: () => {
-                    setShowPoiDetails(false);
-                    setShowFindFreshness(true);
-                },
-            },
-        ]);
+        if (isMobile) {
+            setShowFindFreshness(false);
+            setShowPoiDetails(true);
+        } else {
+            setShowFindFreshness(true);
+            setShowPoiDetails(false);
+
+        }
     };
 
     useEffect(() => {
@@ -318,6 +365,31 @@ function Map() {
         }
     }, [bufferedItineraries]);
 
+    const getTileUrl = () => {
+        switch (basemap) {
+            case 'osm':
+                return 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+            case 'satellite':
+                return 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+            case 'grandlyon':
+                default:
+                    return 'https://openmaptiles.data.grandlyon.com/styles/klokantech-basic/{z}/{x}/{y}.png'; 
+        }
+    }
+
+    function MapWrapper() {
+        const map = useMap();
+        const { setLeafletMap } = useContext(MainContext);
+    
+        useEffect(() => {
+            setLeafletMap(map);
+        }, [map]);
+        
+        return null;
+    }
+    
+    
+
     return (
         <div>
             {loadingLayer && 'Loading ....'}
@@ -330,13 +402,17 @@ function Map() {
                 className="mapContainer"
                 zoomControl={false}
             >
+                <MapWrapper />
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     // url="http://{s}.tile.openstreetmap.fr/openriverboatmap/{z}/{x}/{y}.png"
                     // url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-                    url="https://openmaptiles.data.grandlyon.com/styles/klokantech-basic/{z}/{x}/{y}.png"
+                    // url="https://openmaptiles.data.grandlyon.com/styles/klokantech-basic/{z}/{x}/{y}.png"
+                    url={getTileUrl()}
                 />
-                <ZoomControl position="topright" />
+                <MapCustomControls setShowFloatingTools={setShowFloatingTools} showFloatingTools={showFloatingTools} />
+                <FloatingTools showFloatingTools={showFloatingTools} setShowFloatingTools={setShowFloatingTools} basemap={basemap} setBasemap={setBasemap} />
+                {/* <ZoomControl position="bottomright" /> */}
                 <MapFreshness
                     zoomToUserPosition={zoomToUserPosition}
                     radius={radius}
@@ -367,21 +443,14 @@ function Map() {
                                         }}
                                         iconCreateFunction={cluster => createClusterCustomIcon(cluster, markerOption)}
                                     >
-                                        {data.geojson.features.map((point, index) => {
-                                            const coordinates = point.geometry.coordinates;
-                                            return (
-                                                <Marker
-                                                    key={index}
-                                                    position={[coordinates[1], coordinates[0]]}
-                                                    icon={new L.icon(markerOption)}
-                                                    className="cursor-wait"
-                                                ></Marker>
-                                            );
+                                        {data.geojson.features.map((item, index) => {
+                                            return <GeoJsonItem key={index} geoJsonFeature={item} geoJsonData={data} />;
                                         })}
                                     </MarkerClusterGroup>
                                 );
                             } else if (dataType === 'MultiPolygon' || dataType === 'Polygon') {
-                                return <GeoJSON data={data.geojson} style={getColor} key={Math.random()} />;
+                                //Parcs et jardins
+                                return <GeoJSON data={data.geojson} style={getColor} onEachFeature={geoJsonArea} />;
                             }
                         }
                         return null;
@@ -421,10 +490,47 @@ function Map() {
                         );
                     })}
 
-                {selectedStartAddress && (
+                {currentItinerary && (
                     <Marker
-                        position={[selectedStartAddress.geometry.coordinates[1], selectedStartAddress.geometry.coordinates[0]]}
-                    ></Marker>
+                        position={[currentItineraryStartPointUsedForCalculation[0], currentItineraryStartPointUsedForCalculation[1]]}
+                        eventHandlers={{
+                            add: event => {
+                                const marker = event.target;
+                                if (marker._icon) {
+                                    marker._icon.classList.add('saturate');
+                                }
+                            },
+                        }}
+                    >
+                        <Tooltip className="flex flex-col">
+                            <p>Point de départ retenu pour le calcul d'itinéraire</p>
+                        </Tooltip>
+                    </Marker>
+                )}
+                {currentItinerary && (
+                    <Marker
+                        position={[currentItineraryEndPointUsedForCalculation[0], currentItineraryEndPointUsedForCalculation[1]]}
+                        eventHandlers={{
+                            add: event => {
+                                const marker = event.target;
+                                if (marker._icon) {
+                                    marker._icon.classList.add('saturateRed');
+                                }
+                            },
+                        }}
+                    >
+                        <Tooltip className="flex flex-col">
+                            <p>Point d'arrivée retenu pour le calcul d'itinéraire</p>
+                        </Tooltip>
+                    </Marker>
+                )}
+
+                {selectedStartAddress && (
+                    <Marker position={[selectedStartAddress.geometry.coordinates[1], selectedStartAddress.geometry.coordinates[0]]}>
+                        <Tooltip className="flex flex-col">
+                            <p>Point de depart recherché</p>
+                        </Tooltip>
+                    </Marker>
                 )}
                 {selectedEndAddress && (
                     <Marker
@@ -437,7 +543,11 @@ function Map() {
                                 }
                             },
                         }}
-                    />
+                    >
+                        <Tooltip className="flex flex-col">
+                            <p>Point d'arrivée recherché</p>
+                        </Tooltip>
+                    </Marker>
                 )}
 
                 {filteredFreshnessFeatures.length !== 0 &&
@@ -499,24 +609,8 @@ function Map() {
                                         }}
                                         iconCreateFunction={cluster => createClusterCustomIcon(cluster, markerOption)}
                                     >
-                                        {data.geojson.map((dta, i) => {
-                                            const coordinates = [dta.geometry.coordinates[1], dta.geometry.coordinates[0]];
-                                            const isTourismeFeature = data.id === 'tourisme';
-
-                                            return (
-                                                <Marker
-                                                    key={Math.random()}
-                                                    position={coordinates}
-                                                    icon={
-                                                        new L.icon({
-                                                            ...markerOption,
-                                                            className: isTourismeFeature ? 'pointer-cursor' : '',
-                                                        })
-                                                    }
-                                                >
-                                                    {isTourismeFeature && <Popup>{dta.properties.nom}</Popup>}
-                                                </Marker>
-                                            );
+                                        {data.geojson.map((dta, index) => {
+                                            return <GeoJsonItem key={index} geoJsonFeature={dta} geoJsonData={data} />;
                                         })}
                                     </MarkerClusterGroup>
                                 );
