@@ -80,7 +80,7 @@ def download_data(params, data_name, wfs, outputFormat):
     - Creates a folder for the data if it doesn't already exist.
     - Writes the downloaded data to specified output files (GeoJSON and GeoPackage).
     """
-    create_folder(f"./{data_name}/")
+    create_folder(f"./../input_data/{data_name}/")
     print(f"Downloading {data_name}")
     data_key = params[data_name]["wfs_key"]
     gpkg_output_path = params[data_name]["gpkg_path"]

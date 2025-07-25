@@ -78,7 +78,7 @@ def download_data(params, data_name, wfs, outputFormat):
     Raises:
     - NameError: If the WFS request fails.
     """
-    create_folder(f"./{data_name}/")
+    create_folder(f"./../input_data/{data_name}/")
     print(f"Downloading {data_name}")
     data_key = params[data_name]["wfs_key"]
     gpkg_output_path = params[data_name]["gpkg_path"]
