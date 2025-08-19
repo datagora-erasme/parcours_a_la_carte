@@ -33,4 +33,4 @@ choice = input("""Do you want to update the max noise per segment? (YES) or (NO)
 if choice == "YES":
     print("Calculate noise weighted average ")
     #try:
-    bruit_pre(edges_buffer_path, bruit_decoupe_path, edges_buffer_bruit_wavg_path, layer="edges", name="DN")
+    bruit_pre(edges_buffer_path, bruit_path, edges_buffer_bruit_wavg_path, layer="bruit_decoupee", name="DN")

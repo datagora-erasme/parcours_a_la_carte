@@ -78,7 +78,7 @@ def download_data(params, data_name, wfs, outputFormat):
     Raises:
     - NameError: If the WFS request fails.
     """
-    create_folder(f"./{data_name}/")
+    create_folder(f"./../input_data/{data_name}/")
     print(f"Downloading {data_name}")
     data_key = params[data_name]["wfs_key"]
     gpkg_output_path = params[data_name]["gpkg_path"]
@@ -100,6 +100,10 @@ def download_data(params, data_name, wfs, outputFormat):
 
     data_gpd = gpd.read_file(geojson_output_path)
 
+    # Filtrer uniquement les lignes de type PATRIMOINE_CULTUREL si c'est "tourisme"
+    if data_name == "tourisme":
+        data_gpd = data_gpd[data_gpd["type"] == "PATRIMOINE_CULTUREL"]
+        
     #crs : 3946 more accurate crs for Lyon metropole
     data_gpkg = data_gpd.to_crs(3946)
     data_gpkg.to_file(gpkg_output_path, driver="GPKG", layer=data_name)
@@ -109,7 +113,7 @@ def download_data(params, data_name, wfs, outputFormat):
     data_geojson.to_file(geojson_output_path, driver="GeoJSON")
     
 
-def download_all_data(parametre, wfs, outputFormat):
+def download_all_data(parametre, wfs,wfs_tourisme, outputFormat):
     """
     Downloads all datasets specified in the 'parametre' dictionary from a WFS (Web Feature Service),
     using the provided configuration for each dataset, and saves them in GeoJSON and GPKG formats.
@@ -129,7 +133,10 @@ def download_all_data(parametre, wfs, outputFormat):
     """
     print("FETCHING ALL DATA")
     for data_name in parametre.keys():
-        download_data(parametre, data_name, wfs, outputFormat)
+        if data_name == "tourisme":
+            download_data(parametre, data_name, wfs_tourisme, outputFormat)
+        else:
+            download_data(parametre, data_name, wfs, outputFormat)
 
 ### SCRIPT ###
 
@@ -138,10 +145,11 @@ print("WFS CONNECTION")
 # data_grandlyon_wfs_url = "https://download.data.grandlyon.com/wfs/grandlyon?SERVICE=WFS&VERSION=2.0.0"
 data_grandlyon_wfs_url = "https://data.grandlyon.com/geoserver/metropole-de-lyon/ows?SERVICE=WFS&VERSION=2.0.0"
 data_grandlyon_wfs = connection_wfs(data_grandlyon_wfs_url, "datagrandlyon", "2.0.0")
-
+print(data_grandlyon_wfs)
 # tourisme WFS
-#data_grandlyon_tourisme_wfs_url = "https://data.grandlyon.com/geoserver/wfs"
-#data_grandlyon_tourisme_wfs = connection_wfs(data_grandlyon_tourisme_wfs_url, "datagrandlyon", "2.0.0")
+data_grandlyon_tourisme_wfs_url = "https://data.grandlyon.com/geoserver/onlylyon-tourisme-et-congres/ows?SERVICE=WFS&VERSION=2.0.0"
+data_grandlyon_tourisme_wfs = connection_wfs(data_grandlyon_tourisme_wfs_url, "datagrandlyon", "2.0.0")
+print(data_grandlyon_tourisme_wfs)
 
 
 
@@ -153,7 +161,7 @@ print("Data Download")
 if(fetching_choice == "ALL"):
 
 ### Download all data ###
-    download_all_data(data_params, data_grandlyon_wfs, geojsonOutputFormat)
+    download_all_data(data_params, data_grandlyon_wfs, data_grandlyon_tourisme_wfs,  geojsonOutputFormat)
     #download_all_data(data_params_tourisme, data_grandlyon_tourisme_wfs, geojsonOutputFormat)
 
 elif(fetching_choice == "ONE"):
@@ -162,12 +170,15 @@ elif(fetching_choice == "ONE"):
     data_choice = input(f"Please choose a data identifier from the following list: {available_data} : \n")
 
     if(data_choice in available_data):
-        download_data(data_params, data_choice, data_grandlyon_wfs, geojsonOutputFormat)
+        if data_choice == 'tourisme':
+            download_data(data_params, data_choice, data_grandlyon_tourisme_wfs, geojsonOutputFormat)
+        else:
+            download_data(data_params, data_choice, data_grandlyon_wfs, geojsonOutputFormat)
     else:
         print("Please enter an identifier from the list")
 elif(fetching_choice == "WEB_ONLY"):
     data_web = {data_name : data_param for data_name, data_param in data_params.items() if data_param["onMap"] == True}
-    download_all_data(data_web, data_grandlyon_wfs, geojsonOutputFormat)
+    download_all_data(data_web, data_grandlyon_wfs, data_grandlyon_tourisme_wfs, geojsonOutputFormat)
 else:
     print("PLEASE enter a valid choice (ALL, ONE or WEB_ONLY)")
 

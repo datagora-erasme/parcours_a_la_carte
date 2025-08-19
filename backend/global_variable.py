@@ -16,6 +16,8 @@ def globpath(path):
     """
     return os.path.join(base_path, path)
 
+
+
 ### BOUDING LYON METROPOLE PATH ###
 bounding_metrop_path = globpath("./score_calculation_it/input_data/empreinte/bounding_metrop.gpkg")
 
@@ -225,7 +227,7 @@ data_params = {
     },
     "tourisme": {
         "name": "Tourisme",
-        "wfs_key": "metropole-de-lyon:apd_apidae.apdlieutourisme_latest",
+        "wfs_key": "onlylyon-tourisme-et-congres:apd_apidae.apdlieutourisme_latest",
         "gpkg_path": globpath("./score_calculation_it/input_data/tourisme/corrige_tourisme_3946.gpkg"),
         "geojson_path": globpath("./score_calculation_it/input_data/tourisme/tourisme.json"),
         "edges_path": globpath("./score_calculation_it/output_data/network/edges/edges_buffered_tourisme.gpkg"),
@@ -345,3 +347,5 @@ graph_columns = {
 }
 
 merged_network_cache = {}
+
+
