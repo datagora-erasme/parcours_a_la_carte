@@ -243,9 +243,9 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
         const restOfTheAddress = hasName ? hasName[2].trim() : address;
 
         return (
-            <span className="whitespace-nowrap">
-                <span className="text-primary font-bold">{name}</span>
-                <span className="italic">{restOfTheAddress}</span>
+            <span className="whitespace-nowrap cursor-pointer">
+                <span className="text-primary font-bold cursor-pointer">{name}</span>
+                <span className="italic cursor-pointer">{restOfTheAddress}</span>
             </span>
         );
     };
@@ -292,7 +292,7 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                             const name = addressName(suggestion.properties);
                             return (
                                 <li
-                                    className="overflow-hidden pl-2 py-1 text-start"
+                                    className="overflow-hidden pl-2 py-1 text-start cursor-pointer"
                                     key={suggestion.properties.osm_id}
                                     value={suggestion.properties.osm_id}
                                     onClick={() => handleSelectStartAddress(suggestion.properties.osm_id)}

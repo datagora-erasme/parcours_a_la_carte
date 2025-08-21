@@ -138,6 +138,12 @@ const geoJsonArea = (feature, layer) => {
     layer.bindPopup(`${feature?.properties?.nom}`);
 };
 
+const WFS_RANDO_URL = 
+    'https://data.grandlyon.com/geoserver/metropole-de-lyon/ows' +
+    '?service=WFS&version=2.0.0&request=GetFeature' +
+    '&typeName=metropole-de-lyon:boucle-de-randonnee' + 
+    '&outputFormat=application/json&srsName=EPSG:4326';
+
 
 function Map({ basemap, setBasemap, isBarOpen }) {
     const [geojsonFiles, setGeojsonFiles] = useState([]);
@@ -201,6 +207,7 @@ function Map({ basemap, setBasemap, isBarOpen }) {
                     },
                 });
                 const updatedGeojsonFiles = [...geojsonFiles, { ...response.data }];
+                // console.log(updatedGeojsonFiles)
                 setGeojsonFiles(updatedGeojsonFiles);
             } catch (error) {
                 console.error(error);
@@ -212,11 +219,38 @@ function Map({ basemap, setBasemap, isBarOpen }) {
             existingGeojsonFilesId.push(file.id);
         }
         for (let id of selectedLayers) {
+            if (String(id) === "boucle_rando") { continue }
             if (!existingGeojsonFilesId.includes(id)) {
                 fetchGeoJSON(id);
             }
         }
     }, [selectedLayers, geojsonFiles]);
+
+    useEffect(() => {
+    if (!selectedLayers.includes('boucle_rando')) { return }
+    if (geojsonFiles.some(file => String(file.id) === 'boucle_rando')) { return }
+
+    let cancelled = false;
+    (async () => {
+        setLoadingLayer(true);
+        try {
+        const { data } = await axios.get(WFS_RANDO_URL)
+        if (cancelled) { return }
+        setGeojsonFiles(prev => [...prev, {
+            id: 'boucle_rando',
+            markerOption: undefined,
+            geojson: data,
+        }])
+        } catch (error) {
+        console.error('WFS boucle_rando error', error)
+        } finally {
+        setLoadingLayer(false);
+        }
+    })()
+
+    return () => { cancelled = true; };
+    }, [selectedLayers]);
+
 
     const createClusterCustomIcon = function (cluster, markerOption) {
         return L.divIcon({
@@ -246,11 +280,12 @@ function Map({ basemap, setBasemap, isBarOpen }) {
 
     const showDetailsPopupPolygon = (feature, layer) => {
         layer.on({
-            //click: handleShowDetailsPopupPolygon
+            // click: handleShowDetailsPopupPolygon
         });
     };
 
     const handleShowDetailsPopupMarker = informations => {
+        console.log(informations)
         setPoiDetails(informations);
         if (isMobile) {
             setShowFindFreshness(false);
@@ -430,10 +465,13 @@ function Map({ basemap, setBasemap, isBarOpen }) {
 
                 {geojsonFiles.length !== 0 &&
                     geojsonFiles.map(data => {
+                        // console.log(data);
+                        
                         if (selectedLayers.includes(data.id)) {
                             const dataType = data.geojson.features[0].geometry.type;
                             const markerOption = data.markerOption;
                             if (dataType === 'Point') {
+                                // console.log('point')
                                 return (
                                     <MarkerClusterGroup
                                         key={data.id}
@@ -444,13 +482,22 @@ function Map({ basemap, setBasemap, isBarOpen }) {
                                         iconCreateFunction={cluster => createClusterCustomIcon(cluster, markerOption)}
                                     >
                                         {data.geojson.features.map((item, index) => {
-                                            return <GeoJsonItem key={index} geoJsonFeature={item} geoJsonData={data} />;
+                                            return <GeoJsonItem key={item.id} geoJsonFeature={item} geoJsonData={data} />;
                                         })}
                                     </MarkerClusterGroup>
                                 );
-                            } else if (dataType === 'MultiPolygon' || dataType === 'Polygon') {
+                            }
+                            else if (dataType === 'MultiPolygon' || dataType === 'Polygon') {
                                 //Parcs et jardins
                                 return <GeoJSON data={data.geojson} style={getColor} onEachFeature={geoJsonArea} />;
+                            } else if (dataType === 'LineString' || dataType === 'MultiLineString') { 
+                                return (
+                                    <GeoJSON
+                                        key={`line-${data.id}`}
+                                        data={data.geojson}
+                                        style={{ color: "#1A1AFC", weight: 2, opacity: 0.95 }}
+                                    />
+                                )
                             }
                         }
                         return null;
@@ -555,7 +602,7 @@ function Map({ basemap, setBasemap, isBarOpen }) {
                         if (data.length !== 0) {
                             const dataType = data[0].geometry.type;
                             if (dataType === 'MultiPolygon' || dataType === 'Polygon') {
-                                return <GeoJSON key={Math.random()} data={data} style={getColor} onEachFeature={showDetailsPopupPolygon} />;
+                                return <GeoJSON key={Math.random()} data={data} style={getColor} onEachFeature={geoJsonArea} />;
                             } else if (dataType === 'Point') {
                                 const markerOption = data[0].properties.markerOption;
                                 return (

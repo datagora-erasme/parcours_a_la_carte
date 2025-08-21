@@ -21,7 +21,8 @@ const FreshnessAroundUser = () => {
         radius,
         setRadius,
         setShowCircle,
-        isMobile
+        isMobile,
+        poiDetails
     } = useContext(MainContext);
 
     const handleStartAddressAPI = query => {
@@ -29,6 +30,8 @@ const FreshnessAroundUser = () => {
             .get(`https://download.data.grandlyon.com/geocoding/photon-bal/api?q=${query}`)
             .then(response => {
                 setStartAddressSuggestions(response.data.features);
+                setZoomToUserPosition(true);
+                setShowCircle(true);
             })
             .catch(error => {
                 console.log(error);
@@ -112,8 +115,8 @@ const FreshnessAroundUser = () => {
     const restOfTheAddress = parts.slice(1).join(',').trim(); 
 
     return (
-        <span className="whitespace-nowrap">
-        <span className="text-primary font-bold">{name}</span>
+        <span className="whitespace-nowrap cursor-pointer">
+        <span className="text-primary font-bold cursor-pointer">{name}</span>
         {restOfTheAddress && (
             <span className="italic">, {restOfTheAddress}</span>
         )}
@@ -128,7 +131,7 @@ const FreshnessAroundUser = () => {
             <div className="font-bold pt-1 text-start">Trouver un lieu frais</div>
             <div className="flex flex-col">
                 <label htmlFor="startAddress" className="block mb-1 mt-4 flex justify-between">
-                    <p>Départ</p>
+                    <p>Adresse</p>
                 </label>
                 <div className="relative flex gap-2">
                     <input
@@ -197,13 +200,23 @@ const FreshnessAroundUser = () => {
                     </div>
                 </div>
                 <div className="w-full flex justify-center" onClick={() => window.trackButtonClick('FindFreshness')}>
+                    {!selectedStartAddress ? (
                     <button
-                        onClick={findFreshnessAroundMe}
-                        className={`text-white p-4 rounded-full shadow-md mt-2 font-bold ${!selectedStartAddress ? 'bg-gray-500 ' : 'bg-primary'}`}
-                        disabled={!selectedStartAddress}
-                    >
+                        onClick={(e) => { e.stopPropagation(); findFreshnessAroundMe(); }}
+                        className="text-white p-4 rounded-full shadow-md mt-2 font-bold bg-primary"
+                        // le bouton doit être cliquable quand il est affiché
+                        disabled={false}
+                        >
                         Trouver les lieux frais
-                    </button>
+                        </button>
+                    ) : (
+                        !poiDetails && (
+                        <div style={{ fontStyle: 'italic' }} className="text-center mt-2 text-primary">
+                            Cliquez sur les différents points de la carte pour en savoir plus.
+                        </div>
+                        )
+                    )}
+                    
                 </div>
                 {!isMobile && 
                 <div className="mt-4">
