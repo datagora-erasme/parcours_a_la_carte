@@ -138,11 +138,46 @@ const geoJsonArea = (feature, layer) => {
     layer.bindPopup(`${feature?.properties?.nom}`);
 };
 
+//  WFS
+const wfsHikingPopup = (feature, layer) => {
+    layer.bindPopup(`
+        <div class="text-center">${feature?.properties?.nom}</div>
+        <div class="text-center">${(feature?.properties?.difficulte ? feature?.properties?.difficulte : "Non renseigné") + ' - Temps: ' + feature?.properties?.temps + ' - Longueur: ' + feature?.properties?.longueur}</div>
+        <div  class="text-center">
+            <a href="${feature?.properties?.lien_web}"
+                target="_blank" rel="noopener noreferrer"
+                style="overflow-wrap:anywhere; word-break:break-word; white-space:normal; display:inline-block; max-width:100%;">
+                ${feature?.properties?.lien_web}
+            </a>
+        </div>
+    `);
+}
+
 const WFS_RANDO_URL = 
     'https://data.grandlyon.com/geoserver/metropole-de-lyon/ows' +
     '?service=WFS&version=2.0.0&request=GetFeature' +
     '&typeName=metropole-de-lyon:boucle-de-randonnee' + 
     '&outputFormat=application/json&srsName=EPSG:4326';
+
+const hikingBaseStyle = { color: "#9C27B0", weight: 3, opacity: 0.95, dashArray: '8,6', lineCap: 'round', lineJoin: 'round' }
+
+const addHoverStyle = (_feature, layer) => { 
+    layer.on({
+        mouseover: e => {
+            const layer = e.target
+            layer.setStyle({ weight: 4, opacity: 1 })
+            layer.bringToFront?.()
+        },
+        mouseout: e => {
+            e.target.setStyle(hikingBaseStyle)
+        }
+    })
+}
+
+const onEachHiking = (feature, layer) => {
+    wfsHikingPopup(feature, layer)
+    addHoverStyle(feature, layer)
+}
 
 
 function Map({ basemap, setBasemap, isBarOpen }) {
@@ -495,7 +530,8 @@ function Map({ basemap, setBasemap, isBarOpen }) {
                                     <GeoJSON
                                         key={`line-${data.id}`}
                                         data={data.geojson}
-                                        style={{ color: "#1A1AFC", weight: 2, opacity: 0.95 }}
+                                        style={hikingBaseStyle}
+                                        onEachFeature={onEachHiking}
                                     />
                                 )
                             }
