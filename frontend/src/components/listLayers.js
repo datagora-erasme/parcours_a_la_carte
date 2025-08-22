@@ -1,7 +1,7 @@
 import React, { useContext, useState, useMemo, useEffect } from 'react';
 import MainContext from '../contexts/mainContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPersonHiking } from '@fortawesome/free-solid-svg-icons';
+import { faPersonHiking, faRoute } from '@fortawesome/free-solid-svg-icons';
 
 
 function ListLayers() {
@@ -17,18 +17,23 @@ function ListLayers() {
     const extraLayers = useMemo(() => ([
         {
             id: 'boucle_rando',
-        name: 'Boucles de randonnée',
-        type: 'wfs',
-        wfs: {
-            url: 'https://data.grandlyon.com/geoserver/metropole-de-lyon/ows',
-            typeName: 'metropole-de-lyon:boucle-de-randonnee',
-            srsName: 'EPSG:4326',
+            name: 'Boucles de randonnée',
+            type: 'wfs',
+            wfs: {
+                url: 'https://data.grandlyon.com/geoserver/metropole-de-lyon/ows',
+                typeName: 'metropole-de-lyon:boucle-de-randonnee',
+                srsName: 'EPSG:4326',
+            },
+            marker_option: { iconUrl: undefined},
+            faIcon: faPersonHiking,
         },
-        marker_option: {
-            iconUrl: undefined,
-        },
-        faIcon: 'faPersonHiking',
-        },
+        {
+            id: 'tour_of_lyon',
+            name: 'Parcours ville de Lyon',
+            type: 'geojson',
+            marker_option: { iconUrl: undefined },
+            faIcon: faRoute,
+        }
     ]), [])
 
     const allLayers = useMemo(() => [...listLayers, ...extraLayers], [listLayers, extraLayers])
@@ -63,7 +68,7 @@ function ListLayers() {
                 {layer?.marker_option?.iconUrl ? (
                 <img src={layer.marker_option.iconUrl} alt="" className="rounded-full p-2" />
                 ) : layer?.faIcon ? (
-                <FontAwesomeIcon icon={faPersonHiking}  color="white" className="bg-black p-2 w-7 h-7 rounded-full"  />
+                <FontAwesomeIcon icon={layer.faIcon }  color="white" className="bg-black p-2 w-7 h-7 rounded-full"  />
                 ) : (
                 <span></span>
                 )}

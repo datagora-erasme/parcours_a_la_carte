@@ -115,15 +115,30 @@ const GeoJsonItem = ({ geoJsonFeature, geoJsonData }) => {
     const isTourismeFeature = geoJsonData.id === 'tourisme';
     const markerOption = geoJsonData.markerOption;
 
+    const isTOLPoint =
+        (geoJsonData.groupId === 'tour_of_lyon' ||
+        geoJsonData.id === 'tour_of_lyon-points') &&
+        geoJsonFeature.geometry.type === 'Point';
+
+    let icon;
+    if (isTOLPoint) {
+        const code = geoJsonFeature?.properties?.code_parcours;
+        icon = tolIconStyle(colorByTour(code));
+        // console.log(icon)
+    } else if (geoJsonData.markerOption) {
+        icon = new L.Icon({
+        ...geoJsonData.markerOption,
+        className: isTourismeFeature ? 'pointer-cursor' : '',
+        });
+    } else {
+        icon = new L.Icon.Default();
+    }
+
+
     return (
         <Marker
             position={coordinates}
-            icon={
-                new L.icon({
-                    ...markerOption,
-                    className: isTourismeFeature ? 'pointer-cursor' : '',
-                })
-            }
+            icon={icon}
         >
             {isTourismeFeature && <TourismePopup tourismeItem={geoJsonFeature.properties} />}
         </Marker>
@@ -178,6 +193,59 @@ const onEachHiking = (feature, layer) => {
     wfsHikingPopup(feature, layer)
     addHoverStyle(feature, layer)
 }
+
+// Geojson
+const TOUR_OF_LYON_ID = 'tour_of_lyon'
+const TOL_POINTS_URL = '/data/Lieux_frais_lieux_remarquables_VDL_4326.geojson'
+const TOL_LINES_URL = '/data/Lieux_frais_parcours_VDL_4326.geojson'
+
+// Color tour_of_lyon style
+const colorByTour = (value) => {
+    if (value === '6') { return '#9C27B0' }         
+    if (value === "5-9") { return '#43A047' } 
+    if (value === "1-2-4") { return '#1E88E5' } 
+    if (value === "3-8") { return '#29B6F6' } 
+    return '#000'
+};
+
+const tolSolidLineStyle = (fature) => ({
+    color: colorByTour(fature?.properties?.Code_parcours),
+    weight: 3,
+    opacity: 1,
+    lineCap: 'round',
+    lineJoin: 'round'
+})
+
+const tolIconStyle = (color) => {
+    const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28">
+        <circle cx="14" cy="14" r="8" fill="${color}" stroke="white" stroke-width="2"/>
+        </svg>`;
+    return new L.Icon({
+        iconUrl: 'data:image/svg+xml;utf8,' + encodeURIComponent(svg),
+        iconSize: [28, 28],
+        iconAnchor: [14, 14],
+    });
+}
+
+const createClusterCustomIcon = (cluster) => {
+    const child = cluster.getAllChildMarkers?.()[0];
+    const url = child?.options?.icon?.options?.iconUrl || "";
+    const count = cluster.getChildCount();
+
+    return L.divIcon({
+        html: `
+        <span class="flex flex-col items-center justify-center cursor-pointer">
+            ${url ? `<img src="${url}" style="display:block;width:40px;height:40px;" />` : ""}
+            <span class="text-bgWhite bg-mainText w-2/3 h-4 rounded-sm font-bold">${count}</span>
+        </span>
+        `,
+        className: 'custom-marker-cluster',
+        iconSize: L.point(33, 33, true),
+    });
+    };
+
+
 
 
 function Map({ basemap, setBasemap, isBarOpen }) {
@@ -255,6 +323,7 @@ function Map({ basemap, setBasemap, isBarOpen }) {
         }
         for (let id of selectedLayers) {
             if (String(id) === "boucle_rando") { continue }
+            if (String(id) === TOUR_OF_LYON_ID) { continue }
             if (!existingGeojsonFilesId.includes(id)) {
                 fetchGeoJSON(id);
             }
@@ -286,17 +355,55 @@ function Map({ basemap, setBasemap, isBarOpen }) {
     return () => { cancelled = true; };
     }, [selectedLayers]);
 
+    useEffect(() => {
+    if (!selectedLayers.includes(TOUR_OF_LYON_ID)) return;
+    if (geojsonFiles.some(file => file.groupId === TOUR_OF_LYON_ID)) return;
 
-    const createClusterCustomIcon = function (cluster, markerOption) {
-        return L.divIcon({
-            html: `<span class="flex flex-col items-center justify-center cursor-pointer">
-                            <img src=${markerOption.iconUrl} style="display: block, width: 40px; height:40px;" />
-                            <span class="text-bgWhite bg-mainText w-2/3 h-4 rounded-sm font-bold">${cluster.getChildCount()}</span>
-                        </span>`,
-            className: 'custom-marker-cluster',
-            iconSize: L.point(33, 33, true),
-        });
-    };
+    let cancelled = false;
+    (async () => {
+        setLoadingLayer(true);
+        try {
+        const [pointsFC, linesFC] = await Promise.all([
+            fetch(TOL_POINTS_URL).then(result => result.json()),
+            fetch(TOL_LINES_URL).then(result => result.json()),
+        ]);
+
+        if (cancelled) return;
+
+        setGeojsonFiles(prev => [
+            {
+            id: `${TOUR_OF_LYON_ID}-points`,
+            groupId: TOUR_OF_LYON_ID,
+            markerOption: undefined,
+            geojson: pointsFC,
+            },
+            {
+            id: `${TOUR_OF_LYON_ID}-lines`,
+            groupId: TOUR_OF_LYON_ID,
+            markerOption: undefined,
+            geojson: linesFC,
+            },
+        ]);
+        } catch (e) {
+        console.error('Erreur chargement GeoJSON VDL', e);
+        } finally {
+        if (!cancelled) setLoadingLayer(false);
+        }
+    })();
+
+    return () => { cancelled = true; };
+    }, [selectedLayers, geojsonFiles]);
+
+    const createClusterIconFromMarkerOption = (markerOption) => (cluster) =>
+    L.divIcon({
+        html: `
+        <span class="flex flex-col items-center justify-center cursor-pointer">
+            ${markerOption?.iconUrl ? `<img src="${markerOption.iconUrl}" style="display:block;width:40px;height:40px;" />` : ''}
+            <span class="text-bgWhite bg-mainText w-2/3 h-4 rounded-sm font-bold">${cluster.getChildCount()}</span>
+        </span>`,
+        className: 'custom-marker-cluster',
+        iconSize: L.point(33, 33, true),
+    });
 
     const handleShowDetailsPopupPolygon = e => {
         setPoiDetails(e.target.feature);
@@ -320,7 +427,7 @@ function Map({ basemap, setBasemap, isBarOpen }) {
     };
 
     const handleShowDetailsPopupMarker = informations => {
-        console.log(informations)
+        // console.log(informations)
         setPoiDetails(informations);
         if (isMobile) {
             setShowFindFreshness(false);
@@ -502,30 +609,50 @@ function Map({ basemap, setBasemap, isBarOpen }) {
                     geojsonFiles.map(data => {
                         // console.log(data);
                         
-                        if (selectedLayers.includes(data.id)) {
+                        if (
+                            selectedLayers.includes(data.id) ||
+                            (data.groupId && selectedLayers.includes(data.groupId))
+                            ) {
                             const dataType = data.geojson.features[0].geometry.type;
                             const markerOption = data.markerOption;
                             if (dataType === 'Point') {
                                 // console.log('point')
+                                const isTourOfLyon = data.groupId === TOUR_OF_LYON_ID || data.id === `${TOUR_OF_LYON_ID}-points`
                                 return (
                                     <MarkerClusterGroup
-                                        key={data.id}
-                                        maxClusterRadius={100}
-                                        polygonOptions={{
-                                            opacity: 0,
-                                        }}
-                                        iconCreateFunction={cluster => createClusterCustomIcon(cluster, markerOption)}
+                                    key={data.id}
+                                    maxClusterRadius={100}
+                                    polygonOptions={{ opacity: 0 }}
+                                    iconCreateFunction={
+                                        isTourOfLyon
+                                            ? createClusterCustomIcon 
+                                            : createClusterIconFromMarkerOption(markerOption)
+                                    }
                                     >
-                                        {data.geojson.features.map((item, index) => {
-                                            return <GeoJsonItem key={item.id} geoJsonFeature={item} geoJsonData={data} />;
-                                        })}
+                                    {data.geojson.features.map((item, i) => (
+                                        <GeoJsonItem
+                                        key={item.id ?? item.properties?.fid ?? i}
+                                        geoJsonFeature={item}
+                                        geoJsonData={data}
+                                        />
+                                    ))}
                                     </MarkerClusterGroup>
                                 );
                             }
                             else if (dataType === 'MultiPolygon' || dataType === 'Polygon') {
                                 //Parcs et jardins
                                 return <GeoJSON data={data.geojson} style={getColor} onEachFeature={geoJsonArea} />;
-                            } else if (dataType === 'LineString' || dataType === 'MultiLineString') { 
+                            } else if (dataType === 'LineString' || dataType === 'MultiLineString') {
+                                const isTourOfLyon = data.groupId === TOUR_OF_LYON_ID || data.id === "tour_of_lyon-lines"
+                                if (isTourOfLyon) {
+                                    return (
+                                        <GeoJSON
+                                            key={`line-${data.id}`}
+                                            data={data.geojson}
+                                            style={tolSolidLineStyle}
+                                        />
+                                    )
+                                }
                                 return (
                                     <GeoJSON
                                         key={`line-${data.id}`}
