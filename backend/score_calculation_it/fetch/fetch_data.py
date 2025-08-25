@@ -5,6 +5,7 @@ from owslib.wfs import WebFeatureService
 import sys
 sys.path.append("../../")
 from global_variable import *
+from shapely.geometry import Point, LineString, Polygon
 
 ###### FETCH DATA FROM DATAGRANDLYON ######
 
@@ -60,6 +61,28 @@ def connection_wfs(url, service_name, version):
     print(url)
     return wfs
 
+def reverse_coordinates(geometry):
+    """
+    Reverses the coordinates of a geometry object (Point, LineString, Polygon).
+
+    Parameters:
+    geometry (shapely.geometry): The geometry object to process.
+
+    Returns:
+    shapely.geometry: The geometry object with reversed coordinates.
+    """
+    if geometry.is_empty:
+        return geometry
+    if isinstance(geometry, Point):
+        return Point(geometry.y, geometry.x)
+    elif isinstance(geometry, LineString):
+        return LineString([(p[1], p[0]) for p in geometry.coords])
+    elif isinstance(geometry, Polygon):
+        exterior = [(p[1], p[0]) for p in geometry.exterior.coords]
+        interiors = [[(p[1], p[0]) for p in interior.coords] for interior in geometry.interiors]
+        return Polygon(exterior, interiors)
+    return geometry
+
 def download_data(params, data_name, wfs, outputFormat):
     """
     Downloads geographic data from a WFS (Web Feature Service), saves it in GeoJSON and GPKG formats, and converts CRS.
@@ -99,6 +122,11 @@ def download_data(params, data_name, wfs, outputFormat):
     file.close()
 
     data_gpd = gpd.read_file(geojson_output_path)
+
+    # Inverser les coordonnées sauf pour certains jeux de données
+    datasets_to_exclude = ["fontaines_potables", "parcs_canop", "bancs", "ambroisie", "arbres"]
+    if data_name not in datasets_to_exclude:
+        data_gpd["geometry"] = data_gpd["geometry"].apply(reverse_coordinates)
 
     # Filtrer uniquement les lignes de type PATRIMOINE_CULTUREL si c'est "tourisme"
     if data_name == "tourisme":
