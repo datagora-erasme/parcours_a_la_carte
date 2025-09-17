@@ -312,7 +312,7 @@ merged_network_multidigraph_pickle_path = globpath("./score_calculation_it/outpu
 
 #### RUNTIME GLOBAL VARIABLES ####
 current_month = datetime.now().month
-print("current_month", current_month)
+# print("current_month", current_month)
 
 graph_columns = {
     "frais": {
