@@ -1,11 +1,11 @@
 import React, { useContext, useState, useMemo, useEffect } from 'react';
 import MainContext from '../contexts/mainContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPersonHiking, faRoute } from '@fortawesome/free-solid-svg-icons';
+import { faPersonHiking, faRoute, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 
 function ListLayers() {
-    const { listLayers, setSelectedLayers, isLayerLoading } = useContext(MainContext);
+    const { listLayers, setSelectedLayers, loadingLayers, loadingExtraLayers } = useContext(MainContext);
     
     // const handleCheckbox = id => {
     //     const updatedCheckboxes = checkboxes.map(layer => (layer.id === id ? { ...layer, checked: !layer.checked } : layer));
@@ -81,28 +81,8 @@ function ListLayers() {
             {allLayers.length !== 0 ? (
                 <ul className="mt-2 grid grid-cols-3">
                     {checkboxes.map(layer => {
+                        const isLoading = loadingLayers[layer.id] || loadingExtraLayers[layer.id]
                         return (
-                            // <li key={layer.id} onClick={() => window.trackButtonClick(`ShowLayer_${layer.id}`)}>
-                            //     <input
-                            //         type="checkbox"
-                            //         id={layer.id}
-                            //         checked={layer.checked}
-                            //         onChange={() => handleCheckbox(layer.id)}
-                            //         className="hidden"
-                            //     />
-                            //     <label htmlFor={layer.id} className="flex flex-col justify-center items-center text-[12px] mb-2">
-                            //         <img
-                            //             src={layer.marker_option.iconUrl}
-                            //             alt="icon"
-                            //             className={
-                            //                 layer.checked
-                            //                     ? 'w-16 p-2 bg-gray-300 border-solid border-2 rounded-full cursor-pointer'
-                            //                     : 'w-16 p-2 border-solid border-2 rounded-full hover:bg-gray-100 cursor-pointer'
-                            //             }
-                            //         />
-                            //         {layer.name}
-                            //     </label>
-                            // </li>
                             <li key={layer.id} onClick={() => window.trackButtonClick?.(`ShowLayer_${layer.id}`)}>
                                 <input
                                     type="checkbox"
@@ -112,7 +92,19 @@ function ListLayers() {
                                     className="hidden"
                                 />
                                 <label htmlFor={layer.id} className="flex flex-col items-center text-[12px] mb-2 cursor-pointer">
-                                    {renderIcon(layer)}
+                                    {isLoading ? (
+                                        <FontAwesomeIcon
+                                            icon={faSpinner}
+                                            spin
+                                            className="p-2 w-10 h-10 rounded-full p-2"
+                                        />
+                                    
+                                    ) : (
+                                        <>
+                                        {renderIcon(layer)}
+                                        </>
+                                    )}
+                                    
                                     {layer.name}
                                 </label>
                             </li>

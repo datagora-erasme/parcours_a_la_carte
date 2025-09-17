@@ -139,8 +139,14 @@ const GeoJsonItem = ({ geoJsonFeature, geoJsonData }) => {
         <Marker
             position={coordinates}
             icon={icon}
+            
         >
             {isTourismeFeature && <TourismePopup tourismeItem={geoJsonFeature.properties} />}
+            <Popup>
+                <div>
+                    <p>{geoJsonFeature.properties.nom}</p>
+                </div>
+            </Popup>
         </Marker>
     );
 };
@@ -166,6 +172,11 @@ const wfsHikingPopup = (feature, layer) => {
             </a>
         </div>
     `);
+}
+
+const tourOfLyonPopup = (feature, layer) => {
+    layer.bindPopup(`
+        <div>${feature.properties.Intitule_complet}</div>`)
 }
 
 const WFS_RANDO_URL = 
@@ -194,6 +205,28 @@ const onEachHiking = (feature, layer) => {
     addHoverStyle(feature, layer)
 }
 
+const addHoverStyleTol = (feature, layer) => {
+    layer.on({
+        mouseover: e => {
+            const l = e.target
+            l.setStyle({
+                weight: 4,
+                opacity: 1,
+            });
+            l.bringToFront?.()
+        },
+        mouseout: e => {
+            e.target.setStyle(tolSolidLineStyle(feature))
+        },
+    })
+}
+
+
+const onEachTourOfLyon = (feature, layer) => {
+    tourOfLyonPopup(feature, layer)
+    addHoverStyleTol(feature, layer)
+}
+
 // Geojson
 const TOUR_OF_LYON_ID = 'tour_of_lyon'
 const TOL_POINTS_URL = '/data/Lieux_frais_lieux_remarquables_VDL_4326.geojson'
@@ -219,12 +252,13 @@ const tolSolidLineStyle = (fature) => ({
 const tolIconStyle = (color) => {
     const svg =
         `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28">
-        <circle cx="14" cy="14" r="8" fill="${color}" stroke="white" stroke-width="2"/>
+            <circle cx="14" cy="14" r="8" fill="${color}" stroke="white" stroke-width="2"/>
         </svg>`;
     return new L.Icon({
         iconUrl: 'data:image/svg+xml;utf8,' + encodeURIComponent(svg),
         iconSize: [28, 28],
         iconAnchor: [14, 14],
+        className: 'cursor-pointer'
     });
 }
 
@@ -278,7 +312,8 @@ function Map({ basemap, setBasemap, isBarOpen }) {
         setFilteredItinerariesFeatures,
         currentItineraryEndPointUsedForCalculation,
         currentItineraryStartPointUsedForCalculation,
-        isMobile
+        isMobile,
+        setLoadingExtraLayers
     } = useContext(MainContext);
 
     function getColor(data) {
@@ -336,7 +371,7 @@ function Map({ basemap, setBasemap, isBarOpen }) {
 
     let cancelled = false;
     (async () => {
-        setLoadingLayer(true);
+        setLoadingExtraLayers(prev => ({ ...prev, boucle_rando: true }));
         try {
         const { data } = await axios.get(WFS_RANDO_URL)
         if (cancelled) { return }
@@ -348,7 +383,7 @@ function Map({ basemap, setBasemap, isBarOpen }) {
         } catch (error) {
         console.error('WFS boucle_rando error', error)
         } finally {
-        setLoadingLayer(false);
+        if (!cancelled) setLoadingExtraLayers(prev => ({ ...prev, boucle_rando: false }))
         }
     })()
 
@@ -361,7 +396,7 @@ function Map({ basemap, setBasemap, isBarOpen }) {
 
     let cancelled = false;
     (async () => {
-        setLoadingLayer(true);
+        setLoadingExtraLayers(prev => ({ ...prev, tour_of_lyon: true }))
         try {
         const [pointsFC, linesFC] = await Promise.all([
             fetch(TOL_POINTS_URL).then(result => result.json()),
@@ -387,7 +422,7 @@ function Map({ basemap, setBasemap, isBarOpen }) {
         } catch (e) {
         console.error('Erreur chargement GeoJSON VDL', e);
         } finally {
-        if (!cancelled) setLoadingLayer(false);
+        if (!cancelled) setLoadingExtraLayers(prev => ({ ...prev, tour_of_lyon: false }))
         }
     })();
 
@@ -608,7 +643,6 @@ function Map({ basemap, setBasemap, isBarOpen }) {
                 {geojsonFiles.length !== 0 &&
                     geojsonFiles.map(data => {
                         // console.log(data);
-                        
                         if (
                             selectedLayers.includes(data.id) ||
                             (data.groupId && selectedLayers.includes(data.groupId))
@@ -631,9 +665,9 @@ function Map({ basemap, setBasemap, isBarOpen }) {
                                     >
                                     {data.geojson.features.map((item, i) => (
                                         <GeoJsonItem
-                                        key={item.id ?? item.properties?.fid ?? i}
-                                        geoJsonFeature={item}
-                                        geoJsonData={data}
+                                            key={item.id ?? item.properties?.fid ?? i}
+                                            geoJsonFeature={item}
+                                            geoJsonData={data}
                                         />
                                     ))}
                                     </MarkerClusterGroup>
@@ -650,6 +684,7 @@ function Map({ basemap, setBasemap, isBarOpen }) {
                                             key={`line-${data.id}`}
                                             data={data.geojson}
                                             style={tolSolidLineStyle}
+                                            onEachFeature={onEachTourOfLyon}
                                         />
                                     )
                                 }
