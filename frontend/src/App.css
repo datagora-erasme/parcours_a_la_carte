@@ -52,3 +52,13 @@
     width: 100vw;
     height: 100vh;
 }
+
+.leaflet-container a.leaflet-popup-close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.leaflet-marker-icon.leaflet-interactive {
+    cursor: pointer;
+}

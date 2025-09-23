@@ -27,7 +27,7 @@ export const MainContextProvider = ({ children }) => {
     const [selectedStartAddress, setSelectedStartAddress] = useState(null);
     const [selectedEndAddress, setSelectedEndAddress] = useState(null);
 
-    const [isLayerLoading, setIsLayerLoading] = useState(false);
+    const [isLayerLoading, setIsLayerLoading] = useState(null);
 
     const [userAddress, setUserAddress] = useState(null);
 
@@ -46,6 +46,12 @@ export const MainContextProvider = ({ children }) => {
     const [isMobile, setIsMobile] = useState(false)
 
     const [leafletMap, setLeafletMap] = useState(null)
+
+    const [loadingLayers, setLoadingLayers] = useState({})
+    const [loadingExtraLayers, setLoadingExtraLayers] = useState({
+        boucle_rando: false,
+        tour_of_lyon: false,
+    })
 
 
     //Rounds the geographical coordinates of the itinerary to 5 decimal places
@@ -82,11 +88,10 @@ export const MainContextProvider = ({ children }) => {
                 setListLayers(response.data);
             } catch (error) {
                 console.error(error);
-            }
+            } 
         }
         setIsLayerLoading(true);
         fetchListLayers();
-        setIsLayerLoading(false);
     }, []);
 
     useEffect(() => {
@@ -100,6 +105,28 @@ export const MainContextProvider = ({ children }) => {
         }
         fetchLayers();
     }, []);
+
+    useEffect(() => {
+        if (!selectedLayers || selectedLayers.length === 0) return
+
+        const extraLayerIds = ['boucle_rando', 'tour_of_lyon'];
+
+        selectedLayers.forEach(async (id) => {
+            if (extraLayerIds.includes(id)) return; // skip fetch
+            if (loadingLayers[id]) return;
+
+            setLoadingLayers(prev => ({ ...prev, [id]: true }));
+            try {
+                const res = await axios.get(`${process.env.REACT_APP_URL_SERVER}/data/`, { params: { id } });
+                setLayers(prev => Array.isArray(res.data) ? [...prev, ...res.data] : [...prev, res.data]);
+            } catch (err) {
+                console.error(err);
+            } finally {
+                setLoadingLayers(prev => ({ ...prev, [id]: false }));
+            }
+        });
+    }, [selectedLayers])
+
 
     useEffect(() => {
         // Get user's current position using geolocation API
@@ -243,7 +270,11 @@ export const MainContextProvider = ({ children }) => {
                 isMobile,
                 checkIsMobile,
                 leafletMap,
-                setLeafletMap
+                setLeafletMap,
+                loadingLayers,
+                setLoadingLayers,
+                loadingExtraLayers,
+                setLoadingExtraLayers
             }}
         >
             {children}
