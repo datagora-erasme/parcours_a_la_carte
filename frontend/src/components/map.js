@@ -96,6 +96,8 @@ function ZoomItinerary({ zoomToItinerary, setZoomToItinerary, currentItinerary }
 }
 
 const TourismePopup = ({ tourismeItem }) => {
+    const nom = (tourismeItem?.nom || '').trim()
+    if (!nom) { return null }
     return (
         <Popup className="flex flex-col">
             <p>{tourismeItem.nom}</p>
@@ -134,6 +136,16 @@ const GeoJsonItem = ({ geoJsonFeature, geoJsonData }) => {
         icon = new L.Icon.Default();
     }
 
+    const props = geoJsonFeature?.properties || {}
+    const hasName = typeof props.nom === 'string' && props.nom.trim() !== ''
+
+    if (!hasName) { 
+        return (
+            <Marker position={coordinates} icon={icon}>
+                {isTourismeFeature && <TourismePopup tourismeItem={props} />}
+            </Marker>
+        );
+    }
 
     return (
         <Marker
@@ -156,23 +168,35 @@ const GeoJsonItem = ({ geoJsonFeature, geoJsonData }) => {
  * Tipically used for 'Parcs et jardins'.
  */
 const geoJsonArea = (feature, layer) => {
+    if (!feature?.properties?.nom) { return }
     layer.bindPopup(`${feature?.properties?.nom}`);
 };
 
 //  WFS
 const wfsHikingPopup = (feature, layer) => {
+    const p = feature?.properties || {}
+    const nom = (p.nom || 'Non renseigné').toString().trim()
+    const difficulte = (p.difficulte || 'Non renseigné').toString().trim()
+    const temps = (p.temps ?? '—').toString().trim()
+    const longueur = (p.longueur ?? '—').toString().trim()
+    const lien = typeof p.lien_web === 'string' && p.lien_web.trim() ? p.lien_web.trim() : null
+
     layer.bindPopup(`
-        <div class="text-center">${feature?.properties?.nom}</div>
-        <div class="text-center">${(feature?.properties?.difficulte ? feature?.properties?.difficulte : "Non renseigné") + ' - Temps: ' + feature?.properties?.temps + ' - Longueur: ' + feature?.properties?.longueur}</div>
-        <div  class="text-center">
-            <a href="${feature?.properties?.lien_web}"
-                target="_blank" rel="noopener noreferrer"
+    <div class="text-center">${nom}</div>
+    <div class="text-center">${`${difficulte} - Temps: ${temps} - Longueur: ${longueur}`}</div>
+    ${
+        lien
+        ? `<div class="text-center">
+                <a href="${lien}" target="_blank" rel="noopener noreferrer"
                 style="overflow-wrap:anywhere; word-break:break-word; white-space:normal; display:inline-block; max-width:100%;">
-                ${feature?.properties?.lien_web}
-            </a>
-        </div>
-    `);
-}
+                ${lien}
+                </a>
+            </div>`
+        : ''
+    }
+    `)
+};
+
 
 const tourOfLyonPopup = (feature, layer) => {
     layer.bindPopup(`
@@ -223,6 +247,7 @@ const addHoverStyleTol = (feature, layer) => {
 
 
 const onEachTourOfLyon = (feature, layer) => {
+    if (!feature?.properties?.Intitule_complet) { return }
     tourOfLyonPopup(feature, layer)
     addHoverStyleTol(feature, layer)
 }
