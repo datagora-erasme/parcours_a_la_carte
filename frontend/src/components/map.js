@@ -139,26 +139,15 @@ const GeoJsonItem = ({ geoJsonFeature, geoJsonData }) => {
     const props = geoJsonFeature?.properties || {}
     const hasName = typeof props.nom === 'string' && props.nom.trim() !== ''
 
-    if (!hasName) { 
-        return (
-            <Marker position={coordinates} icon={icon}>
-                {isTourismeFeature && <TourismePopup tourismeItem={props} />}
-            </Marker>
-        );
-    }
-
     return (
-        <Marker
-            position={coordinates}
-            icon={icon}
-            
-        >
-            {isTourismeFeature && <TourismePopup tourismeItem={geoJsonFeature.properties} />}
+        <Marker position={coordinates} icon={icon}>
+        {isTourismeFeature ? (
+            <TourismePopup tourismeItem={props} />
+        ) : hasName ? (
             <Popup>
-                <div>
-                    <p>{geoJsonFeature.properties.nom}</p>
-                </div>
+                <div><p>{props.nom}</p></div>
             </Popup>
+        ) : null}
         </Marker>
     );
 };
@@ -667,7 +656,7 @@ function Map({ basemap, setBasemap, isBarOpen }) {
 
                 {geojsonFiles.length !== 0 &&
                     geojsonFiles.map(data => {
-                        // console.log(data);
+                        console.log(data);
                         if (
                             selectedLayers.includes(data.id) ||
                             (data.groupId && selectedLayers.includes(data.groupId))
