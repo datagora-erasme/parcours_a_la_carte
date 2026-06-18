@@ -94,6 +94,7 @@ const ContentMobile = ({
                   <div className="pr-[10px] pl-[4px] py-[11px] border-b-2 border-grey-500">
                     <button
                       onClick={() => openMenu('findFreshness')}
+                      // onClick={() => window.open('https://lesrefugesclimatiques.gogocarto.fr/map#/carte/@45.744,4.876,11z?cat=all', '_blank')}
                       className="flex justify-between w-full px-4"
                     >
                       <div className="flex gap-2 items-center">
@@ -103,8 +104,10 @@ const ContentMobile = ({
                       <FaArrowRight className="text-primary mt-1" />
                     </button>
                   </div>
-  
-                  <div className="pr-[10px] pl-[4px] py-[11px] border-b-2 border-grey-500">
+
+
+                  {/* GoGoCarto : enlever "consulter les cartes"
+                  <div className="pr-[10px] pl-[4px] py-[11px] border-b-2 border-grey-500"
                     <button
                       onClick={() => openMenu('layers')}
                       className="flex justify-between w-full px-4"
@@ -116,6 +119,7 @@ const ContentMobile = ({
                       <FaArrowRight className="text-primary mt-1" />
                     </button>
                   </div>
+                  */}
   
                   <div className="pr-[10px] pl-[4px] py-[11px] border-b-2 border-grey-500">
                     <button
@@ -199,6 +203,7 @@ const ContentMobile = ({
   
           <button
             onClick={() => openMenu('findFreshness')}
+            // onClick={() => window.open('https://lesrefugesclimatiques.gogocarto.fr/map#/carte/@45.744,4.876,11z?cat=all', '_blank')}
             className={`p-1 h-full flex justify-center items-center flex-col`}
           >
             <FaSnowflake
@@ -223,10 +228,12 @@ const ContentMobile = ({
             </span>
           </button>
   
+          {/* GoGoCarto : enlever "consulter les cartes"
           <button
             onClick={() => openMenu('layers')}
             className={`p-1 flex justify-center items-center flex-col`}
           >
+
             <FaMapMarkedAlt
               className={`text-xl ${
                 activeMenu === null
@@ -248,6 +255,7 @@ const ContentMobile = ({
               Cartes
             </span>
           </button>
+          */}
   
           <button
             onClick={() => openMenu('more')}

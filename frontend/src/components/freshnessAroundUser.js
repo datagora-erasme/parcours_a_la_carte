@@ -30,8 +30,8 @@ const FreshnessAroundUser = () => {
             .get(`https://download.data.grandlyon.com/geocoding/photon-bal/api?q=${query}`)
             .then(response => {
                 setStartAddressSuggestions(response.data.features);
-                setZoomToUserPosition(true);
-                setShowCircle(true);
+                // setZoomToUserPosition(true);
+                // setShowCircle(true);
             })
             .catch(error => {
                 console.log(error);
@@ -58,12 +58,28 @@ const FreshnessAroundUser = () => {
         }
     };
 
-    const findFreshnessAroundMe = () => {
+    // const findFreshnessAroundMe = () => {
+    //     if (selectedStartAddress) {
+    //         setZoomToUserPosition(true);
+    //         setShowCircle(true);
+    //     } else {
+    //         alert('Veuillez activez votre géolocalisation pour utiliser cette fonctionnalité');
+    //     }
+    // };
+
+        const findFreshnessAroundMe = () => {
+            let url;
         if (selectedStartAddress) {
-            setZoomToUserPosition(true);
-            setShowCircle(true);
+            // coordinates = [longitude, latitude]
+            const lng = selectedStartAddress.geometry.coordinates[0];
+            const lat = selectedStartAddress.geometry.coordinates[1];
+            const zoom = 16;
+            const url = `https://lesrefugesclimatiques.gogocarto.fr/map#/carte/@${lat},${lng},${zoom}z?cat=all`;
+            window.open(url, '_blank');
+
         } else {
-            alert('Veuillez activez votre géolocalisation pour utiliser cette fonctionnalité');
+            url =`https://lesrefugesclimatiques.gogocarto.fr/map#/carte/@45.744,4.876,11z?cat=all`;
+            window.open(url, '_blank');
         }
     };
 
@@ -129,6 +145,19 @@ const FreshnessAroundUser = () => {
         <div className="w-full">
 
             <div className="font-bold pt-1 text-start">Trouver un lieu frais</div>
+            <p className="text-sm mt-2">
+                Cet outil vous renvoie vers la carte{' '}
+                <a
+                    href="https://lesrefugesclimatiques.gogocarto.fr/map#/carte/@45.744,4.876,11z?cat=all"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary font-bold underline"
+
+                >
+                    GoGoCarto
+                </a>
+                {' '}des Refuges climatiques de la Métropole.
+            </p>
             <div className="flex flex-col">
                 <label htmlFor="startAddress" className="block mb-1 mt-4 flex justify-between">
                     <p>Adresse</p>
@@ -148,7 +177,7 @@ const FreshnessAroundUser = () => {
                     {showStartSuggestions && (
                         <ul
                             id="startAddressSuggestions"
-                            className="absolute z-10 w-full bg-white border-gray-300 rounded-md shadow-lg mt-12 md:mt-10"
+                            className="absolute z-10 w-full max-h-[200px] bg-white border-gray-300 rounded-md shadow-lg mt-12 md:mt-10 overflow-y-auto"
                             value={startAddress}
                         >
                         <div className="italic flex items-center cursor-pointer py-2" onClick={() => {
@@ -166,7 +195,7 @@ const FreshnessAroundUser = () => {
                                 const name = addressName(suggestion.properties);
                                 return (
                                     <li
-                                        className='py-1 text-start'
+                                        className="overflow-hidden pl-2 py-1 text-start cursor-pointer"
                                         key={suggestion.properties.osm_id}
                                         value={suggestion.properties.osm_id}
                                         onClick={() => handleSelectStartAddress(suggestion.properties.osm_id)}
@@ -180,6 +209,7 @@ const FreshnessAroundUser = () => {
                     )}
 
                 </div>
+                {/*
                 <div className="w-full mx-auto mb-2 flex flex-col gap-2 mt-2">
                     <div className="w-full flex justify-between">
                         <p>Distance</p>
@@ -199,7 +229,10 @@ const FreshnessAroundUser = () => {
                         <span className="italic text-[#767676]">10 km</span>
                     </div>
                 </div>
-                <div className="w-full flex justify-center" onClick={() => window.trackButtonClick('FindFreshness')}>
+                */}
+
+
+                {/* <div className="w-full flex justify-center" onClick={() => window.trackButtonClick('FindFreshness')}>
                     {!selectedStartAddress ? (
                     <button
                         onClick={(e) => { e.stopPropagation(); findFreshnessAroundMe(); }}
@@ -217,12 +250,28 @@ const FreshnessAroundUser = () => {
                         )
                     )}
                     
-                </div>
-                {!isMobile && 
+                </div> */}
+
+                
+                <div className="w-full flex justify-center mt-2">
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            window.trackButtonClick('FindFreshness');
+                            findFreshnessAroundMe();
+                        }}
+                        className="text-white p-4 rounded-full shadow-md font-bold bg-primary"
+                    >
+                            Voir la carte GoGoCarto
+                    </button>                                      
+                </div> 
+
+
+                {/* {!isMobile && 
                 <div className="mt-4">
                     <PoiDetails />
                 </div>
-                }
+                } */}
             </div>
         </div>
     );
