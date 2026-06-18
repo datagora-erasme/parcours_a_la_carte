@@ -51,6 +51,7 @@ function Content({
               </button>
               <button
                 onClick={() => openMenu('findFreshness')}
+                // onClick={() => window.open('https://lesrefugesclimatiques.gogocarto.fr/map#/carte/@45.744,4.876,11z?cat=all', '_blank')}
                 className={`p-1 w-[40px] h-[40px] flex justify-center items-center ${activeMenu === 'findFreshness' ? 'bg-primary' : 'bg-bgWhite'}`}
               >
                 <FaSnowflake className={`text-xl ${
@@ -61,7 +62,8 @@ function Content({
                     : 'text-grayBtn'
                 }`} />
               </button>
-              <button
+              {/* GoGoCarto : enlever "consulter les cartes" */}
+              {/* <button
                 onClick={() => openMenu('layers')}
                 className={`p-1 w-[40px] h-[40px] flex justify-center items-center ${activeMenu === 'layers' ? 'bg-primary' : 'bg-bgWhite'}`}
               >
@@ -72,7 +74,7 @@ function Content({
                     ? 'text-white'
                     : 'text-grayBtn'
                 }`} />
-              </button>
+              </button> */}
               <button
                 onClick={() => openMenu('more')}
                 className={`p-1 w-[40px] h-[40px] rounded-bl-lg flex justify-center items-center ${activeMenu === 'more' ? 'bg-primary' : 'bg-bgWhite'}`}
@@ -97,7 +99,9 @@ function Content({
                   Une expérimentation ERASME pour la Métropole de Lyon
                 </h3>
               </div>
-              <div className="relative bg-bgWhite pt-10 pb-5 max-w-sm w-[355px] rounded-[20px] shadow-md min-h-[280px] max-h-[580px]">
+              {/* <div className="relative bg-bgWhite pt-10 pb-5 max-w-sm w-[355px] rounded-[20px] shadow-md min-h-[280px] max-h-[580px]"> */}
+              <div className="relative bg-bgWhite pt-10 pb-5 max-w-sm w-[355px] rounded-[20px] shadow-md max-h-[580px]">
+              
                 <div className="pt-4">
                   {/* menu */}
                   {!activeMenu && (
@@ -114,13 +118,15 @@ function Content({
                     <div className="px-[10px] py-[11px] border-b-2 border-grey-500">
                       <button
                         onClick={() => openMenu('findFreshness')}
+                        // onClick={() => window.open('https://lesrefugesclimatiques.gogocarto.fr/map#/carte/@45.744,4.876,11z?cat=all', '_blank')}
                         className="flex justify-between w-full px-4"
                       >
                         <span>Trouver un lieu frais</span>
                           <FaArrowRight className="hidden md:block text-primary mt-1" />
                       </button>
                     </div>
-                    <div className="px-[10px] py-[11px] border-b-2 border-grey-500">
+                    {/* GoGoCarto : enlever "consulter les cartes" */}
+                    {/* <div className="px-[10px] py-[11px] border-b-2 border-grey-500">
                       <button
                           onClick={() => openMenu('layers')}
                           className="flex justify-between w-full px-4"
@@ -128,7 +134,7 @@ function Content({
                         <span>Consulter les cartes</span>
                           <FaArrowRight className="hidden md:block text-primary mt-1" />
                       </button>
-                    </div>
+                    </div> */}
                     <div className="px-[10px] py-[11px] border-b-2 border-grey-500">
                         <button
                           onClick={() => openMenu('more')}

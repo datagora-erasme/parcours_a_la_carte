@@ -51,7 +51,9 @@ export default function useOpenMenu({
     }
   
     setShowPoiDetails(false);
-    setShowCircle(menuName === 'findFreshness');
+    // setShowCircle(menuName === 'findFreshness');
+    setShowCircle(false);
+
     setZoomToUserPosition(menuName === 'findFreshness');
     setCurrentItinerary(null);
     setSelectedEndAddress(null);
