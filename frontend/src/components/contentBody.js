@@ -42,7 +42,7 @@ const ContentBody = ({
         <BackButton setActiveMenu={setActiveMenu} setShowCircle={setShowCircle} />
       )}
   
-      <div className="max-h-[450px] overflow-auto w-full">
+      <div className={`w-full ${activeMenu=== 'findFreshness' ? '' : 'max-h-[450px] overflow-auto'}`}>
         {activeMenu === 'itinerary' && showItineraryCalculation && (
           <CalculateItinerary
             showItineraryCalculation={showItineraryCalculation}
