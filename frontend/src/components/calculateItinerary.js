@@ -106,6 +106,20 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
         }
     };
 
+    const pickAddress = address => {
+        if (!address) return null;
+        const properties = address.properties || {};
+        const coordinates = (address.geometry && address.geometry.coordinates) || [null, null];
+        return{
+            lon: coordinates[0],
+            lat: coordinates[1],
+            housenumber: properties.housenumber || '',
+            street: properties.street || '',
+            postcode: properties.postcode || '',
+            city: properties.city || '',
+        };
+    };
+
     const addressName = ({ city, street, postcode, housenumber, name, osm_value }) => {
         const displayName = () => {
             return osm_value !== 'street' && osm_value !== 'house';
@@ -200,6 +214,7 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                 ]);
             })
             .catch(error => {
+                setIsLoading(false);
                 console.error(error);
             });
     };
@@ -403,13 +418,12 @@ const CalculateItinerary = ({ showItineraryCalculation, setShowItineraryCalculat
                                 className="flex items-center gap-2"
                                 onClick={() => {
                                     window.trackButtonClick('ValidateCalculateItinerary');
-                                    window.trackItineraryOptions(
-                                        JSON.stringify({
-                                            startAddress: selectedStartAddress,
-                                            endAddress: selectedEndAddress,
-                                            criteria: criteria,
-                                        })
-                                    );
+                                    const payload = JSON.stringify({
+                                        startAddress: pickAddress(selectedStartAddress),
+                                        endAddress: pickAddress(selectedEndAddress),
+                                        criteria: criteria,
+                                    });
+                                    window.trackItineraryOptions(payload);
                                 }}
                             >
                                 <span className="font-bold">Valider ma recherche</span>
