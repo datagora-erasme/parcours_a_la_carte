@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { FaArrowRight, FaWalking, FaMapMarkedAlt, FaInfoCircle, FaSnowflake } from 'react-icons/fa';
+import { FaArrowRight, FaWalking, FaMapMarkedAlt, FaInfoCircle, FaSnowflake, FaTint} from 'react-icons/fa';
 import MainContext from '../contexts/mainContext';
 import ContentBody from './contentBody';
 import useOpenMenu from '../hooks/useOpenMenu';
@@ -62,19 +62,22 @@ function Content({
                     : 'text-grayBtn'
                 }`} />
               </button>
-              {/* GoGoCarto : enlever "consulter les cartes" */}
-              {/* <button
-                onClick={() => openMenu('layers')}
+
+
+              <button
+                onClick={() => window.open('https://fontaines.eaudugrandlyon.com/', '_blank')}
                 className={`p-1 w-[40px] h-[40px] flex justify-center items-center ${activeMenu === 'layers' ? 'bg-primary' : 'bg-bgWhite'}`}
               >
-                <FaMapMarkedAlt className={`text-xl ${
+                <FaTint className={`text-xl ${
                   activeMenu === null
                     ? 'text-primary'
                     : activeMenu === 'layers'
                     ? 'text-white'
                     : 'text-grayBtn'
                 }`} />
-              </button> */}
+              </button>
+
+
               <button
                 onClick={() => openMenu('more')}
                 className={`p-1 w-[40px] h-[40px] rounded-bl-lg flex justify-center items-center ${activeMenu === 'more' ? 'bg-primary' : 'bg-bgWhite'}`}
@@ -125,16 +128,18 @@ function Content({
                           <FaArrowRight className="hidden md:block text-primary mt-1" />
                       </button>
                     </div>
-                    {/* GoGoCarto : enlever "consulter les cartes" */}
-                    {/* <div className="px-[10px] py-[11px] border-b-2 border-grey-500">
+
+                    <div className="px-[10px] py-[11px] border-b-2 border-grey-500">
                       <button
-                          onClick={() => openMenu('layers')}
+                          onClick={() => window.open('https://fontaines.eaudugrandlyon.com/', '_blank')}
                           className="flex justify-between w-full px-4"
                       >
-                        <span>Consulter les cartes</span>
+                        <span> Trouver un point d'eau</span>
                           <FaArrowRight className="hidden md:block text-primary mt-1" />
                       </button>
-                    </div> */}
+                    </div>
+
+
                     <div className="px-[10px] py-[11px] border-b-2 border-grey-500">
                         <button
                           onClick={() => openMenu('more')}

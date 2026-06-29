@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from 'react';
-import { FaLayerGroup, FaWalking, FaSnowflake, FaMapMarkedAlt, FaInfoCircle, FaArrowRight, FaChevronUp, FaChevronDown } from 'react-icons/fa';
+import { FaLayerGroup, FaWalking, FaSnowflake, FaMapMarkedAlt, FaInfoCircle, FaArrowRight, FaChevronUp, FaChevronDown, FaTint } from 'react-icons/fa';
 import MainContext from '../contexts/mainContext';
 import ContentBody from './contentBody';
 import useOpenMenu from '../hooks/useOpenMenu';
@@ -106,20 +106,18 @@ const ContentMobile = ({
                   </div>
 
 
-                  {/* GoGoCarto : enlever "consulter les cartes"
-                  <div className="pr-[10px] pl-[4px] py-[11px] border-b-2 border-grey-500"
+                  <div className="pr-[10px] pl-[4px] py-[11px] border-b-2 border-grey-500">
                     <button
-                      onClick={() => openMenu('layers')}
+                      onClick={() => window.open('https://fontaines.eaudugrandlyon.com/', '_blank')}
                       className="flex justify-between w-full px-4"
                     >
-                      <div className="flex gap-2 items-center">
-                        <FaMapMarkedAlt className="text-xl text-primary" />
-                        <span>Consulter les cartes</span>
-                      </div>
-                      <FaArrowRight className="text-primary mt-1" />
+                    <div className="flex gap-2 items-center">
+                      <FaTint className="text-xl text-primary" />
+                      <span> Trouver un point d'eau </span>
+                    </div>
+                    <FaArrowRight className="text-primary mt-1" />
                     </button>
                   </div>
-                  */}
   
                   <div className="pr-[10px] pl-[4px] py-[11px] border-b-2 border-grey-500">
                     <button
@@ -228,34 +226,15 @@ const ContentMobile = ({
             </span>
           </button>
   
-          {/* GoGoCarto : enlever "consulter les cartes"
           <button
-            onClick={() => openMenu('layers')}
-            className={`p-1 flex justify-center items-center flex-col`}
+            onClick={() => window.open('https://fontaines.eaudugrandlyon.com/', '_blank')}
+            className="p-1 h-full flex justify-center items-center flex-col"
           >
-
-            <FaMapMarkedAlt
-              className={`text-xl ${
-                activeMenu === null
-                  ? 'text-primary'
-                  : activeMenu === 'layers'
-                  ? 'text-primary'
-                  : 'text-grayBtn'
-              }`}
-            />
-            <span
-              className={`text-xs mt-2 ${
-                activeMenu === null
-                  ? 'text-primary'
-                  : activeMenu === 'layers'
-                  ? 'text-primary font-bold'
-                  : 'text-grayBtn'
-              }`}
-            >
-              Cartes
+            <FaTint className="text-xl text-primary" />
+            <span className="text-xs mt-2 text-primary">
+              Trouver un point d'eau
             </span>
           </button>
-          */}
   
           <button
             onClick={() => openMenu('more')}
