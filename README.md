@@ -11,6 +11,7 @@
     - [Backend](#backend)
     - [Frontend](#frontend)
 - [Analyse statistique : pondération du réseau piéton](#analyse-statistique--pondération-du-réseau-piéton)
+- [Analyse géographique des usages](#analyse-géographique-des-usages)
 
 
 # 🚀 Démarrage rapide
@@ -399,3 +400,7 @@ Afin de lancer les calculs, se placer ici : *./score_calculation_it/* puis exéc
 ```bash
 python poi_preprocessing.py
 ```
+
+# Analyse géographique des usages
+Scripts d'analyse géographique des requêtes réalisées sur le site et de comparaison des itinéraires.
+Voir [analytics/README.md](analytics/README.md)
